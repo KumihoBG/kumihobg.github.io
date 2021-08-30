@@ -1,5 +1,4 @@
 import {html} from 'https://unpkg.com/lit-html?module';
-import page from "../../node_modules/page/page.mjs";
 import { logout } from "../api/api.js";
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
 import { footerTemplateBg } from "./footer.js";
