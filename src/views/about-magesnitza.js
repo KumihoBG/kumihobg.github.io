@@ -109,7 +109,7 @@ ${navTemplate()}
                 </div>
 
                 <h3>Get In touch</h3>
-                <form @submit=${submitForm} id="contact-form" method="POST" class="quote">
+                <form @submit=${submitForm} action="https://formsubmit.co/pavleta.taseva@email.com" id="contact-form" method="POST" class="quote">
                     <div>
                         <input id="form-name" type="text" name="name" placeholder="Name">
                     </div>
@@ -119,6 +119,7 @@ ${navTemplate()}
                     <div>
                         <textarea id="form-message" name="message" placeholder="Message"></textarea>
                     </div>
+                    <input type="text" name="_honey" style="display:none">
                     <button class="post-button" type="submit">Send</button>
                 </form>
             </div>
@@ -154,19 +155,20 @@ export async function aboutBookPage(context) {
             notify('All fields are required!');
             return;
         }
-        sendEmail(name, email, message);
-    }
-
-    // Send email 
-    function sendEmail(name, email, message) {
-        Email.send({
-            Host: 'smtp.gmail.com',
-            Username: 'pavleta.taseva@gmail.com',
-            Password: 'erpdewgatbpeazkk',
-            To: 'pavleta.taseva@gmail.com',
-            From: 'pavleta.taseva@gmail.com',
-            Subject: `${name} sent you a message`,
-            Body: `Name: ${name} <br> Email: ${email} <br> ${message}`
-        }).then(message => notify('Your message was sent successfully.'));
+        notify('Your message has been sent successfully. Thank you! :) ')
+        // sendEmail(name, email, message);
     }
 }
+    // Send email 
+//     function sendEmail(name, email, message) {
+//         Email.send({
+//             Host: 'smtp.gmail.com',
+//             Username: 'pavleta.taseva@gmail.com',
+//             Password: 'erpdewgatbpeazkk',
+//             To: 'pavleta.taseva@gmail.com',
+//             From: 'pavleta.taseva@gmail.com',
+//             Subject: `${name} sent you a message`,
+//             Body: `Name: ${name} <br> Email: ${email} <br> ${message}`
+//         }).then(message => notify('Your message was sent successfully.'));
+//     }
+
