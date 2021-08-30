@@ -109,7 +109,7 @@ ${navTemplate()}
                 </div>
 
                 <h3>Get In touch</h3>
-                <form @submit=${submitForm} action="https://formsubmit.co/pavleta.taseva@gmail.com" id="contact-form" method="POST" class="quote">
+                <form @submit=${submitForm} action="https://formsubmit.co/9f4fb3c09df017d549548c4a04327a34" id="contact-form" method="POST" class="quote">
                     <div>
                         <input id="form-name" type="text" name="name" placeholder="Name" required>
                     </div>
@@ -119,6 +119,7 @@ ${navTemplate()}
                     <div>
                         <textarea id="form-message" name="message" placeholder="Message" required></textarea>
                     </div>
+                    <input type="hidden" name="_template" value="box">
                     <input type="text" name="_honey" style="display:none">
                     <button class="post-button" type="submit">Send</button>
                 </form>
@@ -156,19 +157,5 @@ export async function aboutBookPage(context) {
             return;
         }
         notify('Your message has been sent successfully. Thank you! :) ')
-        // sendEmail(name, email, message);
     }
 }
-    // Send email 
-//     function sendEmail(name, email, message) {
-//         Email.send({
-//             Host: 'smtp.gmail.com',
-//             Username: 'pavleta.taseva@gmail.com',
-//             Password: 'erpdewgatbpeazkk',
-//             To: 'pavleta.taseva@gmail.com',
-//             From: 'pavleta.taseva@gmail.com',
-//             Subject: `${name} sent you a message`,
-//             Body: `Name: ${name} <br> Email: ${email} <br> ${message}`
-//         }).then(message => notify('Your message was sent successfully.'));
-//     }
-

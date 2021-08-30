@@ -2,9 +2,10 @@ import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
 import { footerTemplateBg } from "./footer.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
+import { notify } from './notification.js';
 
 const aboutBookTemplateBg = () => html`
-${navTemplateBg()}
+${navTemplateBg(submitForm)}
   <section class="my-book">
     <div class="my-book-container">
       <div id="sinopsis">
@@ -75,18 +76,20 @@ ${navTemplateBg()}
           </div>
 
           <h3>Пишете ми</h3>
-          <form class="quote">
-            <div>
-              <input type="text" placeholder="Име">
-            </div>
-            <div>
-              <input type="email" placeholder="Email Address">
-            </div>
-            <div>
-              <textarea placeholder="Съобщение"></textarea>
-            </div>
-            <button class="post-button" type="submit">Изпрати</button>
-          </form>
+          <form @submit=${submitForm} action="https://formsubmit.co/9f4fb3c09df017d549548c4a04327a34" id="contact-form" method="POST" class="quote">
+                    <div>
+                        <input id="form-name" type="text" name="name" placeholder="Вашето име" required>
+                    </div>
+                    <div>
+                        <input id="form-email" type="email" name="email" placeholder="Електронен адрес" required>
+                    </div>
+                    <div>
+                        <textarea id="form-message" name="message" placeholder="Съобщение" required></textarea>
+                    </div>
+                    <input type="hidden" name="_template" value="box">
+                    <input type="text" name="_honey" style="display:none">
+                    <button class="post-button" type="submit">Изпрати</button>
+                </form>
         </div>
 
         <h4 class="news">
@@ -105,8 +108,22 @@ ${navTemplateBg()}
 
 export async function aboutBookPageBg(context) {
     const userId = sessionStorage.getItem("userId");
-    context.render(aboutBookTemplateBg(userId != null));
+    context.render(aboutBookTemplateBg(userId != null, submitForm));
     setUserNav();
     logoutEvent();
+
+    // Get input values
+    function submitForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const message = document.getElementById('form-message').value;
+      document.getElementById('contact-form').reset();
+      if (name == '' || email == '' || message == '') {
+          notify('All fields are required!');
+          return;
+      }
+      notify('Your message has been sent successfully. Thank you! :) ')
+  }
 }
  
