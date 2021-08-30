@@ -1,0 +1,17 @@
+{
+  "name": "magesnitza",
+  "version": "1.0.0",
+  "description": "Application about my book",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Pavleta Taseva",
+  "license": "ISC",
+  "dependencies": {
+    "lit-html": "^1.4.1",
+    "page": "^1.11.6",
+    "parse": "^3.3.0"
+  }
+}
