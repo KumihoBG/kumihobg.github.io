@@ -1,6 +1,6 @@
 console.log('It works!');
 // import vendor libraries
-import { render } from "./node_modules/lit-html/lit-html.js";
+import {render} from 'https://unpkg.com/lit-html?module';
 import page from "./node_modules/page/page.mjs";
 
 // local modules

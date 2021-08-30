@@ -1,4 +1,4 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import {html} from 'https://unpkg.com/lit-html?module';
 import page from "../../node_modules/page/page.mjs";
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
 import { footerTemplate } from "./footer.js";
