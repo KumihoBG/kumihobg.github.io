@@ -111,13 +111,13 @@ ${navTemplate()}
                 <h3>Get In touch</h3>
                 <form @submit=${submitForm} action="https://formsubmit.co/pavleta.taseva@gmail.com" id="contact-form" method="POST" class="quote">
                     <div>
-                        <input id="form-name" type="text" name="name" placeholder="Name">
+                        <input id="form-name" type="text" name="name" placeholder="Name" required>
                     </div>
                     <div>
-                        <input id="form-email" type="email" name="email" placeholder="Email Address">
+                        <input id="form-email" type="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div>
-                        <textarea id="form-message" name="message" placeholder="Message"></textarea>
+                        <textarea id="form-message" name="message" placeholder="Message" required></textarea>
                     </div>
                     <input type="text" name="_honey" style="display:none">
                     <button class="post-button" type="submit">Send</button>
