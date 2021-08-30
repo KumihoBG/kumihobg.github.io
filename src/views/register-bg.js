@@ -119,6 +119,6 @@ export async function registerPageBg(context) {
             return notify('Паролата трябва да съдържа поне 2 цифри. ');
         }
         await register(username, email, password);
-        context.page.redirect('/login');
+        context.page.redirect('/login-bg');
     }
 }
