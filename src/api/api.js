@@ -92,7 +92,7 @@ export async function register(username, email, password) {
         let userResult = await user.signUp();
         Parse.User.logOut();
         const languageBtn = document.getElementById('language');
-        const language = languageBtn.textContent;
+        const language = languageBtn.innerText;
         if (language === 'Register') {
             //Please check your email (...) to confirm your account.
             notify('Email must be verified. Please, visit your mail inbox for further instructions.');
