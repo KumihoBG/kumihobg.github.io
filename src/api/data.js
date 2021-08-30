@@ -1,4 +1,5 @@
 import * as api from "./api.js";
+import Parse from "https://cdnjs.cloudflare.com/ajax/libs/parse/3.3.0/parse.min.js";
 
 Parse.serverURL = 'https://parseapi.back4app.com';
 Parse.initialize(
