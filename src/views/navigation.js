@@ -29,7 +29,10 @@ export const navTemplate = () => html`
             <a id="register-link" class="guest" href="/register">Register</a>
           </li>
           <li>
-          <a href="/profile"><span id="welcome-user" class="user"></span></a>
+              <span id="welcome-user" class="user"></span>
+          </li>
+          <li>
+            <a href="/profile" class="user">Profile</a>
           </li>
           <li>
             <a class="user" id="logoutBtn" href="javascript:void(0)">Logout</a>
@@ -74,7 +77,10 @@ export const navTemplateBg = () => html`
             <a id="register-link" class="guest" href="/register-bg">Регистрация</a>
           </li>
           <li>
-            <a href="/profile"><span id="welcome-user" class="user"></span></a>
+              <span id="welcome-user" class="user"></span>
+          </li>
+          <li>
+            <a href="/profile" class="user">Профил</a>
           </li>
           <li>
             <a class="user" id="logoutBtn" href="javascript:void(0)">Изход</a>
