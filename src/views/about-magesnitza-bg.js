@@ -4,8 +4,8 @@ import { footerTemplateBg } from "./footer.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 import { notify } from './notification.js';
 
-const aboutBookTemplateBg = () => html`
-${navTemplateBg(submitForm)}
+const aboutBookTemplateBg = (submitForm) => html`
+${navTemplateBg()}
   <section class="my-book">
     <div class="my-book-container">
       <div id="sinopsis">
