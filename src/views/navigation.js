@@ -29,7 +29,7 @@ export const navTemplate = () => html`
             <a id="register-link" class="guest" href="/register">Register</a>
           </li>
           <li>
-          <a href="/profile">Welcome, <span id="welcome-user" class="user"></span></a>
+          <a href="/profile"><span id="welcome-user" class="user"></span></a>
           </li>
           <li>
             <a class="user" id="logoutBtn" href="javascript:void(0)">Logout</a>
@@ -74,7 +74,7 @@ export const navTemplateBg = () => html`
             <a id="register-link" class="guest" href="/register-bg">Регистрация</a>
           </li>
           <li>
-            <a href="/profile">Welcome, <span id="welcome-user" class="user"></span></a>
+            <a href="/profile"><span id="welcome-user" class="user"></span></a>
           </li>
           <li>
             <a class="user" id="logoutBtn" href="javascript:void(0)">Изход</a>
@@ -98,7 +98,11 @@ export function setUserNav() {
     [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'inline-block');
     [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
     [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.guest')].forEach(el => el.style.display = 'none');
-    welcomeUser.textContent = `${username}`;
+    if (document.documentElement.lang == 'en') {
+      welcomeUser.textContent = `Welcome, ${username}`;
+    } else {
+      welcomeUser.textContent = `Здравей, ${username}`;
+    }
   } else {
     [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'none');
     [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
