@@ -109,7 +109,7 @@ ${navTemplate()}
                 </div>
 
                 <h3>Get In touch</h3>
-                <form @submit=${submitForm} action="https://formsubmit.co/pavleta.taseva@email.com" id="contact-form" method="POST" class="quote">
+                <form @submit=${submitForm} action="https://formsubmit.co/pavleta.taseva@gmail.com" id="contact-form" method="POST" class="quote">
                     <div>
                         <input id="form-name" type="text" name="name" placeholder="Name">
                     </div>
