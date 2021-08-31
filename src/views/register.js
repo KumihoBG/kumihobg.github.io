@@ -1,5 +1,5 @@
 import { html } from 'https://unpkg.com/lit-html?module';
-import createDOMPurify from 'dompurify';
+import createDOMPurify from '../../node_modules/dompurify/dist/purify.js';
 import { JSDOM } from 'jsdom';
 import { register } from "../api/data.js";
 import { toggleEye } from "../../index.js";
