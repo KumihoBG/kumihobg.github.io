@@ -42,7 +42,8 @@ const loginTemplateBg = (onSubmit) =>
 export async function loginPageBg(context) {
     context.render(loginTemplateBg(onSubmit));
     setUserNav();
-
+    toggleEye();
+    
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
