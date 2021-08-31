@@ -46,11 +46,11 @@ export async function loginPageBg(context) {
         const username = formData.get('username').trim();
         const password = formData.get('password').trim();
 
-        if (username == '' || password == '') {
+        if (username === '' ||  username === null || password === '' || password === null) {
             alert('Всички полета са задължителни!');
             return;
         }
-
+        
         await login(username, password);
         setUserNav();
         context.page.redirect('/home-bg');

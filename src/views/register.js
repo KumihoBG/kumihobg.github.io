@@ -1,4 +1,6 @@
-import {html} from 'https://unpkg.com/lit-html?module';
+import { html } from 'https://unpkg.com/lit-html?module';
+import createDOMPurify from 'dompurify';
+im
 import { register } from "../api/data.js";
 import { toggleEye } from "../../index.js";
 import { navTemplate, setUserNav } from "./navigation.js";
@@ -57,18 +59,30 @@ export async function registerPage(context) {
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const username = formData.get('username');
-        const email = formData.get('email');
+        const username = formData.get('username').toString();
+        const email = formData.get('email').toString();
         const password = formData.get('password');
         const repass = formData.get('repeatPass');
 
-        if (username == '' || email == '' || password == '' || repass == '') {
+        if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
             notify('All fields are required!');
             return;
         }
 
+        if (username === 'admin') {
+            return notify('Username cannot be "admin"');
+        }
+
+        if (password === 'password') {
+            return notify('Password must be different!')
+        }
+
         if (password !== repass) {
             notify('Two passwords don\'t match!');
+            return;
+        }
+
+        if (typeof username !== 'string' || !username instanceof String) {
             return;
         }
 
@@ -117,8 +131,18 @@ export async function registerPage(context) {
         if (hasDigits == false) {
             return notify('Password must have at least 2 digits. ');
         }
-        await register(username, email, password);
-        context.page.redirect('/login');
+
+        const dirty = `I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" /> <script>alert('you got hacked!')</script>`
+        const windowEmulator = new JSDOM('').window;
+        const DOMPurify = createDOMPurify(windowEmulator);
+
+        if (DOMPurify.isSupported) {
+            const cleanUsername = DOMPurify.sanitize(username);
+            const cleanEmail = DOMPurify.sanitize(email);
+            const cleanPassword = DOMPurify.sanitize(password);
+            await register(cleanUsername, cleanEmail, cleanPassword);
+            context.page.redirect('/login');
+        }
     }
 }
 

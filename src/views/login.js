@@ -47,7 +47,7 @@ export async function loginPage(context) {
         const username = formData.get('username').trim();
         const password = formData.get('password').trim();
 
-        if (username == '' || password == '') {
+        if (username === '' ||  username === null || password === '' || password === null) {
             notify('All fields are required!');
             return;
         }

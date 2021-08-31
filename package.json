@@ -10,6 +10,8 @@
   "author": "Pavleta Taseva",
   "license": "ISC",
   "dependencies": {
+    "dompurify": "^2.3.1",
+    "jsdom": "^17.0.0",
     "lit-html": "^1.4.1",
     "page": "^1.11.6"
   }
