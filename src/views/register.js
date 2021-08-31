@@ -72,7 +72,7 @@ export async function registerPage(context) {
         }
 
         if (password === 'password') {
-            return notify('Password must be different!')
+            return notify('Password must be different! Try more unique one!')
         }
 
         if (password !== repass) {
