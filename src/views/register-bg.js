@@ -25,8 +25,8 @@ const registerTemplateBg = (onSubmit) => html`
                     <label for="password">Парола</label><br>
                     <div class="icon">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" autocomplete="current-password" name="password"><i id="eye-one"
-                            class="fas fa-eye" class="togglePassword"></i>
+                        <input id="password" type="password" autocomplete="current-password" name="password">
+                        <i id="eye-one" class="fas fa-eye" class="togglePassword"></i>
                         <br>
                     </div>
                     <label for="repeatPass">Повторете Вашата парола</label><br>

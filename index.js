@@ -88,12 +88,10 @@ export function toggleEye() {
   const password = document.getElementById('password');
   const repeatPass = document.getElementById('repeatPass');
   const loginPassword = document.getElementById('login-password');
-  const loginPasswordBg = document.getElementById('login-password-bg');
   const eyeOne = document.getElementById('eye-one');
   const eyeTwo = document.getElementById('eye-two');
   const eyeThree = document.getElementById('eye-three');
-  const eyeFour = document.getElementById('eye-four');
-
+ 
   eyeOne.addEventListener('click', function () {
     // toggle the type attribute
     toggleInputEl(eyeOne, password);
@@ -107,11 +105,6 @@ export function toggleEye() {
   eyeThree.addEventListener('click', function () {
     // toggle the type attribute
     toggleInputEl(eyeThree, loginPassword);
-  });
-
-  eyeFour.addEventListener('click', function () {
-    // toggle the type attribute
-    toggleInputEl(eyeFour, loginPasswordBg);
   });
 }
 
