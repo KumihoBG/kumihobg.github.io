@@ -110,11 +110,11 @@ export function toggleEye() {
 
 function toggleInputEl(element, password) {
   const type = password.getAttribute('type');
-  if (type === 'password') {
+  if (type === 'password' && password.value !== '') {
     element.classList.add('fa-eye-slash');
     element.classList.remove('fa-eye');
     password.setAttribute('type', 'text');
-  } else if (type === 'text') {
+  } else if (type === 'text' && password.value !== '') {
     element.classList.add('fa-eye');
     element.classList.remove('fa-eye-slash');
     password.setAttribute('type', 'password');
