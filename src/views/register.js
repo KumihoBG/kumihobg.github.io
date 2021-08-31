@@ -1,6 +1,6 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import createDOMPurify from 'dompurify';
-im
+import { JSDOM } from 'jsdom';
 import { register } from "../api/data.js";
 import { toggleEye } from "../../index.js";
 import { navTemplate, setUserNav } from "./navigation.js";
