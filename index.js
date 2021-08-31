@@ -89,6 +89,8 @@ export function toggleEye() {
   const repeatPass = document.getElementById('repeatPass');
   const eyeOne = document.getElementById('eye-one');
   const eyeTwo = document.getElementById('eye-two');
+  const eyeThree = document.getElementById('eyeThree');
+  const eyeFour = document.getElementById('eye-four');
 
   eyeOne.addEventListener('click', function () {
     // toggle the type attribute
@@ -96,6 +98,16 @@ export function toggleEye() {
   });
 
   eyeTwo.addEventListener('click', function () {
+    // toggle the type attribute
+    toggleInputEl(eyeTwo, repeatPass);
+  });
+
+  eyeThree.addEventListener('click', function () {
+    // toggle the type attribute
+    toggleInputEl(eyeTwo, repeatPass);
+  });
+
+  eyeFour.addEventListener('click', function () {
     // toggle the type attribute
     toggleInputEl(eyeTwo, repeatPass);
   });

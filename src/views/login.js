@@ -21,8 +21,9 @@ const loginTemplate = (onSubmit) =>
                     <label for="password">Password</label><br>
                     <div class="icon">
                         <i class="fas fa-unlock"></i>
-                        <input type="password" autocomplete="current-password" name="password"><br>
-                        <i id="eye-one" class="fas fa-eye" class="togglePassword"></i>
+                        <input type="password" autocomplete="current-password" name="password">
+                        <i id="eye-three" class="fas fa-eye" class="togglePassword"></i>
+                        <br>
                     </div>
                     <div>
                         <button type="submit" class="loginBtn">Login</button>
