@@ -1,6 +1,4 @@
 import { html } from 'https://unpkg.com/lit-html?module';
-import createDOMPurify from '../../node_modules/dompurify/dist/purify.js';
-import { JSDOM } from 'jsdom';
 import { register } from "../api/data.js";
 import { toggleEye } from "../../index.js";
 import { navTemplate, setUserNav } from "./navigation.js";
@@ -132,17 +130,8 @@ export async function registerPage(context) {
             return notify('Password must have at least 2 digits. ');
         }
 
-        const dirty = `I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" /> <script>alert('you got hacked!')</script>`
-        const windowEmulator = new JSDOM('').window;
-        const DOMPurify = createDOMPurify(windowEmulator);
-
-        if (DOMPurify.isSupported) {
-            const cleanUsername = DOMPurify.sanitize(username);
-            const cleanEmail = DOMPurify.sanitize(email);
-            const cleanPassword = DOMPurify.sanitize(password);
-            await register(cleanUsername, cleanEmail, cleanPassword);
-            context.page.redirect('/login');
-        }
+        await register(username, email, password);
+        context.page.redirect('/login');
     }
 }
 
