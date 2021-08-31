@@ -1,4 +1,5 @@
 import {html} from 'https://unpkg.com/lit-html?module';
+import { toggleEye } from '../../index.js';
 import { login } from "../api/data.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 
@@ -50,9 +51,10 @@ export async function loginPageBg(context) {
             alert('Всички полета са задължителни!');
             return;
         }
-        
+
         await login(username, password);
         setUserNav();
+        toggleEye();
         context.page.redirect('/home-bg');
     }
 }

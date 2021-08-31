@@ -57,10 +57,10 @@ export async function registerPage(context) {
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const username = formData.get('username').toString();
-        const email = formData.get('email').toString();
-        const password = formData.get('password');
-        const repass = formData.get('repeatPass');
+        const username = formData.get('username').toString().trim();
+        const email = formData.get('email').toString().trim();
+        const password = formData.get('password').trim();
+        const repass = formData.get('repeatPass').trim();
 
         if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
             notify('All fields are required!');
@@ -131,6 +131,10 @@ export async function registerPage(context) {
         }
 
         await register(username, email, password);
+        username = '';
+        email = '';
+        password = '';
+        repass = '';
         context.page.redirect('/login');
     }
 }

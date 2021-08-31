@@ -1,4 +1,5 @@
 import {html} from 'https://unpkg.com/lit-html?module';
+import { toggleEye } from '../../index.js';
 import { login } from "../api/data.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from "./notification.js";
@@ -21,6 +22,7 @@ const loginTemplate = (onSubmit) =>
                     <div class="icon">
                         <i class="fas fa-unlock"></i>
                         <input type="password" autocomplete="current-password" name="password"><br>
+                        <i id="eye-one" class="fas fa-eye" class="togglePassword"></i>
                     </div>
                     <div>
                         <button type="submit" class="loginBtn">Login</button>
@@ -40,6 +42,7 @@ const loginTemplate = (onSubmit) =>
 export async function loginPage(context) {
     context.render(loginTemplate(onSubmit));
     setUserNav();
+    toggleEye();
 
     async function onSubmit(event) {
         event.preventDefault();
