@@ -58,18 +58,30 @@ export async function registerPageBg(context) {
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const username = formData.get('username');
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const repass = formData.get('repeatPass');
+        let username = formData.get('username').toString().trim();
+        let email = formData.get('email').toString().trim();
+        let password = formData.get('password').trim();
+        let repass = formData.get('repeatPass').trim();
 
-        if (username == '' || email == '' || password == '' || repass == '') {
-            notify('Попълването на всички полета е задължително!');
+        if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
+            notify('Всички полета са задължителни!');
             return;
         }
 
+        if (username === 'admin') {
+            return notify('Вашето име не може да бъде "admin"');
+        }
+
+        if (password === 'password') {
+            return notify('Използвайте по-уникална парола! :(')
+        }
+
         if (password !== repass) {
-            notify('Двете пароли не съвпадат!');
+            notify('Двете пароли не съвпадат. Опитайте отново!');
+            return;
+        }
+
+        if (typeof username !== 'string' || !username instanceof String) {
             return;
         }
 
@@ -108,17 +120,38 @@ export async function registerPageBg(context) {
         }
 
         if (isValid == false) {
-            return notify('Паролата трябва да бъде с дължина между 6 и 10 символа. ');
+            return notify('Паролата трябва да бъде между 6 и 10 знака. ');
         }
 
         if (isInvSymbol == true) {
-            return notify('Паролата може да съдържа само букви и цифри. ');
+            return notify('Паролата Ви може да съдържа само букви и цифри. ');
         }
 
         if (hasDigits == false) {
-            return notify('Паролата трябва да съдържа поне 2 цифри. ');
+            return notify('В паролата Ви трябва да има поне 2 цифри. ');
         }
-        await register(username, email, password);
-        context.page.redirect('/login-bg');
+
+        let cleanedUser = '';
+        const usernamePattern = /[\/<>;&()^\s:*+?${}|[\]\\@]+/gm;
+        let found = [];
+
+        if (usernamePattern.test(username)) {
+            for (let i = 0; i < username.length; i++) {
+                found = username[i].match(usernamePattern);
+                if(found) {
+                    cleanedUser += '';
+                } else {
+                    cleanedUser += username[i];
+                }
+            };
+            console.log(username);
+        }
+
+        await register(cleanedUser, email, password);
+        username = formData.set('username', '');
+        email = formData.set('email', '');
+        password = formData.set('password', '');
+        repass = formData.set('repass', '');
+        context.page.redirect('/login');
     }
 }

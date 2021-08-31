@@ -57,10 +57,10 @@ export async function registerPage(context) {
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const username = formData.get('username').toString().trim();
-        const email = formData.get('email').toString().trim();
-        const password = formData.get('password').trim();
-        const repass = formData.get('repeatPass').trim();
+        let username = formData.get('username').toString().trim();
+        let email = formData.get('email').toString().trim();
+        let password = formData.get('password').trim();
+        let repass = formData.get('repeatPass').trim();
 
         if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
             notify('All fields are required!');
@@ -130,11 +130,27 @@ export async function registerPage(context) {
             return notify('Password must have at least 2 digits. ');
         }
 
-        await register(username, email, password);
-        username = '';
-        email = '';
-        password = '';
-        repass = '';
+        let cleanedUser = '';
+        const usernamePattern = /[\/<>;&()^\s:*+?${}|[\]\\@]+/gm;
+        let found = [];
+
+        if (usernamePattern.test(username)) {
+            for (let i = 0; i < username.length; i++) {
+                found = username[i].match(usernamePattern);
+                if(found) {
+                    cleanedUser += '';
+                } else {
+                    cleanedUser += username[i];
+                }
+            };
+            console.log(username);
+        }
+
+        await register(cleanedUser, email, password);
+        username = formData.set('username', '');
+        email = formData.set('email', '');
+        password = formData.set('password', '');
+        repass = formData.set('repass', '');
         context.page.redirect('/login');
     }
 }

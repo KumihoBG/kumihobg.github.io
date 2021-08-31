@@ -92,20 +92,24 @@ export function toggleEye() {
   const eyeTwo = document.getElementById('eye-two');
   const eyeThree = document.getElementById('eye-three');
  
-  eyeOne.addEventListener('click', function () {
-    // toggle the type attribute
-    toggleInputEl(eyeOne, password);
-  });
-
-  eyeTwo.addEventListener('click', function () {
-    // toggle the type attribute
-    toggleInputEl(eyeTwo, repeatPass);
-  });
-
-  eyeThree.addEventListener('click', function () {
-    // toggle the type attribute
-    toggleInputEl(eyeThree, loginPassword);
-  });
+  if (eyeOne !== null) {
+    eyeOne.addEventListener('click', function () {
+      // toggle the type attribute
+      toggleInputEl(eyeOne, password);
+    });
+  }
+  if (eyeTwo !== null) {
+    eyeTwo.addEventListener('click', function () {
+      // toggle the type attribute
+      toggleInputEl(eyeTwo, repeatPass);
+    });
+  }
+  if (eyeThree !== null) {
+    eyeThree.addEventListener('click', function () {
+      // toggle the type attribute
+      toggleInputEl(eyeThree, loginPassword);
+    });
+  }
 }
 
 function toggleInputEl(element, password) {
