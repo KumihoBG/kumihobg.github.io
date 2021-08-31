@@ -89,7 +89,7 @@ export function toggleEye() {
   const repeatPass = document.getElementById('repeatPass');
   const eyeOne = document.getElementById('eye-one');
   const eyeTwo = document.getElementById('eye-two');
-  const eyeThree = document.getElementById('eyeThree');
+  const eyeThree = document.getElementById('eye-three');
   const eyeFour = document.getElementById('eye-four');
 
   eyeOne.addEventListener('click', function () {
