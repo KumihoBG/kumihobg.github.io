@@ -132,7 +132,7 @@ export async function registerPageBg(context) {
         }
 
         let cleanedUser = '';
-        const usernamePattern = /[\/\\n\\r[\uXXXX]<>";&()^\s:*%+?${}|[\]\\@]+/gm;
+        const usernamePattern = /[\/\\n\\r<>";&()^\s:*%+?${}|[\]\\@]+/gm;
         let found = [];
 
         if (usernamePattern.test(username)) {
