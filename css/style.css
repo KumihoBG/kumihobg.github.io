@@ -409,7 +409,8 @@ a:active {
 
 .fa-user, 
 .fa-envelope-open-text,
-.fa-lock {
+.fa-lock,
+.fa-unlock {
   position: absolute;
   top: 15%;
   border-right: 1px solid rgb(163, 162, 162);
