@@ -13,6 +13,7 @@ export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
 export const passwordReset = api.passwordReset;
+export const changePassword = api.changePassword;
 
 // Implement application specific requests
 export async function getAllItems() {

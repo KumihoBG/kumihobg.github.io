@@ -116,7 +116,6 @@ export async function logout() {
         const languageBtn = document.getElementById('language');
         const language = languageBtn.innerText;
         if (language === 'BG') {
-            //Please check your email (...) to confirm your account.
             notify('You have been logged out. Redirecting you to homepage...');
         } else {
             notify('Успешно излязохте от Вашия профил. Насочваме Ви към начална страница...');
@@ -135,7 +134,6 @@ export async function passwordReset(email) {
         const languageBtn = document.getElementById('language');
         const language = languageBtn.innerText;
         if (language === 'BG') {
-            //Please check your email (...) to confirm your account.
             notify('Reset password email sent successfully');
         } else {
             notify('На електронния Ви адрес е изпратена заявка за смяна на паролата Ви.');
@@ -143,5 +141,33 @@ export async function passwordReset(email) {
     } catch (error) {
         console.error('Error while creating request to reset user password', error);
         notify('Error while creating request to reset user password', error);
+    }
+}
+
+export async function changePassword(id, password) {
+    const User = new Parse.User();
+    const query = new Parse.Query(User);
+
+    try {
+        // Finds the user by its ID
+        let user = await query.get(id);
+        // Updates the data we want
+        user.set('password', password);
+        try {
+            // Saves the user with the updated data
+            let response = await user.save();
+            const languageBtn = document.getElementById('language');
+            const language = languageBtn.innerText;
+            if (language === 'BG') {
+                notify('Your password was changed successfully! Please, login with your new credentials.');
+            } else {
+                notify('Успешно променихте Вашата парола. Моля, използвайте новата парола, за да влезете във Вашия профил!');
+            }
+            Parse.User.logOut();
+        } catch (error) {
+            console.error('Error while updating user', error);
+        }
+    } catch (error) {
+        console.error('Error while retrieving user', error);
     }
 }
