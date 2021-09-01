@@ -4,7 +4,7 @@ import { footerTemplate } from "./footer.js";
 import { homePageBg } from "./home-bg.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
-const homePageTemplate = () => html`
+const homePageTemplate = (onSubscribe) => html`
 ${navTemplate()}
 <section id="parallax-container">
   <div id="parallax">
@@ -35,10 +35,10 @@ ${navTemplate()}
   </div>
 </section>
 
-${footerTemplate()}`;
+${footerTemplate(onSubscribe)}`;
 
 export async function homePage(context) {
-  context.render(homePageTemplate());
+  context.render(homePageTemplate(onSubscribe));
   setUserNav();
 
   const language = document.getElementById('language');
@@ -52,4 +52,16 @@ export async function homePage(context) {
   });
   parallaxEffect();
   logoutEvent();
+
+  async function onSubscribe(event) {
+    event.preventDefault();
+    const myNewObject = new Parse.Object('Subscriber');
+    try {
+      const result = await myNewObject.save();
+      // Access the Parse Object attributes using the .GET method
+      console.log('Subscriber created', result);
+    } catch (error) {
+      console.error('Error while creating Subscriber: ', error);
+    }
+  }
 }
