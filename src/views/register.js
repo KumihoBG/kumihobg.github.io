@@ -20,7 +20,7 @@ const registerTemplate = (onSubmit) => html`
                     <label for="email">Email</label><br>
                     <div class="icon">
                         <i class="fas fa-envelope-open-text"></i>
-                        <input name="email" type="email" autocomplete="email"><br>
+                        <input name="email" type="email" autocomplete="email" required pattern="[^]+@[^]+[.][a-z]{2,63}$"><br>
                     </div>
                     <label for="password">Password</label><br>
                     <div class="icon">
@@ -132,25 +132,21 @@ export async function registerPage(context) {
 
         let cleanedUser = '';
         const usernamePattern = /[\/\\n\\r<>";&()^\s:*%+?${}|[\]\\@]+/gm;
-        let found = [];
-
-        if (usernamePattern.test(username)) {
+        const test = usernamePattern.test(username);
+        if (test == true) {
             for (let i = 0; i < username.length; i++) {
-                found = username[i].match(usernamePattern);
-                if(found) {
+                let found = username[i].match(usernamePattern);
+                if(found !== null && found.length > 0) {
                     cleanedUser += '';
                 } else {
                     cleanedUser += username[i];
                 }
             };
-            console.log(username);
+            notify(`Your username is set to ${cleanedUser}, according to our requirements!`)
+            await register(cleanedUser, email, password);
+        } else {
+            await register(username, email, password);
         }
-
-        await register(cleanedUser, email, password);
-        username = formData.set('username', '');
-        email = formData.set('email', '');
-        password = formData.set('password', '');
-        repass = formData.set('repass', '');
         context.page.redirect('/login');
     }
 }

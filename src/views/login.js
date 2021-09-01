@@ -1,10 +1,12 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { toggleEye } from '../../index.js';
+import { passwordReset } from '../api/data.js';
 import { login } from "../api/data.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from "./notification.js";
 
-const loginTemplate = (onSubmit) =>
+
+const loginTemplate = (onSubmit, passwordReset) =>
     html` 
     ${navTemplate()}
     <section id="login-section">
@@ -31,7 +33,7 @@ const loginTemplate = (onSubmit) =>
                 </form>
                 <div class="second">
                     <a class="link" href="/register">Create new account</a>
-                    <a class="link" href="/register">Forgot Password?</a>
+                    <a @click=${passwordReset} class="link" href="/register">Forgot Password?</a>
                 </div>
             </div>
         </div>
@@ -41,7 +43,7 @@ const loginTemplate = (onSubmit) =>
     </section>`;
 
 export async function loginPage(context) {
-    context.render(loginTemplate(onSubmit));
+    context.render(loginTemplate(onSubmit, passwordReset));
     setUserNav();
     toggleEye();
 

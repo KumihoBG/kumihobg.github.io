@@ -977,7 +977,7 @@ footer {
   margin: 0 auto;
   align-items: center;
   justify-content: start;
-  grid-template-areas: "newsletter search";
+  grid-template-areas: "newsletter";
 }
 
 .footer-container a {
@@ -1018,28 +1018,6 @@ small a:hover {
 
 small img {
   margin: 0 5px;
-}
-
-.search {
-  grid-area: search;
-  width: 100%;
-}
-
-.search label {
-  display: block;
-  letter-spacing: 1px;
-  font-weight: 500;
-  margin-top: 30px;
-  font-size: 22px;
-  padding-bottom: 20px;
-}
-
-.search-field {
-  padding: 7px 60px;
-  border: none;
-  border-radius: 5px;
-  margin-left: 15px;
-  width: 90%;
 }
 
 /* start: Newsletter styles*/
@@ -1451,28 +1429,6 @@ small img {
   .main-post li {
     font-size: 18px;
   }
-
-  #book-cover .search {
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 40px 0 0 0;
-    width: 100%;
-  }
-
-  #book-cover .search label {
-    margin-left: 10px;
-    font-weight: 500;
-    font-size: 23px;
-    padding-bottom: 10px;
-  }
-
-  .search input {
-    width: 85%;
-  }
-
-  .search ::placeholder {
-    font-size: small;
-  }
 }
 
 /* end: 1280px */
@@ -1492,26 +1448,6 @@ small img {
 
   .tab-content {
     height: auto;
-  }
-
-  #book-cover .search {
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 40px 0 0 0;
-    width: 100%;
-  }
-
-  #book-cover .search label {
-    font-size: 18px;
-  }
-
-  .search input {
-    width: 82%;
-  }
-
-  .search ::placeholder {
-    font-size: small;
-    padding: 0;
   }
 
   #book-cover .btn {
@@ -1561,7 +1497,7 @@ small img {
 
   .footer-container {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "newsletter search";
+    grid-template-areas: "newsletter";
   }
 
   .footer-container a {
@@ -1627,7 +1563,7 @@ small img {
 
   .footer-container {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "newsletter search";
+    grid-template-areas: "newsletter";
   }
 
   .footer-container a {
@@ -1655,11 +1591,6 @@ small img {
   #book-cover h1 {
     font-size: 1.2rem;
     padding: 5px 20px;
-  }
-
-  .search .iframe {
-    margin: 20px;
-    padding: 20px;
   }
 
   .contact-section {
@@ -1751,7 +1682,7 @@ small img {
 
   .footer-container {
     grid-template-columns: 1fr;
-    grid-template-areas: "newsletter search";
+    grid-template-areas: "newsletter";
   }
 
   footer .footer-container {
@@ -1847,10 +1778,6 @@ small img {
 
   #book-cover .primary-btn {
     margin-top: 20px;
-  }
-
-  .search .iframe {
-    margin-bottom: 30px;
   }
 
   /*Contact me page styles*/

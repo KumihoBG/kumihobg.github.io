@@ -1,9 +1,9 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { toggleEye } from '../../index.js';
-import { login } from "../api/data.js";
+import { login, passwordReset } from "../api/data.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 
-const loginTemplateBg = (onSubmit) =>
+const loginTemplateBg = (onSubmit, passwordReset) =>
     html` 
     ${navTemplateBg()}
     <section id="login-section">
@@ -30,7 +30,7 @@ const loginTemplateBg = (onSubmit) =>
                 </form>
                 <div class="second">
                     <a class="link" href="/register-bg">Създай нов профил</a>
-                    <a class="link" href="/register-bg">Забравили сте паролата си?</a>
+                    <a @click=${passwordReset} class="link" href="/register-bg">Забравили сте паролата си?</a>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@ const loginTemplateBg = (onSubmit) =>
     </section>`;
 
 export async function loginPageBg(context) {
-    context.render(loginTemplateBg(onSubmit));
+    context.render(loginTemplateBg(onSubmit, passwordReset));
     setUserNav();
     toggleEye();
-    
+
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);

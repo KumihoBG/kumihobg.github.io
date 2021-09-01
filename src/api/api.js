@@ -116,6 +116,4 @@ export async function logout() {
         notify('Ops, something went wrong. Try again, please!');
         console.error(error);
     }
-    
-    
 }

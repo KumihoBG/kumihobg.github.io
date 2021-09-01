@@ -1,3 +1,4 @@
+import { notify } from "../views/notification.js";
 import * as api from "./api.js";
 
 Parse.serverURL = 'https://parseapi.back4app.com';
@@ -46,3 +47,15 @@ export async function deleteItem(id) {
 // export async function search(query) {
 //     return await api.getRequest(host + `/data/cars?where=year%20LIKE%20%22${query}%22`);
 // }
+
+export async function passwordReset(email) {
+    try {
+        // Pass the username and password to logIn function
+        await api.postRequest(host + '/requestPasswordReset', email);
+        // Password reset request was sent successfully
+        notify('Reset password email sent successfully');
+      } catch (error) {
+        console.error('Error while creating request to reset user password', error);
+        notify('Error while creating request to reset user password', error);
+      }
+}

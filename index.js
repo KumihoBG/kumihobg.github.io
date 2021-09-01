@@ -37,7 +37,6 @@ page('/about-magesnitza-bg', decorateContext, aboutBookPageBg);
 page('/register', decorateContext, registerPage);
 page('/register', decorateContext, registerPage);
 page('/register-bg', decorateContext, registerPageBg);
-page('/search', decorateContext, searchPage);
 page('/profile', decorateContext, profilePage);
 
 // start page library

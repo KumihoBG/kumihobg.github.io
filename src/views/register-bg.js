@@ -20,7 +20,7 @@ const registerTemplateBg = (onSubmit) => html`
                     <label for="email">Email</label><br>
                     <div class="icon">
                         <i class="fas fa-envelope-open-text"></i>
-                        <input name="email" type="email" autocomplete="current-email"><br>
+                        <input name="email" type="email" autocomplete="current-email" required pattern="[^]+@[^]+[.][a-z]{2,63}$"><br>
                     </div>
                     <label for="password">Парола</label><br>
                     <div class="icon">
@@ -133,25 +133,21 @@ export async function registerPageBg(context) {
 
         let cleanedUser = '';
         const usernamePattern = /[\/\\n\\r<>";&()^\s:*%+?${}|[\]\\@]+/gm;
-        let found = [];
-
-        if (usernamePattern.test(username)) {
+        const test = usernamePattern.test(username);
+        if (test == true) {
             for (let i = 0; i < username.length; i++) {
-                found = username[i].match(usernamePattern);
-                if(found) {
+                let found = username[i].match(usernamePattern);
+                if(found !== null && found.length > 0) {
                     cleanedUser += '';
                 } else {
                     cleanedUser += username[i];
                 }
             };
-            console.log(username);
+            await register(cleanedUser, email, password);
+            notify(`Вашето име беше променено на ${cleanedUser}, съгласно нашите изисквания!`)
+        } else {
+            await register(username, email, password);
         }
-
-        await register(cleanedUser, email, password);
-        username = formData.set('username', '');
-        email = formData.set('email', '');
-        password = formData.set('password', '');
-        repass = formData.set('repass', '');
         context.page.redirect('/login');
     }
 }

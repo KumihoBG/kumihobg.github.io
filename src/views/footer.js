@@ -16,18 +16,6 @@ export const footerTemplate = () => html`
         <div id="fail"></div>
       </form>
     </div>
-
-    <div class="search">
-      <label>Search this website</label>
-      <i class="fas fa-search fa-1x"></i><input class="search-field" type="search" name="search"
-        placeholder="Search this website...">
-      <br>
-      <div id="icons-container">
-        <a target="_blank" href="#"><i id="facebook" class="fab fa-facebook fa-2x"></i></a><a target="_blank"
-          href="#"><i id="twitter" class="fab fa-twitter fa-2x"></i></a>
-        <a target="_blank" href="#"><i id="instagram" class="fab fa-instagram fa-2x"></i></a>
-      </div>
-    </div>
   </div>
 
   <div class="footer-bottom">
@@ -53,18 +41,6 @@ export const footerTemplateBg = () => html`
         <div id="error"></div>
         <div id="fail"></div>
       </form>
-    </div>
-
-    <div class="search">
-      <label>Търси в сайта</label>
-      <i class="fas fa-search fa-1x"></i><input class="search-field" type="search" name="search"
-        placeholder="Потърси в уебсайта...">
-      <br>
-      <div id="icons-container">
-        <a target="_blank" href="#"><i id="facebook" class="fab fa-facebook fa-2x"></i></a><a target="_blank"
-          href="#"><i id="twitter" class="fab fa-twitter fa-2x"></i></a>
-        <a target="_blank" href="#"><i id="instagram" class="fab fa-instagram fa-2x"></i></a>
-      </div>
     </div>
   </div>
 
