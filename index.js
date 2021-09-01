@@ -12,7 +12,6 @@ import { loginPage } from "./src/views/login.js";
 import { loginPageBg } from "./src/views/login-bg.js";
 import { registerPage } from "./src/views/register.js";
 import { registerPageBg } from "./src/views/register-bg.js";
-import { searchPage } from "./src/views/search.js";
 import { aboutBookPage } from "./src/views/about-magesnitza.js";
 import { aboutBookPageBg } from "./src/views/about-magesnitza-bg.js";
 import { infoPage } from "./src/views/blog.js";
