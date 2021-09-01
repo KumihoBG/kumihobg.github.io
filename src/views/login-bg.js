@@ -30,7 +30,7 @@ const loginTemplateBg = (onSubmit) =>
                 </form>
                 <div class="second">
                     <a class="link" href="/register-bg">Създай нов профил</a>
-                    <a class="link" href="/register-bg">Забравили сте паролата си?</a>
+                    <a class="link" href="javascript:void(0)">Забравили сте паролата си?</a>
                 </div>
             </div>
         </div>
