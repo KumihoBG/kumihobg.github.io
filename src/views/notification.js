@@ -8,7 +8,7 @@ const notificationTemplate = (message) => html`
 
 export function notify(message){
     render(notificationTemplate(message), container);
-    setTimeout(clearNotify, 3000);
+    setTimeout(clearNotify, 5000);
 }
 
 export function clearNotify() {
