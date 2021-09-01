@@ -117,3 +117,15 @@ export async function logout() {
         console.error(error);
     }
 }
+
+export async function passwordReset(email) {
+    try {
+        // Pass the username and password to logIn function
+        let result = await Parse.User.requestPasswordReset(email);
+        // Password reset request was sent successfully
+        notify('Reset password email sent successfully');
+      } catch (error) {
+        console.error('Error while creating request to reset user password', error);
+        notify('Error while creating request to reset user password', error);
+      }
+}

@@ -241,17 +241,17 @@ a:active {
 
 #one {
   grid-column: 1;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #two {
   grid-column: 2;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #three {
   grid-column: 3;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #characters-frame h2 {
@@ -260,36 +260,36 @@ a:active {
 }
 
 #Aspar {
-  width: 90%;
+  width: 30%;
   height: auto;
-  margin: 3%;
+  margin: 1%;
   transform: rotate(350deg);
 }
 
 #Aspar:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 #Lexi {
-  width: 90%;
+  width: 30%;
   height: auto;
-  margin: 3%;
+  margin: 1%;
   transform: rotate(5deg);
 }
 
 #Lexi:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 #Dena {
-  width: 90%;
+  width: 30%;
   height: auto;
-  margin: 3%;
+  margin: 1%;
   transform: rotate(10deg);
 }
 
 #Dena:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 /* End Parallax style */
 

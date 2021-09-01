@@ -1,12 +1,11 @@
-import {html} from 'https://unpkg.com/lit-html?module';
+import { html } from 'https://unpkg.com/lit-html?module';
 import { toggleEye } from '../../index.js';
-import { passwordReset } from '../api/data.js';
 import { login } from "../api/data.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from "./notification.js";
 
 
-const loginTemplate = (onSubmit, passwordReset) =>
+const loginTemplate = (onSubmit) =>
     html` 
     ${navTemplate()}
     <section id="login-section">
@@ -33,7 +32,7 @@ const loginTemplate = (onSubmit, passwordReset) =>
                 </form>
                 <div class="second">
                     <a class="link" href="/register">Create new account</a>
-                    <a @click=${passwordReset} class="link" href="/register">Forgot Password?</a>
+                    <a class="link" href="javascript:void(0)">Forgot Password?</a>
                 </div>
             </div>
         </div>
@@ -43,7 +42,7 @@ const loginTemplate = (onSubmit, passwordReset) =>
     </section>`;
 
 export async function loginPage(context) {
-    context.render(loginTemplate(onSubmit, passwordReset));
+    context.render(loginTemplate(onSubmit));
     setUserNav();
     toggleEye();
 
@@ -53,7 +52,7 @@ export async function loginPage(context) {
         const username = formData.get('username').trim();
         const password = formData.get('password').trim();
 
-        if (username === '' ||  username === null || password === '' || password === null) {
+        if (username === '' || username === null || password === '' || password === null) {
             notify('All fields are required!');
             return;
         }
