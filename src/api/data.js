@@ -12,15 +12,15 @@ api.settings.host = host;
 export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
-export const resetPass = api.passwordReset;
+export const passwordReset = api.passwordReset;
 
 // Implement application specific requests
 export async function getAllItems() {
     return await api.getRequest(host + '/data/cars?sortBy=_createdOn%20desc');
 }
 
-export async function getSingleItem(id) {
-    return await api.getRequest(host + '/data/cars/' + id);
+export async function getCurrentUser() {
+    return await api.getRequest(host + '/users/me');
 }
 
 export async function getMyItem() {

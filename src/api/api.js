@@ -91,6 +91,7 @@ export async function register(username, email, password) {
     try {
         let userResult = await user.signUp();
         Parse.User.logOut();
+        localStorage.setItem('email', email);
         const languageBtn = document.getElementById('language');
         const language = languageBtn.innerText;
         if (language === 'BG') {
@@ -111,8 +112,16 @@ export async function logout() {
         localStorage.removeItem('username');
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
-        notify('You have been logged out. Redirecting you to homepage...');
-    } catch(error) {
+
+        const languageBtn = document.getElementById('language');
+        const language = languageBtn.innerText;
+        if (language === 'BG') {
+            //Please check your email (...) to confirm your account.
+            notify('You have been logged out. Redirecting you to homepage...');
+        } else {
+            notify('Успешно излязохте от Вашия профил. Насочваме Ви към начална страница...');
+        }
+    } catch (error) {
         notify('Ops, something went wrong. Try again, please!');
         console.error(error);
     }
@@ -123,9 +132,16 @@ export async function passwordReset(email) {
         // Pass the username and password to logIn function
         let result = await Parse.User.requestPasswordReset(email);
         // Password reset request was sent successfully
-        notify('Reset password email sent successfully');
-      } catch (error) {
+        const languageBtn = document.getElementById('language');
+        const language = languageBtn.innerText;
+        if (language === 'BG') {
+            //Please check your email (...) to confirm your account.
+            notify('Reset password email sent successfully');
+        } else {
+            notify('На електронния Ви адрес е изпратена заявка за смяна на паролата Ви.');
+        }
+    } catch (error) {
         console.error('Error while creating request to reset user password', error);
         notify('Error while creating request to reset user password', error);
-      }
+    }
 }
