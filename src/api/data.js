@@ -19,10 +19,6 @@ export async function getAllItems() {
     return await api.getRequest(host + '/data/cars?sortBy=_createdOn%20desc');
 }
 
-export async function searchItem(text) {
-    return await api.getRequest(host + `/data/cars?where=year%3D${text}`);
-}
-
 export async function getSingleItem(id) {
     return await api.getRequest(host + '/data/cars/' + id);
 }
@@ -43,10 +39,6 @@ export async function editItem(id, data) {
 export async function deleteItem(id) {
     return await api.deleteRequest(host + `/data/cars/${id}`);
 }
-
-// export async function search(query) {
-//     return await api.getRequest(host + `/data/cars?where=year%20LIKE%20%22${query}%22`);
-// }
 
 export async function passwordReset(email) {
     try {
