@@ -5,14 +5,16 @@ import { navTemplate, setUserNav } from "./navigation.js";
 
 const profileTemplate = (onChange) => html`
 ${navTemplate()}
-<div class="container">
-  <label for="old-password">Current password:</label>
-  <input id="old-password" name="change-password" placeholder="Old password" autocomplete="current-password">
-  <label for="new-password">New password:</label>
-  <input id="new-password" name="change-password" placeholder="New password" autocomplete="password">
-  <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Change Password</button>
-</div>
-</div>`;
+<section id="profile-page">
+  <div class="container">
+    <label for="old-password">Current password:</label>
+    <input id="old-password" name="change-password" placeholder="Old password" autocomplete="current-password">
+    <label for="new-password">New password:</label>
+    <input id="new-password" name="change-password" placeholder="New password" autocomplete="password">
+    <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Change Password</button>
+  </div>
+  </div>
+</section>`;
 
 export async function profilePage(context) {
   context.render(profileTemplate(onChange));
