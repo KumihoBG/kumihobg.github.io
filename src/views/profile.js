@@ -1,7 +1,7 @@
 import { html } from 'https://unpkg.com/lit-html?module';
+import { logoutEvent } from '../../index.js';
 import { changePassword } from '../api/data.js';
 import { navTemplate, setUserNav } from "./navigation.js";
-
 
 const profileTemplate = (onChange) => html`
 ${navTemplate()}
@@ -26,7 +26,9 @@ export async function profilePage(context) {
     const id = currentUser.id;
     const newPassword = document.getElementById('new-password').value;
     await changePassword(id, newPassword);
-    // page.redirect('/login');
+    logoutEvent();
+    page.redirect('/login');
   }
+  logoutEvent();
 }
 

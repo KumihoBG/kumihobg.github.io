@@ -14,9 +14,9 @@ import { registerPage } from "./src/views/register.js";
 import { registerPageBg } from "./src/views/register-bg.js";
 import { aboutBookPage } from "./src/views/about-magesnitza.js";
 import { aboutBookPageBg } from "./src/views/about-magesnitza-bg.js";
+import { profilePage } from "./src/views/profile.js";
 import { infoPage } from "./src/views/blog.js";
 import { logout } from "./src/api/api.js";
-import { profilePage } from "./src/views/profile.js";
 
 const main = document.querySelector('#main');
 
