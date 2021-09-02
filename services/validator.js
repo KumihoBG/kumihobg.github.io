@@ -178,3 +178,68 @@ export async function validateBgInput(username, email, password, repass) {
     }
     page.redirect('/login');
 }
+
+export async function validateChangedPassword(newPass, repeatPass) {
+    let isValidPassword = false;
+    if (repeatPass === '' || repeatPass === null || newPass === '' || newPass === null) {
+        notify('All fields are required!');
+        return;
+    }
+
+    if (newPass === 'password') {
+        return notify('Password must be different! Try more unique one! :(')
+    }
+
+    if (repeatPass !== newPass) {
+        notify('Two passwords don\'t match!');
+        return;
+    }
+
+    let chars = newPass.toString().split("");
+    let digits = 0;
+    let isValid = false;
+    let isInvSymbol = false;
+    let hasDigits = false;
+
+    // Checks if the char is a num and if it has 2 digits at least
+    for (let i = 0; i < chars.length; i++) {
+        let current = Number(chars[i]);
+        if (Number.isInteger(current)) {
+            digits++;
+            if (digits >= 2) {
+                hasDigits = true;
+            }
+        }
+    }
+
+    // Checks if a char is letter or digit only
+    for (let j = 0; j < chars.length; j++) {
+        let currChar = chars[j];
+        if ((currChar.charCodeAt() >= 48 && currChar.charCodeAt() <= 57) || (currChar.charCodeAt() >= 65 && currChar.charCodeAt() <= 90) || (currChar.charCodeAt() >= 97 && currChar.charCodeAt() <= 122)) {
+            isInvSymbol = false;
+        } else {
+            isInvSymbol = true;
+            break;
+        }
+    }
+
+    if (newPass.length < 6 || newPass.length > 10) {
+        isValid = false;
+    } else {
+        isValid = true;
+    }
+
+    if (isValid == false) {
+        return notify('Password must be between 6 and 10 characters. ');
+    }
+
+    if (isInvSymbol == true) {
+        return notify('Password must consist only of letters and digits. ');
+    }
+
+    if (hasDigits == false) {
+        return notify('Password must have at least 2 digits. ');
+    }
+    isValidPassword = true;
+    return isValidPassword;
+}
