@@ -4,6 +4,7 @@ import {render} from 'https://unpkg.com/lit-html?module';
 
 // local modules
 import { setUserNav } from "./src/views/navigation.js";
+import { logout } from "./src/api/data.js";
 import { homePage } from "./src/views/home.js";
 import { homePageBg } from "./src/views/home-bg.js";
 import { mapPage } from "./src/views/map.js";
@@ -16,7 +17,6 @@ import { aboutBookPage } from "./src/views/about-magesnitza.js";
 import { aboutBookPageBg } from "./src/views/about-magesnitza-bg.js";
 import { profilePage } from "./src/views/profile.js";
 import { infoPage } from "./src/views/blog.js";
-import { logout } from "./src/api/api.js";
 
 const main = document.querySelector('#main');
 
@@ -76,7 +76,13 @@ export async function logoutEvent() {
   logoutBtn.addEventListener('click', async () => {
     await logout();
     setUserNav();
-    page.redirect('/home');
+    const languageBtn = document.getElementById('language');
+        const language = languageBtn.innerText;
+        if (language === 'BG') {
+          page.redirect('/login');
+        } else {
+          page.redirect('/login-bg');
+        }
   });
 }
 
@@ -86,30 +92,42 @@ export function toggleEye() {
   const password = document.getElementById('password');
   const repeatPass = document.getElementById('repeatPass');
   const loginPassword = document.getElementById('login-password');
+  const repeatPassword = document.getElementById('repeat-password');
+  const newPassword = document.getElementById('new-password');
   const eyeOne = document.getElementById('eye-one');
   const eyeTwo = document.getElementById('eye-two');
   const eyeThree = document.getElementById('eye-three');
+  const eyeFour = document.getElementById('eye-four');
+  const eyeFive = document.getElementById('eye-five');
  
   if (eyeOne !== null) {
     eyeOne.addEventListener('click', function () {
-      // toggle the type attribute
       toggleInputEl(eyeOne, password);
     });
   }
   if (eyeTwo !== null) {
     eyeTwo.addEventListener('click', function () {
-      // toggle the type attribute
       toggleInputEl(eyeTwo, repeatPass);
     });
   }
   if (eyeThree !== null) {
     eyeThree.addEventListener('click', function () {
-      // toggle the type attribute
       toggleInputEl(eyeThree, loginPassword);
+    });
+  }
+  if (eyeFour !== null) {
+    eyeFour.addEventListener('click', function () {
+      toggleInputEl(eyeFour, newPassword);
+    });
+  }
+  if (eyeFive !== null) {
+    eyeFive.addEventListener('click', function () {
+      toggleInputEl(eyeFive, repeatPassword);
     });
   }
 }
 
+// toggle the type attribute
 function toggleInputEl(element, password) {
   const type = password.getAttribute('type');
   if (type === 'password' && password.value !== '') {

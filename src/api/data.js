@@ -16,28 +16,6 @@ export const passwordReset = api.passwordReset;
 export const changePassword = api.changePassword;
 
 // Implement application specific requests
-export async function getAllItems() {
-    return await api.getRequest(host + '/data/cars?sortBy=_createdOn%20desc');
-}
-
 export async function getCurrentUser() {
     return await api.getRequest(host + '/users/me');
-}
-
-export async function getMyItem() {
-    const userId = localStorage.getItem('userId');
-    return await api.getRequest(host + `/data/cars?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
-}
-
-export async function createItem(data) {
-    return await api.postRequest(host + '/data/cars', data);
-}
-
-export async function editItem(id, data) {
-    return await api.putRequest(host + `/data/cars/${id}`, data);
-}
-
-export async function deleteItem(id) {
-    return await api.deleteRequest(host + `/data/cars/${id}`);
-
 }

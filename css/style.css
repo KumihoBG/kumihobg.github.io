@@ -364,15 +364,16 @@ a:active {
 
 #form-container p,
 #loginForm-container p,
-#form-container .icon label,
-#loginForm-container .icon label {
+#form-container label,
+#new-pass-container label,
+#loginForm-container label {
   font-size: 1.1rem;
   margin: 25px 0;
   font-weight: 500;
 }
 
-#form-container .icon form,
-#loginForm-container .icon form {
+#form-container form,
+#loginForm-container form {
   margin: 0 auto;
 }
 
@@ -526,21 +527,25 @@ a:active {
 }
 
 #new-password {
-  width: 100%;
-  outline: none;
+  height: 30px;
   border: none;
-  background: fff;
-  padding: 5px;
-  margin: 15px 0;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 10;
+  text-align: center;
 }
 
 #repeat-password {
-  width: 100%;
-  outline: none;
+  height: 30px;
   border: none;
-  background: fff;
-  padding: 5px;
-  margin: 15px 0;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 10;
+  text-align: center;
 }
 
 #submitNewPass,

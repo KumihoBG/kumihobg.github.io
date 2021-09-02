@@ -109,17 +109,17 @@ export async function register(username, email, password) {
 export async function logout() {
     try {
         Parse.User.logOut();
-        localStorage.removeItem('username');
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userId');
-
         const languageBtn = document.getElementById('language');
         const language = languageBtn.innerText;
         if (language === 'BG') {
-            notify('You have been logged out. Redirecting you to homepage...');
+            notify('You have been logged out.');
         } else {
-            notify('Успешно излязохте от Вашия профил. Насочваме Ви към начална страница...');
+            notify('Успешно излязохте от Вашия профил.');
         }
+        localStorage.removeItem('username');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('email');
     } catch (error) {
         notify('Ops, something went wrong. Try again, please!');
         console.error(error);
@@ -158,12 +158,13 @@ export async function changePassword(id, password) {
             let response = await user.save();
             const languageBtn = document.getElementById('language');
             const language = languageBtn.innerText;
+            Parse.User.logOut();
+            await logout();
             if (language === 'BG') {
                 notify('Your password was changed successfully! Please, login with your new credentials.');
             } else {
                 notify('Успешно променихте Вашата парола. Моля, използвайте новата парола, за да влезете във Вашия профил!');
             }
-            Parse.User.logOut();
         } catch (error) {
             console.error('Error while updating user', error);
         }
