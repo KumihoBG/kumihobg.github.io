@@ -435,6 +435,10 @@ a:active {
   cursor: pointer;
 }
 
+#register-form label {
+  color: #fff;
+}
+
 .link {
   color: #fff;
   text-decoration: none;
@@ -452,6 +456,11 @@ a:active {
   align-items: center;
 }
 
+#register-info {
+  color: #fff;
+  text-align: justify;
+  font-size: 14px;
+}
 /* End Login page style */
 
 /* Start profile page style */

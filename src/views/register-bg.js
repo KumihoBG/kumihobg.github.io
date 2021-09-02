@@ -1,8 +1,7 @@
 import {html} from 'https://unpkg.com/lit-html?module';
-import { register } from "../api/data.js";
 import { toggleEye } from "../../index.js";
+import { validateBgInput } from '../../services/validator.js';
 import { navTemplateBg, setUserNav } from "./navigation.js";
-import { notify } from "./notification.js";
 
 const registerTemplateBg = (onSubmit) => html`
     ${navTemplateBg()}
@@ -22,6 +21,7 @@ const registerTemplateBg = (onSubmit) => html`
                         <i class="fas fa-envelope-open-text"></i>
                         <input name="email" type="email" autocomplete="current-email" required pattern="[^]+@[^]+[.][a-z]{2,63}$"><br>
                     </div>
+                    <p id="register-info"><i class="fas fa-info-circle"></i> Паролата трябва да бъде между 6 и 10 знака. Паролата Ви може да съдържа само букви и поне 2 цифри.</p>
                     <label for="password">Парола</label><br>
                     <div class="icon">
                         <i class="fas fa-lock"></i>
@@ -62,92 +62,6 @@ export async function registerPageBg(context) {
         let email = formData.get('email').toString().trim();
         let password = formData.get('password').trim();
         let repass = formData.get('repeatPass').trim();
-
-        if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
-            notify('Всички полета са задължителни!');
-            return;
-        }
-
-        if (username === 'admin') {
-            return notify('Вашето име не може да бъде "admin"');
-        }
-
-        if (password === 'password') {
-            return notify('Използвайте по-уникална парола! :(')
-        }
-
-        if (password !== repass) {
-            notify('Двете пароли не съвпадат. Опитайте отново!');
-            return;
-        }
-
-        if (typeof username !== 'string' || !username instanceof String) {
-            return;
-        }
-
-        let chars = password.toString().split("");
-        let digits = 0;
-        let isValid = false;
-        let isInvSymbol = false;
-        let hasDigits = false;
-
-        // Checks if the char is a num and if it has 2 digits at least
-        for (let i = 0; i < chars.length; i++) {
-            let current = Number(chars[i]);
-            if (Number.isInteger(current)) {
-                digits++;
-                if (digits >= 2) {
-                    hasDigits = true;
-                }
-            }
-        }
-
-        // Checks if a char is letter or digit only
-        for (let j = 0; j < chars.length; j++) {
-            let currChar = chars[j];
-            if ((currChar.charCodeAt() >= 48 && currChar.charCodeAt() <= 57) || (currChar.charCodeAt() >= 65 && currChar.charCodeAt() <= 90) || (currChar.charCodeAt() >= 97 && currChar.charCodeAt() <= 122)) {
-                isInvSymbol = false;
-            } else {
-                isInvSymbol = true;
-                break;
-            }
-        }
-
-        if (password.length < 6 || password.length > 10) {
-            isValid = false;
-        } else {
-            isValid = true;
-        }
-
-        if (isValid == false) {
-            return notify('Паролата трябва да бъде между 6 и 10 знака. ');
-        }
-
-        if (isInvSymbol == true) {
-            return notify('Паролата Ви може да съдържа само букви и цифри. ');
-        }
-
-        if (hasDigits == false) {
-            return notify('В паролата Ви трябва да има поне 2 цифри. ');
-        }
-
-        let cleanedUser = '';
-        const usernamePattern = /[\/\\n\\r<>";&()^\s:*%+?${}|[\]\\@]+/gm;
-        const test = usernamePattern.test(username);
-        if (test == true) {
-            for (let i = 0; i < username.length; i++) {
-                let found = username[i].match(usernamePattern);
-                if(found !== null && found.length > 0) {
-                    cleanedUser += '';
-                } else {
-                    cleanedUser += username[i];
-                }
-            };
-            await register(cleanedUser, email, password);
-            notify(`Вашето име беше променено на ${cleanedUser}, съгласно нашите изисквания!`)
-        } else {
-            await register(username, email, password);
-        }
-        context.page.redirect('/login');
+        validateBgInput(username, email, password, repass);
     }
 }
