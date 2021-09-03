@@ -6,7 +6,7 @@ import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from './notification.js';
 import { toggleEye } from '../../index.js';
 
-const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEdit, userAddress, phone) => html`
+const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone) => html`
 ${navTemplate()}
 <div id="profile-header">
   <img src="../images/profile-bg.jpg" alt="profile-header">
@@ -62,10 +62,11 @@ ${navTemplate()}
       <h3><i class="fas fa-check-double"></i> Add phone number:</h3>
       <label for="phone">Your current phone number:</label>
       <input type="text" name="phone" id="phone" autocomplete="phone"><br>
+      <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Edit Phone</button><br>
       <h3><i class="fas fa-check-double"></i> Add your address:</h3>
       <label for="address">Your current address:</label>
       <input type="text" name="address" id="address" autocomplete="address"><br>
-      <button @click=${onEdit} type="button" id="submitChanges" name="submitChanges">Submit changes</button><br>
+      <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Edit Address</button><br>
       <h3><i class="fas fa-check-double"></i> Delete account:</h3>
       <p>If you no longer want to be a member of this community, press the button below.</p>
       <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Delete account</button>
@@ -77,7 +78,7 @@ export async function profilePage(context) {
   const userAddress = await getUserAddress();
   const phone = await getUserPhone();
   const notifications = document.getElementById('notifications');
-  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEdit, userAddress, phone));
+  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone));
   setUserNav();
   toggleEye();
 
@@ -146,7 +147,7 @@ export async function profilePage(context) {
     }
   }
 
-  async function onEdit() {
+  async function onEditPhone() {
     const User = new Parse.User();
     const query = new Parse.Query(User);
     try {
@@ -155,14 +156,15 @@ export async function profilePage(context) {
       const id = currentUser.id;
       let user = await query.get(id);
       // Updates the data we want
-      let address = document.getElementById('address').value.trim();
-      let phone = document.getElementById('phone').value.trim();
+      let phone = document.getElementById('phone').value;
+      phone.trim();
       let phoneToSafe = validatePhone(phone);
-      let addressToSave = validateAddress(address);
-      if (addressToSave !== undefined || phoneToSafe !== undefined) {
-        user.set('address', addressToSave);
+  
+      if (phoneToSafe !== undefined) {
         user.set('phone', phone);
-      }
+        phone = '';
+      } 
+
       try {
         // Saves the user with the updated data
         let response = await user.save();
@@ -181,6 +183,40 @@ export async function profilePage(context) {
     }
   }
 
+  async function onEditAddress() {
+    const User = new Parse.User();
+    const query = new Parse.Query(User);
+    try {
+      // Finds the user by its ID
+      const currentUser = Parse.User.current();
+      const id = currentUser.id;
+      let user = await query.get(id);
+      // Updates the data we want
+      let address = document.getElementById('address').value;
+      address.trim();
+      let addressToSave = validateAddress(address);
+      if (addressToSave !== undefined) {
+        user.set('address', addressToSave);
+        address = '';
+      }
+
+      try {
+        // Saves the user with the updated data
+        let response = await user.save();
+        notifications.style.display = "block";
+        notify('You have updated your personal information successfully! Thank you :)');
+        page.redirect('/profile');
+      } catch (error) {
+        notifications.style.display = "block";
+        notify('Error while updating user', error);
+        console.error('Error while updating user', error);
+      }
+    } catch (error) {
+      console.error('Error while retrieving user', error);
+      notifications.style.display = "block";
+      notify('Error while retrieving user', error);
+    }
+  }
   logoutEvent();
 }
 

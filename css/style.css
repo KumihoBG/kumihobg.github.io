@@ -395,7 +395,8 @@ a:active {
 .registerBtn,
 #submitNewPass,
 #deleteAccount,
-#submitChanges  {
+#editPhone,
+#editAddress  {
   display: block;
   cursor: pointer;
   background: #164e65;

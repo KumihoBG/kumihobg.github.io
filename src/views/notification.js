@@ -13,4 +13,5 @@ export function notify(message) {
 
 export function clearNotify() {
     render('', container);
+    container.style.display = "none";
 }
