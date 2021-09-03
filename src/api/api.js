@@ -66,6 +66,7 @@ export async function deleteRequest(url) {
 export async function login(username, password) {
     try {
         let user = await Parse.User.logIn(username, password);
+        const email = user.get('email');
         if (user.get('emailVerified')) {
             console.log('User logged in', user);
             const currentUser = Parse.User.current();
@@ -73,6 +74,7 @@ export async function login(username, password) {
             localStorage.setItem('username', username);
             localStorage.setItem('authToken', sessionToken);
             localStorage.setItem('userId', currentUser.id);
+            localStorage.setItem('email', email);
             notify(`You are logged in as: '${username}'`);
         }
     } catch (error) {
@@ -113,8 +115,10 @@ export async function logout() {
         const language = languageBtn.innerText;
         if (language === 'BG') {
             notify('You have been logged out.');
+            page.redirect('/login');
         } else {
             notify('Успешно излязохте от Вашия профил.');
+            page.redirect('/login');
         }
         localStorage.removeItem('username');
         localStorage.removeItem('authToken');
