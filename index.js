@@ -1,4 +1,3 @@
-console.log('It works!');
 // import vendor libraries
 import {render} from 'https://unpkg.com/lit-html?module';
 

@@ -43,6 +43,7 @@ body {
 
 /* Start notification style */
 #notifications {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -54,19 +55,16 @@ body {
   height: 40%;
 }
 
-.notification {
+#messageBox {
   font-size: 1.6em;
   color: #ffffff;
   text-align: center;
 }
 
-.notification > span {
+#messageBox > span {
   display: inline-block;
   padding: 10%;
   border-radius: 10px;
-}
-
-#messageBox > span {
   background: #173736;
 }
 
@@ -77,6 +75,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   color: #121b00;
+  z-index: 0;
 }
 
 .nav-style {
@@ -396,7 +395,7 @@ a:active {
 .registerBtn,
 #submitNewPass,
 #deleteAccount,
-#editAddress  {
+#submitChanges  {
   display: block;
   cursor: pointer;
   background: #164e65;
@@ -507,7 +506,7 @@ a:active {
 #right-container {
   grid-column: 2;
   margin-top:5%;
-  width: 90%;
+  width: 70%;
 }
 
 #user-image-container {
@@ -577,18 +576,31 @@ a:active {
 }
 
 #new-password,
-#repeat-password,
-#address {
-  height: 30px;
+#repeat-password {
+  cursor: pointer;
+  height: 40px;
   border: none;
   width: 100%;
   background: #fff;
   margin-bottom: 20px;
   outline: none;
-  padding: 10;
+  padding-left: 10px;
   text-align: center;
 }
 
+#address,
+#phone {
+  cursor: pointer;
+  height: 40px;
+  border: none;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 0;
+  padding-left: 10px;
+  text-align: center;
+}
 /* #username-hidden{
   display: none;
 } */

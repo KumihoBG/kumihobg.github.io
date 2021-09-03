@@ -59,15 +59,15 @@ export async function validateInput(username, email, password, repass) {
     }
 
     if (isValid == false) {
-        return notify('Password must be between 6 and 10 characters. ');
+        return notify('Password must be between 6 and 10 characters.');
     }
 
     if (isInvSymbol == true) {
-        return notify('Password must consist only of letters and digits. ');
+        return notify('Password must consist only of letters and digits.');
     }
 
     if (hasDigits == false) {
-        return notify('Password must have at least 2 digits. ');
+        return notify('Password must have at least 2 digits.');
     }
 
     let cleanedUser = '';
@@ -76,7 +76,7 @@ export async function validateInput(username, email, password, repass) {
     if (test == true) {
         for (let i = 0; i < username.length; i++) {
             let found = username[i].match(usernamePattern);
-            if(found !== null && found.length > 0) {
+            if (found !== null && found.length > 0) {
                 cleanedUser += '';
             } else {
                 cleanedUser += username[i];
@@ -165,7 +165,7 @@ export async function validateBgInput(username, email, password, repass) {
     if (test == true) {
         for (let i = 0; i < username.length; i++) {
             let found = username[i].match(usernamePattern);
-            if(found !== null && found.length > 0) {
+            if (found !== null && found.length > 0) {
                 cleanedUser += '';
             } else {
                 cleanedUser += username[i];
@@ -242,4 +242,83 @@ export async function validateChangedPassword(newPass, repeatPass) {
     }
     isValidPassword = true;
     return isValidPassword;
+}
+
+export function validateAddress(address) {
+    if (address === null || address === '' || address === undefined) {
+        notify('Please, enter your current address!');
+        return;
+    }
+
+    if (typeof address !== 'string' || !address instanceof String) {
+        return;
+    }
+
+    if (address.length <= 0 || address.length > 200) {
+        return notify('The input is too long, please, provide shorter address');
+    }
+
+    let cleanedAddress = '';
+    const addressPattern = /[\/<>";&()^*%+?${}|[\]\\@]+/gm;
+    const test = addressPattern.test(address);
+    if (test == true) {
+        for (let i = 0; i < address.length; i++) {
+            let found = address[i].match(addressPattern);
+            if (found !== null && found.length > 0) {
+                cleanedAddress += '';
+            } else {
+                cleanedAddress += address[i];
+            }
+        };
+        notify(`The address submitted was changed to ${cleanedAddress}, according to our requirements!`);
+        return cleanedAddress;
+    } else {
+        return address;
+    }
+}
+
+export async function validatePhone(phone) {
+    if (phone === '' || phone === null || phone === undefined) {
+        notify('Please, write down your phone number!');
+        return;
+    }
+
+    let chars = phone.toString().split("");
+    let isValid = false;
+    let isInvSymbol = false;
+
+    // Checks if the char is a num and if it has 2 digits at least
+    for (let i = 0; i < chars.length; i++) {
+        let current = Number(chars[i]);
+        if (Number.isInteger(current)) {
+            isValid = true;
+        }
+    }
+
+    // Checks if a char is letter or digit only
+    for (let j = 0; j < chars.length; j++) {
+        let currChar = chars[j];
+        if ((currChar.charCodeAt() >= 48 && currChar.charCodeAt() <= 57) || (currChar.charCodeAt() >= 65 && currChar.charCodeAt() <= 90) || (currChar.charCodeAt() >= 97 && currChar.charCodeAt() <= 122)) {
+            isInvSymbol = true;
+        } else {
+            isInvSymbol = false;
+            break;
+        }
+    }
+
+    if (phone.length <= 0 || phone.length > 15) {
+        isValid = false;
+    } else {
+        isValid = true;
+    }
+
+    if (isValid == false) {
+        return notify('A telephone number can have a maximum of 15 digits.');
+    }
+
+    if (isInvSymbol == true) {
+        return notify('Phone number must consist only of digits.');
+    }
+
+    return phone;
 }

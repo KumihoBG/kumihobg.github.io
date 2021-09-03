@@ -1,13 +1,12 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from '../../index.js';
-import { validateChangedPassword } from '../../services/validator.js';
-import { changePassword } from '../api/data.js';
+import { validateAddress, validateChangedPassword, validatePhone } from '../../services/validator.js';
+import { changePassword, logout } from '../api/data.js';
 import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from './notification.js';
 import { toggleEye } from '../../index.js';
-import { logout } from '../api/data.js';
 
-const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEdit) => html`
+const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEdit, userAddress, phone) => html`
 ${navTemplate()}
 <div id="profile-header">
   <img src="../images/profile-bg.jpg" alt="profile-header">
@@ -26,15 +25,15 @@ ${navTemplate()}
       <ul>
         <li><i class="fas fa-user-circle"></i> Username: ${getUserName()}</li>
         <li><i class="fas fa-envelope-square"></i> Email: ${getUserEmail()} </li>
-        <li><i class="fas fa-phone-square-alt"></i> Phone: </li>
-        <li><i class="fas fa-map-marked"></i> Address: ${onEdit()}</li>
+        <li><i class="fas fa-phone-square-alt"></i> Phone: ${phone}</li>
+        <li><i class="fas fa-map-marked"></i> Address: ${userAddress}</li>
       </ul>
     </div>
   </div>
   </div>
   </div>
   <div id="right-container">
-  <h2>Account Actions:</h2>
+    <h2>Account Actions:</h2>
     <h3><i class="fas fa-check-double"></i> Change your current password:</h3>
     <div class="new-pass-container">
       <div id="new-pass-info-container">
@@ -60,10 +59,13 @@ ${navTemplate()}
         <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Change Password</button>
       </form>
       <br>
+      <h3><i class="fas fa-check-double"></i> Add phone number:</h3>
+      <label for="phone">Your current phone number:</label>
+      <input type="text" name="phone" id="phone" autocomplete="phone"><br>
       <h3><i class="fas fa-check-double"></i> Add your address:</h3>
       <label for="address">Your current address:</label>
       <input type="text" name="address" id="address" autocomplete="address"><br>
-      <button @click=${onEdit} type="button" id="editAddress" name="editAddress">Submit address</button><br>
+      <button @click=${onEdit} type="button" id="submitChanges" name="submitChanges">Submit changes</button><br>
       <h3><i class="fas fa-check-double"></i> Delete account:</h3>
       <p>If you no longer want to be a member of this community, press the button below.</p>
       <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Delete account</button>
@@ -72,7 +74,10 @@ ${navTemplate()}
 </section>`;
 
 export async function profilePage(context) {
-  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEdit));
+  const userAddress = await getUserAddress();
+  const phone = await getUserPhone();
+  const notifications = document.getElementById('notifications');
+  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEdit, userAddress, phone));
   setUserNav();
   toggleEye();
 
@@ -80,8 +85,8 @@ export async function profilePage(context) {
     event.preventDefault();
     const currentUser = Parse.User.current();
     const id = currentUser.id;
-    const newPassword = document.getElementById('new-password').value;
-    const repeatPassword = document.getElementById('repeat-password').value;
+    const newPassword = document.getElementById('new-password').value.trim();
+    const repeatPassword = document.getElementById('repeat-password').value.trim();
     const result = await validateChangedPassword(newPassword, repeatPassword);
     if (result == true) {
       await changePassword(id, newPassword);
@@ -99,6 +104,18 @@ export async function profilePage(context) {
     return email;
   }
 
+  async function getUserAddress() {
+    const currentUser = Parse.User.current();
+    const currentUserAddress = currentUser.get('address');
+    return currentUserAddress;
+  }
+
+  async function getUserPhone() {
+    const currentUser = Parse.User.current();
+    const currentUserPhone = currentUser.get('phone');
+    return currentUserPhone;
+  }
+
   async function onDelete() {
     const User = new Parse.User();
     const query = new Parse.Query(User);
@@ -112,15 +129,18 @@ export async function profilePage(context) {
           try {
             // Invokes the "destroy" method to delete the user
             let response = await user.destroy();
+            notifications.style.display = "block";
             notify('Your account was successfully deleted. Sorry to see you go :( ');
             await logout();
           } catch (error) {
+            notifications.style.display = "block";
             notify(error);
             console.error('Error while deleting user', error);
           }
         }
       }
     } catch (error) {
+      notifications.style.display = "block";
       notify(error);
       console.error('Error while retrieving user', error);
     }
@@ -129,26 +149,34 @@ export async function profilePage(context) {
   async function onEdit() {
     const User = new Parse.User();
     const query = new Parse.Query(User);
-    const address = document.getElementById('address').value;
     try {
       // Finds the user by its ID
       const currentUser = Parse.User.current();
       const id = currentUser.id;
       let user = await query.get(id);
       // Updates the data we want
-      user.set('address', address);
+      let address = document.getElementById('address').value.trim();
+      let phone = document.getElementById('phone').value.trim();
+      let phoneToSafe = validatePhone(phone);
+      let addressToSave = validateAddress(address);
+      if (addressToSave !== undefined || phoneToSafe !== undefined) {
+        user.set('address', addressToSave);
+        user.set('phone', phone);
+      }
       try {
         // Saves the user with the updated data
         let response = await user.save();
-        notify('Your address was submitted successfully');
-        const addressEdited = user.get('address');
-        return addressEdited;
+        notifications.style.display = "block";
+        notify('You have updated your personal information successfully! Thank you :)');
+        page.redirect('/profile');
       } catch (error) {
+        notifications.style.display = "block";
         notify('Error while updating user', error);
         console.error('Error while updating user', error);
       }
     } catch (error) {
       console.error('Error while retrieving user', error);
+      notifications.style.display = "block";
       notify('Error while retrieving user', error);
     }
   }
