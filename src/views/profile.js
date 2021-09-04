@@ -99,8 +99,8 @@ export async function profilePage(context) {
       userImage.src = currentUserImage.url();
     }
 
-    refreshImage('user-image', currentUserImage.url());
-    
+    userImage.src = refreshImage('user-image', currentUserImage.url());
+
     function refreshImage(imgElement, imgURL){    
       let timestamp = new Date().getTime();  
       let el = document.getElementById(imgElement);  
