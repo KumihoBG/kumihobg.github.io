@@ -15,7 +15,7 @@ ${navTemplate()}
   <div id="left-container">
     <div id=user>
       <div id="user-image-container">
-        <form id="upload-form">
+      <form id="upload-form">
           <label for="upload">
             <i class="fas fa-camera fa-2x"></i>
             <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
@@ -88,9 +88,11 @@ export async function profilePage(context) {
   context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone));
   setUserNav();
   toggleEye();
+  
   let photo = document.getElementById('user-image');
   const upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
+  upload.addEventListener("change", updateImage, false);
 
   async function onChange(event) {
     event.preventDefault();
@@ -226,7 +228,7 @@ export async function profilePage(context) {
     }
   }
 
-  async function handleFiles(e) {
+  function handleFiles(e) {
     e.preventDefault();
     const fileList = this.files;
     //define the width to resize e.g 600px
@@ -273,38 +275,44 @@ export async function profilePage(context) {
         //assign it to thumb src
         const userImage = document.getElementById('user-image');
         userImage.src = srcEncoded;
-
-        // const User = new Parse.User();
-        // const query = new Parse.Query(User);
-        // try {
-        //   // Finds the user by its ID
-        //   let user = await getCurrentUser();
-        //   // Updates the data we want
-
-        //   userCurrent.set('image', new Parse.File(srcEncoded));
-        //   try {
-        //     // Saves the user with the updated data
-        //     let response = await user.save();
-        //     notifications.style.display = "block";
-        //     notify('You have updated your personal information successfully! Thank you :)');
-        //     page.redirect('/profile');
-        //   } catch (error) {
-        //     notifications.style.display = "block";
-        //     notify('Error while updating user', error);
-        //     console.error('Error while updating user', error);
-        //   }
-        // } catch (error) {
-        //   console.error('Error while retrieving user', error);
-        //   notifications.style.display = "block";
-        //   notify('Error while retrieving user', error);
-        // }
         /*Now you can send "srcEncoded" to the server and
         convert it to a png o jpg. Also can send
         "el.target.name" that is the file's name.*/
-
+        return srcEncoded;
       }
     }
   }
+
+  async function updateImage() {
+    const imgEncoded = handleFiles();
+    console.log(imgEncoded);
+    try {
+      // Finds the user by its ID
+      // const User = new Parse.User();
+      // const currentUser = Parse.User.current();
+      // const id = currentUser.id;
+      // Updates the data we want
+      const currentUser = Parse.User.current();
+      console.log(srcEncoded);
+      currentUser.set('image', new Parse.File(imgName, srcEncoded));
+      try {
+        // Saves the user with the updated data
+        // await currentUser.save();
+        notifications.style.display = "block";
+        notify('You have updated your personal information successfully! Thank you :)');
+        page.redirect('/profile');
+      } catch (error) {
+        notifications.style.display = "block";
+        notify('Error while updating user', error);
+        console.error('Error while updating user', error);
+      }
+    } catch (error) {
+      console.error('Error while retrieving user', error);
+      notifications.style.display = "block";
+      notify('Error while retrieving user', error);
+    }
+  }
+
   logoutEvent();
 }
 
