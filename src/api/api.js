@@ -122,7 +122,7 @@ export async function logout() {
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
         localStorage.removeItem('email');
-        localStorage.removeItem('imgData');
+        // localStorage.removeItem('imgData');
     } catch (error) {
         notify('Ops, something went wrong. Try again, please!');
         console.error(error);
