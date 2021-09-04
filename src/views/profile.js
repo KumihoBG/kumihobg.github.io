@@ -95,17 +95,12 @@ export async function profilePage(context) {
   const currentUserImage = currentUser.get('image');
     if (currentUserImage === undefined || currentUserImage === null) {
       userImage.src = "../images/user.png";
-      // localStorage.removeItem("imgData");
-      // localStorage.setItem("imgData", userImage.src);
     } else if (currentUserImage.url) {
       userImage.src = currentUserImage.url();
-      // localStorage.removeItem("imgData");
-      let result = refreshImage('user-image', currentUserImage.url());
-      // localStorage.setItem("imgData", result);
+      refreshImage('user-image', currentUserImage.url());
     }
 
     function refreshImage(imgElement, imgURL){    
-      // create a new timestamp 
       let timestamp = new Date().getTime();  
       let el = document.getElementById(imgElement);  
       let queryString = "?t=" + timestamp;    
