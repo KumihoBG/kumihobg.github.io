@@ -22,7 +22,7 @@ ${navTemplate()}
           </label>
         </form>
         <div id="picture-container">
-          <img id="user-image" src="../images/user.png">
+          <img id="user-image">
         </div>
         <h3 id="username-style">${getUserName()}</h3>
       </div>
@@ -78,7 +78,6 @@ ${navTemplate()}
       <p>If you no longer want to be a member of this community, press the button below.</p>
       <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Delete account</button>
     </div>
-
 </section>`;
 
 export async function profilePage(context) {
@@ -91,6 +90,16 @@ export async function profilePage(context) {
 
   let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
+  const pictureContainer = document.getElementById('picture-container');
+  let userImage = document.getElementById('user-image');
+  const currentUser = Parse.User.current();
+  const currentUserImage = currentUser.get('image');
+
+    if (currentUserImage === undefined || currentUserImage === null) {
+      userImage.src = "../images/user.png";
+    } else {
+      userImage.src = currentUserImage.url();
+    }
 
   async function onChange(event) {
     event.preventDefault();
