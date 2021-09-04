@@ -22,7 +22,7 @@ ${navTemplate()}
           </label>
         </form>
         <div id="picture-container">
-          <img id="user-image">
+          <img id="user-image" src="">
         </div>
         <h3 id="username-style">${getUserName()}</h3>
       </div>
@@ -90,16 +90,18 @@ export async function profilePage(context) {
 
   let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
-  const pictureContainer = document.getElementById('picture-container');
   let userImage = document.getElementById('user-image');
   const currentUser = Parse.User.current();
   const currentUserImage = currentUser.get('image');
-
     if (currentUserImage === undefined || currentUserImage === null) {
       userImage.src = "../images/user.png";
-    } else {
+    } else if (currentUserImage.url) {
       userImage.src = currentUserImage.url();
+    } else {
+      userImage.src = localStorage.getItem('imgData');
     }
+
+  localStorage.setItem("imgData", userImage.src);
 
   async function onChange(event) {
     event.preventDefault();
