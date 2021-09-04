@@ -525,7 +525,7 @@ a:active {
 #picture-container {
   position: absolute;
   width: 15%;
-  margin-top: -15%;
+  margin-top: -19%;
 }
 
 #user-image {
@@ -536,10 +536,10 @@ a:active {
 }
 
 #username-style {
-  position: relative;
+  position: absolute;
    color:#000;
    font-size: 30px;
-   margin-top: 10%;
+   margin-top: -4%;
 }
 
 #user-details h2,
@@ -554,7 +554,7 @@ a:active {
 
 #user-details {
   width: 80%;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 50px;
 }
 
@@ -562,10 +562,10 @@ a:active {
   cursor: pointer;
   color:#fff;
   position: absolute;
-  margin-top: -5%;
+  margin-top: -10%;
   margin-left: 35px;
   z-index:15;
-  color:#234d4b;
+  color:#ccc;
 }
 
 #user-details ul li {

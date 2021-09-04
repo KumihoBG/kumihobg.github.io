@@ -228,7 +228,7 @@ export async function profilePage(context) {
     }
   }
 
-  function handleFiles(e) {
+  async function handleFiles(e) {
     e.preventDefault();
     const fileList = this.files;
     //define the width to resize e.g 600px
