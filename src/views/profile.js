@@ -101,8 +101,6 @@ export async function profilePage(context) {
       userImage.src = currentUserImage.url();
       localStorage.removeItem("imgData");
       localStorage.setItem("imgData", userImage.src);
-    } else {
-      userImage.src = localStorage.getItem('imgData');
     }
 
   async function onChange(event) {
