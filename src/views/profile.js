@@ -6,7 +6,7 @@ import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from './notification.js';
 import { toggleEye } from '../../index.js';
 
-const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone) => html`
+const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone, onEditImage) => html`
 ${navTemplate()}
 <div id="profile-header">
   <img src="../images/profile-bg.jpg" alt="profile-header">
@@ -15,8 +15,15 @@ ${navTemplate()}
   <div id="left-container">
     <div id=user>
       <div id="user-image-container">
-        <i class="fas fa-camera fa-2x"></i>
-        <img id="user-image" src="../images/user.png">
+        <form @click=${onEditImage} id="upload-form">
+          <label for="upload">
+            <i class="fas fa-camera fa-2x"></i>
+            <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
+          </label>
+        </form>
+        <div id="picture-container">
+          <img id="user-image" src="../images/user.png">
+        </div>
         <h3 id="username-style">${getUserName()}</h3>
       </div>
     </div>
@@ -78,9 +85,12 @@ export async function profilePage(context) {
   const userAddress = await getUserAddress();
   const phone = await getUserPhone();
   const notifications = document.getElementById('notifications');
-  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone));
+  context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone, onEditImage));
   setUserNav();
   toggleEye();
+  let photo = document.getElementById('user-image');
+  const upload = document.getElementById('upload');
+  upload.addEventListener("change", handleFiles, false);
 
   async function onChange(event) {
     event.preventDefault();
@@ -158,12 +168,12 @@ export async function profilePage(context) {
       // Updates the data we want
       let phone = document.getElementById('phone').value;
       phone.trim();
-      let phoneToSafe = validatePhone(phone);
-  
-      if (phoneToSafe !== undefined) {
+      let phoneToSave = validatePhone(phone);
+
+      if (phoneToSave !== undefined) {
         user.set('phone', phone);
         phone = '';
-      } 
+      }
 
       try {
         // Saves the user with the updated data
@@ -215,6 +225,92 @@ export async function profilePage(context) {
       console.error('Error while retrieving user', error);
       notifications.style.display = "block";
       notify('Error while retrieving user', error);
+    }
+  }
+
+  async function onEditImage() {
+    const User = new Parse.User();
+    const query = new Parse.Query(User);
+    try {
+      // Finds the user by its ID
+      const currentUser = Parse.User.current();
+      const id = currentUser.id;
+      let user = await query.get(id);
+      // Updates the data we want
+      const currentPicture = handleFiles();
+      console.log(currentPicture);
+      user.set('image', photo);
+      try {
+        // Saves the user with the updated data
+        let response = await user.save();
+        notifications.style.display = "block";
+        notify('You have updated your personal information successfully! Thank you :)');
+        page.redirect('/profile');
+      } catch (error) {
+        notifications.style.display = "block";
+        notify('Error while updating user', error);
+        console.error('Error while updating user', error);
+      }
+    } catch (error) {
+      console.error('Error while retrieving user', error);
+      notifications.style.display = "block";
+      notify('Error while retrieving user', error);
+    }
+  }
+
+  function handleFiles(e){
+    e.preventDefault();
+    const fileList = this.files;
+    //define the width to resize e.g 600px
+    let resizeWidth = 180;//without px
+    
+    //get the image selected
+    const item = fileList[0];
+    const imgName = item.name;
+    const imgSize = item.size;
+
+    if(item.type.indexOf("image") == -1) {
+      notify("File not supported");
+      return;
+    }
+   
+    if(imgSize > 1000000) {
+      notify("Image too big (max 1Mb)");
+      return;
+  }
+    //create a FileReader
+    let reader = new FileReader();
+  
+    //image turned to base64-encoded Data URI.
+    reader.readAsDataURL(item);
+    reader.name = item.name;//get the image's name
+    reader.size = item.size; //get the image's size
+    reader.onload = function(event) {
+      let img = new Image();//create a image
+      img.src = event.target.result;//result is base64-encoded Data URI
+      img.name = event.target.name;//set name (optional)
+      img.size = event.target.size;//set size (optional)
+      img.onload = function(el) {
+        let elem = document.createElement('canvas');//create a canvas
+        elem.width = resizeWidth;
+        elem.height = resizeWidth;
+  
+        //draw in canvas
+        let ctx = elem.getContext('2d');
+        ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+  
+        //get the base64-encoded Data URI from the resize image
+        let srcEncoded = ctx.canvas.toDataURL('image/png', 1);
+  
+        //assign it to thumb src
+        const userImage = document.getElementById('user-image');
+        userImage.src = srcEncoded;
+        return srcEncoded;
+        /*Now you can send "srcEncoded" to the server and
+        convert it to a png o jpg. Also can send
+        "el.target.name" that is the file's name.*/
+  
+      }
     }
   }
   logoutEvent();

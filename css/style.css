@@ -516,11 +516,15 @@ a:active {
   margin-left:50px;
 }
 
-#user-image {
+#picture-container {
   position: absolute;
-  display: block;
   width: 15%;
   margin-top: -15%;
+}
+
+#user-image {
+  display: block;
+  width: 100%;
   border-radius: 50%;
   border: 2px solid #647c96;
 }
