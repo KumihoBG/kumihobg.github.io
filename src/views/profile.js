@@ -105,6 +105,15 @@ export async function profilePage(context) {
     }
   }
 
+  async function getCurrentUser() {
+    const User = new Parse.User();
+    const query = new Parse.Query(User);
+    const currentUser = Parse.User.current();
+    const id = currentUser.id;
+    let user = await query.get(id);
+    return user;
+  }
+
   function getUserName() {
     const userName = localStorage.getItem('username');
     return userName;
@@ -128,12 +137,9 @@ export async function profilePage(context) {
   }
 
   async function onDelete() {
-    const User = new Parse.User();
-    const query = new Parse.Query(User);
     try {
-      const currentUser = Parse.User.current();
-      const id = currentUser.id;
-      let user = await query.get(id);
+      const id = localStorage.getItem('userId');
+      let user = await getCurrentUser();
       if (user.id === id) {
         var confirmDeletion = confirm("Are you sure you want to delete your account?");
         if (confirmDeletion) {
@@ -141,8 +147,8 @@ export async function profilePage(context) {
             // Invokes the "destroy" method to delete the user
             let response = await user.destroy();
             notifications.style.display = "block";
-            notify('Your account was successfully deleted. Sorry to see you go :( ');
             await logout();
+            notify('Your account was successfully deleted.');
           } catch (error) {
             notifications.style.display = "block";
             notify(error);
@@ -158,13 +164,9 @@ export async function profilePage(context) {
   }
 
   async function onEditPhone() {
-    const User = new Parse.User();
-    const query = new Parse.Query(User);
     try {
       // Finds the user by its ID
-      const currentUser = Parse.User.current();
-      const id = currentUser.id;
-      let user = await query.get(id);
+      let user = await getCurrentUser();
       // Updates the data we want
       let phone = document.getElementById('phone').value;
       phone.trim();
@@ -194,13 +196,9 @@ export async function profilePage(context) {
   }
 
   async function onEditAddress() {
-    const User = new Parse.User();
-    const query = new Parse.Query(User);
     try {
       // Finds the user by its ID
-      const currentUser = Parse.User.current();
-      const id = currentUser.id;
-      let user = await query.get(id);
+      let user = await getCurrentUser();
       // Updates the data we want
       let address = document.getElementById('address').value;
       address.trim();
@@ -280,9 +278,7 @@ export async function profilePage(context) {
         // const query = new Parse.Query(User);
         // try {
         //   // Finds the user by its ID
-        //   const currentUser = Parse.User.current();
-        //   const id = currentUser.id;
-        //   let userCurrent = await query.get(id);
+        //   let user = await getCurrentUser();
         //   // Updates the data we want
 
         //   userCurrent.set('image', new Parse.File(srcEncoded));
