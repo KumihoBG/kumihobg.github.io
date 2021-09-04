@@ -101,6 +101,7 @@ export async function profilePage(context) {
       userImage.src = currentUserImage.url();
       localStorage.removeItem("imgData");
       localStorage.setItem("imgData", userImage.src);
+      notify('Image uploaded successfully. Please, sign in again to apply changes.');
     } else {
       userImage.src = localStorage.getItem('imgData');
     }

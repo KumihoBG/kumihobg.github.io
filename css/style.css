@@ -532,7 +532,11 @@ a:active {
   display: block;
   width: 100%;
   border-radius: 50%;
-  border: 2px solid #647c96;
+  border: 5px solid #647c96;
+}
+
+#user-image:hover {
+  opacity: 0.9;
 }
 
 #username-style {
@@ -561,10 +565,17 @@ a:active {
 .fa-camera {
   cursor: pointer;
   position: absolute;
-  margin-top: -10%;
-  margin-left: 35px;
+  margin-top: -7%;
+  margin-left: 10%;
   color:#ccc;
   z-index: 1000;
+  background-color: #333;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.fa-camera:hover {
+  opacity: 0.9;
 }
 
 #user-details ul li {
