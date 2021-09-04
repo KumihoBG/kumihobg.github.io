@@ -258,7 +258,7 @@ export async function profilePage(context) {
       img.src = event.target.result;//result is base64-encoded Data URI
       img.name = event.target.name;//set name (optional)
       img.size = event.target.size;//set size (optional)
-      img.onload = function (el) {
+      img.onload = async function (el) {
         let elem = document.createElement('canvas');//create a canvas
         elem.width = resizeWidth;
         elem.height = resizeWidth;
@@ -282,11 +282,14 @@ export async function profilePage(context) {
           // const currentUser = Parse.User.current();
           // const id = currentUser.id;
           // Updates the data we want
-          const currentUser = Parse.User.current();
-          currentUser.set('image', new Parse.File(iel.target.name, srcEncoded));
+          let currentUser = Parse.User.current();
+          let file = new Parse.File(el.target.name, { base64: srcEncoded });
+          file.save();
+          currentUser.set('image', file);
+
           try {
             // Saves the user with the updated data
-            // await currentUser.save();
+            let response = await currentUser.save();
             notifications.style.display = "block";
             notify('You have updated your personal information successfully! Thank you :)');
             page.redirect('/profile');
