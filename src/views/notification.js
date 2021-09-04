@@ -7,6 +7,7 @@ export const notificationTemplate = (message) => html`
         </div>`;
 
 export function notify(message) {
+    container.style.display = "block";
     render(notificationTemplate(message), container);
     setTimeout(clearNotify, 5000);
 }

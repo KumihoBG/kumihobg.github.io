@@ -161,9 +161,9 @@ export async function changePassword(id, password) {
             // Saves the user with the updated data
             let response = await user.save();
             const languageBtn = document.getElementById('language');
-            const language = languageBtn.innerText;
+            const language = languageBtn.innerText;  
             Parse.User.logOut();
-            await logout();
+            await logout();        
             if (language === 'BG') {
                 notify('Your password was changed successfully! Please, login with your new credentials.');
             } else {

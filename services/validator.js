@@ -3,8 +3,7 @@ import { notify } from "../src/views/notification.js";
 
 export async function validateInput(username, email, password, repass) {
     if (username === '' || username === null || email === '' || email === null || password === '' || password === null || repass === null || repass === '') {
-        notify('All fields are required!');
-        return;
+        return notify('All fields are required!');
     }
 
     if (username === 'admin') {
@@ -182,8 +181,7 @@ export async function validateBgInput(username, email, password, repass) {
 export async function validateChangedPassword(newPass, repeatPass) {
     let isValidPassword = false;
     if (repeatPass === '' || repeatPass === null || newPass === '' || newPass === null) {
-        notify('All fields are required!');
-        return;
+        return notify('All fields are required!');
     }
 
     if (newPass === 'password') {
