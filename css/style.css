@@ -65,6 +65,9 @@ body {
   display: inline-block;
   padding: 10%;
   border-radius: 10px;
+  -webkit-box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
+  -moz-box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
+  box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
 }
 
 #notifications span {
@@ -1215,7 +1218,7 @@ small img {
   height: 130vh;
   background: url(../images/map.jpg) no-repeat center center/cover;
   font-family: "Merienda", cursive;
-  border-right: 10px solid #000;
+  border: 10px solid #173736;
 }
 
 .legend {
@@ -1227,6 +1230,7 @@ small img {
   grid-column: 2;
   color: #291a0a;
   background: url(../images/oldmap.jpg) no-repeat center center/cover;
+  border: 10px solid #173736;
 }
 
 .legend ul {
