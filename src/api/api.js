@@ -68,7 +68,6 @@ export async function login(username, password) {
         let user = await Parse.User.logIn(username, password);
         const email = user.get('email');
         if (user.get('emailVerified')) {
-            console.log('User logged in', user);
             const currentUser = Parse.User.current();
             const sessionToken = currentUser.getSessionToken();
             localStorage.setItem('username', username);
@@ -113,7 +112,7 @@ export async function logout() {
         const languageBtn = document.getElementById('language');
         const language = languageBtn.innerText;
         if (language === 'BG') {
-            notify('You have been logged out.');
+            notify('You\'ve been logged out.');
             page.redirect('/login');
         } else {
             notify('Успешно излязохте от Вашия профил.');
@@ -123,6 +122,7 @@ export async function logout() {
         localStorage.removeItem('authToken');
         localStorage.removeItem('userId');
         localStorage.removeItem('email');
+        localStorage.removeItem('imgData');
     } catch (error) {
         notify('Ops, something went wrong. Try again, please!');
         console.error(error);

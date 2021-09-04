@@ -100,8 +100,18 @@ export async function profilePage(context) {
     } else if (currentUserImage.url) {
       userImage.src = currentUserImage.url();
       localStorage.removeItem("imgData");
-      localStorage.setItem("imgData", userImage.src);
+      let result = refreshImage('user-image', currentUserImage.url());
+      localStorage.setItem("imgData", result);
     }
+
+    function refreshImage(imgElement, imgURL){    
+      // create a new timestamp 
+      let timestamp = new Date().getTime();  
+      let el = document.getElementById(imgElement);  
+      let queryString = "?t=" + timestamp;    
+      el.src = imgURL + queryString; 
+      return el.src;   
+  }
 
   async function onChange(event) {
     event.preventDefault();
@@ -302,7 +312,7 @@ export async function profilePage(context) {
             // Saves the user with the updated data
             let response = await currentUser.save();
             notifications.style.display = "block";
-            notify('You have updated your personal information successfully! Thank you :)');
+            notify('You have updated your personal information successfully.');
             page.redirect('/profile');
           } catch (error) {
             notifications.style.display = "block";
