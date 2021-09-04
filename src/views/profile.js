@@ -95,9 +95,11 @@ export async function profilePage(context) {
   const currentUserImage = currentUser.get('image');
     if (currentUserImage === undefined || currentUserImage === null) {
       userImage.src = "../images/user.png";
+      localStorage.removeItem("imgData");
       localStorage.setItem("imgData", userImage.src);
     } else if (currentUserImage.url) {
       userImage.src = currentUserImage.url();
+      localStorage.removeItem("imgData");
       localStorage.setItem("imgData", userImage.src);
     } else {
       userImage.src = localStorage.getItem('imgData');
