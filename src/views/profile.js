@@ -101,7 +101,6 @@ export async function profilePage(context) {
       userImage.src = currentUserImage.url();
       localStorage.removeItem("imgData");
       localStorage.setItem("imgData", userImage.src);
-      notify('Image uploaded successfully. Please, sign in again to apply changes.');
     } else {
       userImage.src = localStorage.getItem('imgData');
     }
@@ -195,7 +194,7 @@ export async function profilePage(context) {
         // Saves the user with the updated data
         let response = await user.save();
         notifications.style.display = "block";
-        notify('You have updated your personal information successfully! Thank you :)');
+        notify('You have updated your personal information successfully.');
         page.redirect('/profile');
       } catch (error) {
         notifications.style.display = "block";
@@ -226,7 +225,7 @@ export async function profilePage(context) {
         // Saves the user with the updated data
         let response = await user.save();
         notifications.style.display = "block";
-        notify('You have updated your personal information successfully! Thank you :)');
+        notify('You have updated your personal information successfully.');
         page.redirect('/profile');
       } catch (error) {
         notifications.style.display = "block";
