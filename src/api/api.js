@@ -75,7 +75,6 @@ export async function login(username, password) {
             localStorage.setItem('authToken', sessionToken);
             localStorage.setItem('userId', currentUser.id);
             localStorage.setItem('email', email);
-            notify(`You are logged in as: '${username}'`);
         }
     } catch (error) {
         Parse.User.logOut();

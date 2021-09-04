@@ -88,11 +88,9 @@ export async function profilePage(context) {
   context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone));
   setUserNav();
   toggleEye();
-  
-  let photo = document.getElementById('user-image');
-  const upload = document.getElementById('upload');
+
+  let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
-  upload.addEventListener("change", updateImage, false);
 
   async function onChange(event) {
     event.preventDefault();
@@ -278,38 +276,31 @@ export async function profilePage(context) {
         /*Now you can send "srcEncoded" to the server and
         convert it to a png o jpg. Also can send
         "el.target.name" that is the file's name.*/
-        return srcEncoded;
+        try {
+          // Finds the user by its ID
+          // const User = new Parse.User();
+          // const currentUser = Parse.User.current();
+          // const id = currentUser.id;
+          // Updates the data we want
+          const currentUser = Parse.User.current();
+          currentUser.set('image', new Parse.File(iel.target.name, srcEncoded));
+          try {
+            // Saves the user with the updated data
+            // await currentUser.save();
+            notifications.style.display = "block";
+            notify('You have updated your personal information successfully! Thank you :)');
+            page.redirect('/profile');
+          } catch (error) {
+            notifications.style.display = "block";
+            notify('Error while updating user', error);
+            console.error('Error while updating user', error);
+          }
+        } catch (error) {
+          console.error('Error while retrieving user', error);
+          notifications.style.display = "block";
+          notify('Error while retrieving user', error);
+        }
       }
-    }
-  }
-
-  async function updateImage() {
-    const imgEncoded = handleFiles();
-    console.log(imgEncoded);
-    try {
-      // Finds the user by its ID
-      // const User = new Parse.User();
-      // const currentUser = Parse.User.current();
-      // const id = currentUser.id;
-      // Updates the data we want
-      const currentUser = Parse.User.current();
-      console.log(srcEncoded);
-      currentUser.set('image', new Parse.File(imgName, srcEncoded));
-      try {
-        // Saves the user with the updated data
-        // await currentUser.save();
-        notifications.style.display = "block";
-        notify('You have updated your personal information successfully! Thank you :)');
-        page.redirect('/profile');
-      } catch (error) {
-        notifications.style.display = "block";
-        notify('Error while updating user', error);
-        console.error('Error while updating user', error);
-      }
-    } catch (error) {
-      console.error('Error while retrieving user', error);
-      notifications.style.display = "block";
-      notify('Error while retrieving user', error);
     }
   }
 

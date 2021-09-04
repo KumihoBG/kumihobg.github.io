@@ -50,7 +50,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   align-items: center;
-  z-index: 999999;
+  z-index: 10;
   width: 40%;
   height: 40%;
 }
@@ -63,15 +63,15 @@ body {
 
 #messageBox > span {
   display: inline-block;
-  padding: 10%;
+  padding: 5%;
   border-radius: 10px;
-  -webkit-box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
-  -moz-box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
-  box-shadow: 2px 3px 73px 21px rgba(23,55,54,1);
+  -webkit-box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
+  -moz-box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
+  box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
 }
 
 #notifications span {
-  background: #173736;
+  background: #647c96;
 }
 
 /* start: Navigation styles */
@@ -560,12 +560,11 @@ a:active {
 
 .fa-camera {
   cursor: pointer;
-  color:#fff;
   position: absolute;
   margin-top: -10%;
   margin-left: 35px;
-  z-index:15;
   color:#ccc;
+  z-index: 1000;
 }
 
 #user-details ul li {
