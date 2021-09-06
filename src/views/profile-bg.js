@@ -15,7 +15,7 @@ ${navTemplate()}
   <div id="left-container">
     <div id=user>
       <div id="user-image-container">
-      <form id="upload-form">
+        <form id="upload-form">
           <label for="upload">
             <i class="fas fa-camera fa-2x"></i>
             <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
@@ -29,53 +29,62 @@ ${navTemplate()}
     </div>
     <div id="user-details">
       <h2>Данни за потребителя:</h2>
-      <ul>
-        <li><i class="fas fa-user-circle"></i> Потребителско име: ${getUserName()}</li>
-        <li><i class="fas fa-envelope-square"></i> Електронна поща: ${getUserEmail()} </li>
-        <li><i class="fas fa-phone-square-alt"></i> Телефонен номер: ${phone}</li>
-        <li><i class="fas fa-map-marked"></i> Адрес: ${userAddress}</li>
-      </ul>
+        <ul>
+          <li><i class="fas fa-user-circle"></i> Потребителско име: ${getUserName()}</li>
+          <li><i class="fas fa-envelope-square"></i> Електронна поща: ${getUserEmail()} </li>
+          <li><i class="fas fa-phone-square-alt"></i> Телефонен номер: ${phone}</li>
+          <li><i class="fas fa-map-marked"></i> Адрес: ${userAddress}</li>
+        </ul>
     </div>
   </div>
   </div>
   </div>
   <div id="right-container">
     <h2>Промяна на профилни данни:</h2>
-    <h3><i class="fas fa-check-double"></i> Сменете Вашата парола:</h3>
     <div class="new-pass-container">
-      <div id="new-pass-info-container">
-        <p><i class="fas fa-info-circle"></i> Паролата Ви трябва да бъде дълга между 6 и 10 знака. Тя може да съдържа само букви и поне 2 цифри.</p>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Сменете Вашата парола:</h3>
+        <div id="new-pass-info-container">
+          <p><i class="fas fa-info-circle"></i> Паролата Ви трябва да бъде дълга между 6 и 10 знака. Тя може да съдържа
+            само букви и поне 2 цифри.</p>
+        </div>
+        <form id="profile-form" action="#" method="post">
+          <input hidden id="username-hidden" name="username-hidden" type="text" autocomplete="username"
+            value=${getUserName()}>
+          <label for="new-password">Нова парола:</label>
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+            <input id="new-password" type="password" name="change-password" autocomplete="password"><br>
+            <i id="eye-four" class="fas fa-eye" class="togglePassword"></i>
+          </div>
+          <br>
+          <label for="repeat-password">Повторете паролата:</label>
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+            <input id="repeat-password" type="password" name="change-password" autocomplete="current-password"><br>
+            <i id="eye-five" class="fas fa-eye"></i>
+          </div>
+          <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Смени парола</button>
+        </form>
       </div>
-      <form id="profile-form" action="#" method="post">
-        <input hidden id="username-hidden" name="username-hidden" type="text" autocomplete="username"
-          value=${getUserName()}>
-        <label for="new-password">Нова парола:</label>
-        <div class="icon">
-          <i class="fas fa-lock"></i>
-          <input id="new-password" type="password" name="change-password" autocomplete="password"><br>
-          <i id="eye-four" class="fas fa-eye" class="togglePassword"></i>
-        </div>
-        <br>
-        <label for="repeat-password">Повторете паролата:</label>
-        <div class="icon">
-          <i class="fas fa-lock"></i>
-          <input id="repeat-password" type="password" name="change-password" autocomplete="current-password"><br>
-          <i id="eye-five" class="fas fa-eye"></i>
-        </div>
-        <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Смени парола</button>
-      </form>
       <br>
-      <h3><i class="fas fa-check-double"></i> Добавете телефонен номер:</h3>
-      <label for="phone">Вашият настоящ телефонен номер:</label>
-      <input type="text" name="phone" id="phone" autocomplete="phone"><br>
-      <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави номер</button><br>
-      <h3><i class="fas fa-check-double"></i> Добавете адрес:</h3>
-      <label for="address">Вашият настоящ адрес:</label>
-      <input type="text" name="address" id="address" autocomplete="address"><br>
-      <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Добави адрес</button><br>
-      <h3><i class="fas fa-check-double"></i> Изтрий своя акаунт:</h3>
-      <p>Ако не искате да бъдете повече част от нашата общност, натиснете бутона по-долу.</p>
-      <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Изтрий акаунт</button>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Добавете телефонен номер:</h3>
+        <label for="phone">Вашият настоящ телефонен номер:</label>
+        <input type="text" name="phone" id="phone" autocomplete="phone"><br>
+        <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави номер</button><br>
+      </div>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Добавете адрес:</h3>
+        <label for="address">Вашият настоящ адрес:</label>
+        <input type="text" name="address" id="address" autocomplete="address"><br>
+        <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Добави адрес</button><br>
+      </div>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Изтрийте своя акаунт:</h3>
+        <p>Ако не искате да бъдете повече част от нашата общност, натиснете бутона по-долу.</p>
+        <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Изтрий акаунт</button>
+      </div>
     </div>
 </section>`;
 
@@ -92,20 +101,20 @@ export async function profilePageBg(context) {
   let userImage = document.getElementById('user-image');
   const currentUser = Parse.User.current();
   const currentUserImage = currentUser.get('image');
-    if (currentUserImage === undefined || currentUserImage === null) {
-      userImage.src = "../images/user.png";
-    } else if (currentUserImage.url) {
-      userImage.src = currentUserImage.url();
-    }
+  if (currentUserImage === undefined || currentUserImage === null) {
+    userImage.src = "../images/user.png";
+  } else if (currentUserImage.url) {
+    userImage.src = currentUserImage.url();
+  }
 
-    userImage.src = refreshImage('user-image', currentUserImage.url());
+  userImage.src = refreshImage('user-image', currentUserImage.url());
 
-    function refreshImage(imgElement, imgURL){    
-      let timestamp = new Date().getTime();  
-      let el = document.getElementById(imgElement);  
-      let queryString = "?t=" + timestamp;    
-      el.src = imgURL + queryString; 
-      return el.src;   
+  function refreshImage(imgElement, imgURL) {
+    let timestamp = new Date().getTime();
+    let el = document.getElementById(imgElement);
+    let queryString = "?t=" + timestamp;
+    el.src = imgURL + queryString;
+    return el.src;
   }
 
   async function onChange(event) {

@@ -501,6 +501,16 @@ a:active {
   margin: 0;
 }
 
+.wrapper {
+  border: 1px solid #47596b;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.wrapper label {
+  margin-bottom: 10px;
+}
+
 #left-container {
   grid-column: 1;
   width:100%;
