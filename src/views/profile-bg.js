@@ -118,11 +118,13 @@ export async function profilePageBg(context) {
     headerImage.src = "../images/profile-bg.jpg";
   } else if (currentUserImage.url) {
     userImage.src = currentUserImage.url();
-    headerImage.src = currentUserImage.url();
+  } else if (currentUserHeader.url) {
+    headerImage.src = currentUserHeader.url();
   }
 
   userImage.src = refreshImage('user-image', currentUserImage.url());
   headerImage.src = refreshImage('header-image', currentUserHeader.url());
+  
   function refreshImage(imgElement, imgURL) {
     let timestamp = new Date().getTime();
     let el = document.getElementById(imgElement);

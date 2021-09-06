@@ -122,7 +122,8 @@ export async function profilePage(context) {
     headerImage.src = "../images/profile-bg.jpg";
   } else if (currentUserImage.url) {
     userImage.src = currentUserImage.url();
-    headerImage.src = currentUserImage.url();
+  } else if (currentUserHeader.url) {
+    headerImage.src = currentUserHeader.url();
   }
 
   userImage.src = refreshImage('user-image', currentUserImage.url());
