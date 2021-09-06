@@ -9,15 +9,21 @@ import { toggleEye } from '../../index.js';
 const profileTemplateBg = (onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone) => html`
 ${navTemplate()}
 <div id="profile-header">
-  <img src="../images/profile-bg.jpg" alt="profile-header">
+<img id="header-image" src="" alt="profile-header">
+  <form class="upload-form">
+    <label for="upload-header">
+      <i id="header-upload-one" class="fas fa-camera fa-2x"></i>
+      <input type="file" id="upload-header" name="upload" style="display:none" accept="image/*" visibility="none">
+    </label>
+  </form>
 </div>
 <section id="profile-page">
   <div id="left-container">
     <div id=user>
       <div id="user-image-container">
-        <form id="upload-form">
+        <form class="upload-form">
           <label for="upload">
-            <i class="fas fa-camera fa-2x"></i>
+            <i id="header-upload-two" class="fas fa-camera fa-2x"></i>
             <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
           </label>
         </form>
@@ -43,7 +49,7 @@ ${navTemplate()}
     <h2>Промяна на профилни данни:</h2>
     <div class="new-pass-container">
       <div class="wrapper">
-        <h3><i class="fas fa-check-double"></i> Сменете Вашата парола:</h3>
+        <h3><i class="fas fa-check-double"></i> Ако желаете да смените Вашата настояща парола, моля, попълнете новата парола. Повторете я, за да се уверите, че няма грешка и натиснете бутона в полето по-долу:</h3>
         <div id="new-pass-info-container">
           <p><i class="fas fa-info-circle"></i> Паролата Ви трябва да бъде дълга между 6 и 10 знака. Тя може да съдържа
             само букви и поне 2 цифри.</p>
@@ -67,22 +73,21 @@ ${navTemplate()}
           <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Смени парола</button>
         </form>
       </div>
-      <br>
       <div class="wrapper">
         <h3><i class="fas fa-check-double"></i> Добавете телефонен номер:</h3>
-        <label for="phone">Вашият настоящ телефонен номер:</label>
-        <input type="text" name="phone" id="phone" autocomplete="phone"><br>
+        <label for="phone">Ако желаете да добавите Вашия настоящ телефонен номер към профила си, моля, попълнете го в полето и натиснете бутона по-долу:</label>
+        <input type="text" name="phone" id="phone" autocomplete="phone" placeholder="Телефонен номер"><br>
         <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави номер</button><br>
       </div>
       <div class="wrapper">
         <h3><i class="fas fa-check-double"></i> Добавете адрес:</h3>
-        <label for="address">Вашият настоящ адрес:</label>
-        <input type="text" name="address" id="address" autocomplete="address"><br>
+        <label for="address">Ако желаете да добавите Вашия настоящ адрес към профила си, моля, попълнете го в полето и натиснете бутона по-долу:</label>
+        <input type="text" name="address" id="address" autocomplete="address" placeholder="Адрес"><br>
         <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Добави адрес</button><br>
       </div>
       <div class="wrapper">
         <h3><i class="fas fa-check-double"></i> Изтрийте своя акаунт:</h3>
-        <p>Ако не искате да бъдете повече част от нашата общност, натиснете бутона по-долу.</p>
+        <p>Ако не искате да бъдете повече част от нашата общност, натиснете бутона по-долу. Моля, имайте предвид, че след изтриване, Вашите профилни данни не могат да бъдат възстановени и ще трябва да направите нова регистрация.</p>
         <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Изтрий акаунт</button>
       </div>
     </div>
@@ -98,17 +103,26 @@ export async function profilePageBg(context) {
 
   let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
+  let uploadHeader = document.getElementById('upload-header');
+  uploadHeader.addEventListener('change', handleHeaders, false);
+
   let userImage = document.getElementById('user-image');
+  let headerImage = document.getElementById('header-image');
+
   const currentUser = Parse.User.current();
   const currentUserImage = currentUser.get('image');
-  if (currentUserImage === undefined || currentUserImage === null) {
+  const currentUserHeader = currentUser.get('headerImg');
+
+  if (currentUserImage === undefined || currentUserImage === null || currentUserHeader === undefined || currentUserHeader === null) {
     userImage.src = "../images/user.png";
+    headerImage.src = "../images/profile-bg.jpg";
   } else if (currentUserImage.url) {
     userImage.src = currentUserImage.url();
+    headerImage.src = currentUserImage.url();
   }
 
   userImage.src = refreshImage('user-image', currentUserImage.url());
-
+  headerImage.src = refreshImage('header-image', currentUserHeader.url());
   function refreshImage(imgElement, imgURL) {
     let timestamp = new Date().getTime();
     let el = document.getElementById(imgElement);
@@ -126,7 +140,7 @@ export async function profilePageBg(context) {
     const result = await validateChangedPassword(newPassword, repeatPassword);
     if (result == true) {
       await changePassword(id, newPassword);
-      page.redirect('/login');
+      page.redirect('/login-bg');
     }
   }
 
@@ -176,14 +190,14 @@ export async function profilePageBg(context) {
             notify('Вашият акаунт бе успешно изтрит.');
           } catch (error) {
             notifications.style.display = "block";
-            notify(error);
+            notify('Нещо се обърка. Не успяхме да изтрием акаунта Ви.', error);
             console.error('Error while deleting user', error);
           }
         }
       }
     } catch (error) {
       notifications.style.display = "block";
-      notify(error);
+      notify('Този потребител не съществува', error);
       console.error('Error while retrieving user', error);
     }
   }
@@ -207,16 +221,16 @@ export async function profilePageBg(context) {
         let response = await user.save();
         notifications.style.display = "block";
         notify('Успешно обновихте информацията за Вашия потребителски профил.');
-        page.redirect('/profile');
+        page.redirect('/profile-bg');
       } catch (error) {
         notifications.style.display = "block";
-        notify('Error while updating user', error);
+        notify('Не успяхме да подновим данните Ви', error);
         console.error('Error while updating user', error);
       }
     } catch (error) {
-      console.error('Error while retrieving user', error);
+      console.error('Този потребител не съществува', error);
       notifications.style.display = "block";
-      notify('Error while retrieving user', error);
+      notify('Този потребител не съществува', error);
     }
   }
 
@@ -238,16 +252,16 @@ export async function profilePageBg(context) {
         let response = await user.save();
         notifications.style.display = "block";
         notify('Успешно обновихте информацията за Вашия потребителски профил.');
-        page.redirect('/profile');
+        page.redirect('/profile-bg');
       } catch (error) {
         notifications.style.display = "block";
-        notify('Error while updating user', error);
+        notify('Не успяхме да подновим данните Ви', error);
         console.error('Error while updating user', error);
       }
     } catch (error) {
-      console.error('Error while retrieving user', error);
+      console.error('Този потребител не съществува', error);
       notifications.style.display = "block";
-      notify('Error while retrieving user', error);
+      notify('Този потребител не съществува', error);
     }
   }
 
@@ -317,6 +331,87 @@ export async function profilePageBg(context) {
             let response = await currentUser.save();
             notifications.style.display = "block";
             notify('Успешно обновихте информацията за Вашия потребителски профил.');
+            page.redirect('/profile');
+          } catch (error) {
+            notifications.style.display = "block";
+            notify('Error while updating user', error);
+            console.error('Error while updating user', error);
+          }
+        } catch (error) {
+          console.error('Error while retrieving user', error);
+          notifications.style.display = "block";
+          notify('Error while retrieving user', error);
+        }
+      }
+    }
+  }
+
+  async function handleHeaders(e) {
+    e.preventDefault();
+    const fileList = this.files;
+    //define the width to resize e.g 600px
+    let resizeWidth = 1500;//without px
+    let resizeHeigh = 500;
+
+    //get the image selected
+    const item = fileList[0];
+    const imgSize = item.size;
+
+    if (item.type.indexOf("image") == -1) {
+      notify("Този файл формат не се поддържа.");
+      return;
+    }
+
+    if (imgSize > 2000000) {
+      notify("Размерът на снимката Ви е прекалено голям (максимално позволено: 2Mb)");
+      return;
+    }
+    //create a FileReader
+    let reader = new FileReader();
+
+    //image turned to base64-encoded Data URI.
+    reader.readAsDataURL(item);
+    reader.name = item.name;//get the image's name
+    reader.size = item.size; //get the image's size
+    reader.onload = function (event) {
+      let img = new Image();//create a image
+      img.src = event.target.result;//result is base64-encoded Data URI
+      img.name = event.target.name;//set name (optional)
+      img.size = event.target.size;//set size (optional)
+      img.onload = async function (el) {
+        let elem = document.createElement('canvas');//create a canvas
+        elem.width = resizeWidth;
+        elem.height = resizeHeigh;
+
+        //draw in canvas
+        let ctx = elem.getContext('2d');
+        ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+
+        //get the base64-encoded Data URI from the resize image
+        let srcEncoded = ctx.canvas.toDataURL('image/png', 1);
+
+        //assign it to thumb src
+        const userImage = document.getElementById('user-image');
+        userImage.src = srcEncoded;
+        /*Now you can send "srcEncoded" to the server and
+        convert it to a png o jpg. Also can send
+        "el.target.name" that is the file's name.*/
+        try {
+          // Finds the user by its ID
+          // const User = new Parse.User();
+          // const currentUser = Parse.User.current();
+          // const id = currentUser.id;
+          // Updates the data we want
+          let currentUser = Parse.User.current();
+          let file = new Parse.File(el.target.name, { base64: srcEncoded });
+          file.save();
+          currentUser.set('headerImg', file);
+
+          try {
+            // Saves the user with the updated data
+            let response = await currentUser.save();
+            notifications.style.display = "block";
+            notify('You have updated your personal information successfully.');
             page.redirect('/profile');
           } catch (error) {
             notifications.style.display = "block";

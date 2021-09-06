@@ -504,10 +504,10 @@ a:active {
 .wrapper {
   border: 1px solid #47596b;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
-.wrapper label {
+.wrapper h3 {
   margin-bottom: 10px;
 }
 
@@ -571,14 +571,26 @@ a:active {
   margin-left: 50px;
 }
 
-.fa-camera {
+#header-upload-one {
+  cursor: pointer;
+  position: absolute;
+  margin-top: -5%;
+  margin-left: 90%;
+  color:#ccc;
+  z-index: 1000;
+  background-color: #647c96;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+#header-upload-two {
   cursor: pointer;
   position: absolute;
   margin-top: -7%;
   margin-left: 10%;
   color:#ccc;
   z-index: 1000;
-  background-color: #333;
+  background-color: #647c96;
   border-radius: 50%;
   padding: 10px;
 }
@@ -594,7 +606,7 @@ a:active {
   list-style: none;
   font-weight: bolder;
   font-size: 20px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #647c96;
 }
 
 .new-pass-container {
@@ -630,6 +642,7 @@ a:active {
   padding: 0;
   padding-left: 10px;
   text-align: center;
+  margin-top: 10px;
 }
 /* #username-hidden{
   display: none;

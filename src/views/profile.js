@@ -9,15 +9,21 @@ import { toggleEye } from '../../index.js';
 const profileTemplate = (onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone) => html`
 ${navTemplate()}
 <div id="profile-header">
-  <img src="../images/profile-bg.jpg" alt="profile-header">
+  <img id="header-image" src="" alt="profile-header">
+  <form class="upload-form">
+    <label for="upload-header">
+      <i id="header-upload-one" class="fas fa-camera fa-2x"></i>
+      <input type="file" id="upload-header" name="upload" style="display:none" accept="image/*" visibility="none">
+    </label>
+  </form>
 </div>
 <section id="profile-page">
   <div id="left-container">
     <div id=user>
       <div id="user-image-container">
-      <form id="upload-form">
+        <form class="upload-form">
           <label for="upload">
-            <i class="fas fa-camera fa-2x"></i>
+            <i id="header-upload-two" class="fas fa-camera fa-2x"></i>
             <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
           </label>
         </form>
@@ -41,42 +47,53 @@ ${navTemplate()}
   </div>
   <div id="right-container">
     <h2>Account Actions:</h2>
-    <h3><i class="fas fa-check-double"></i> Change your current password:</h3>
     <div class="new-pass-container">
-      <div id="new-pass-info-container">
-        <p><i class="fas fa-info-circle"></i> Password must be between 6 and 10 characters. Password
-          must consist only of letters and at least 2 digits.</p>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> If you wish to change your current password, please fill in the new
+          password. Repeat it to make sure there is no error and click the button in the box below:</h3>
+        <div id="new-pass-info-container">
+          <p><i class="fas fa-info-circle"></i> Password must be between 6 and 10 characters. Password
+            must consist only of letters and at least 2 digits.</p>
+        </div>
+        <form id="profile-form" action="#" method="post">
+          <input hidden id="username-hidden" name="username-hidden" type="text" autocomplete="username"
+            value=${getUserName()}>
+          <label for="new-password">New password:</label>
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+            <input id="new-password" type="password" name="change-password" autocomplete="password"><br>
+            <i id="eye-four" class="fas fa-eye" class="togglePassword"></i>
+          </div>
+          <br>
+          <label for="repeat-password">Repeat password:</label>
+          <div class="icon">
+            <i class="fas fa-lock"></i>
+            <input id="repeat-password" type="password" name="change-password" autocomplete="current-password"><br>
+            <i id="eye-five" class="fas fa-eye"></i>
+          </div>
+          <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Change Password</button>
+        </form>
       </div>
-      <form id="profile-form" action="#" method="post">
-        <input hidden id="username-hidden" name="username-hidden" type="text" autocomplete="username"
-          value=${getUserName()}>
-        <label for="new-password">New password:</label>
-        <div class="icon">
-          <i class="fas fa-lock"></i>
-          <input id="new-password" type="password" name="change-password" autocomplete="password"><br>
-          <i id="eye-four" class="fas fa-eye" class="togglePassword"></i>
-        </div>
-        <br>
-        <label for="repeat-password">Repeat password:</label>
-        <div class="icon">
-          <i class="fas fa-lock"></i>
-          <input id="repeat-password" type="password" name="change-password" autocomplete="current-password"><br>
-          <i id="eye-five" class="fas fa-eye"></i>
-        </div>
-        <button @click=${onChange} type="button" id="submitNewPass" name="submitNewPass">Change Password</button>
-      </form>
-      <br>
-      <h3><i class="fas fa-check-double"></i> Add phone number:</h3>
-      <label for="phone">Your current phone number:</label>
-      <input type="text" name="phone" id="phone" autocomplete="phone"><br>
-      <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Edit Phone</button><br>
-      <h3><i class="fas fa-check-double"></i> Add your address:</h3>
-      <label for="address">Your current address:</label>
-      <input type="text" name="address" id="address" autocomplete="address"><br>
-      <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Edit Address</button><br>
-      <h3><i class="fas fa-check-double"></i> Delete account:</h3>
-      <p>If you no longer want to be a member of this community, press the button below.</p>
-      <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Delete account</button>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Add phone number:</h3>
+        <label for="phone">If you would like to add your current phone number to your account, please fill in the field
+          and click the button below:</label>
+        <input type="text" name="phone" id="phone" autocomplete="phone" placeholder="Phone number"><br>
+        <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Edit Phone</button><br>
+      </div>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Add your address:</h3>
+        <label for="address">If you would like to add your current address to your account, please fill in the field and
+          click the button below:</label>
+        <input type="text" name="address" id="address" autocomplete="address" placeholder="Address"><br>
+        <button @click=${onEditAddress} type="button" id="editPhone" name="editPhone">Edit Address</button><br>
+      </div>
+      <div class="wrapper">
+        <h3><i class="fas fa-check-double"></i> Delete account:</h3>
+        <p>If you don't want to be part of our community anymore, click the button below. Please note that once deleted,
+          your account information cannot be recovered and you will need to re-register.</p>
+        <button @click=${onDelete} type="button" id="deleteAccount" name="deleteAccount">Delete account</button>
+      </div>
     </div>
 </section>`;
 
@@ -90,23 +107,33 @@ export async function profilePage(context) {
 
   let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
+  let uploadHeader = document.getElementById('upload-header');
+  uploadHeader.addEventListener('change', handleHeaders, false);
+
   let userImage = document.getElementById('user-image');
+  let headerImage = document.getElementById('header-image');
+
   const currentUser = Parse.User.current();
   const currentUserImage = currentUser.get('image');
-    if (currentUserImage === undefined || currentUserImage === null) {
-      userImage.src = "../images/user.png";
-    } else if (currentUserImage.url) {
-      userImage.src = currentUserImage.url();
-    }
+  const currentUserHeader = currentUser.get('headerImg');
 
-    userImage.src = refreshImage('user-image', currentUserImage.url());
+  if (currentUserImage === undefined || currentUserImage === null || currentUserHeader === undefined || currentUserHeader === null) {
+    userImage.src = "../images/user.png";
+    headerImage.src = "../images/profile-bg.jpg";
+  } else if (currentUserImage.url) {
+    userImage.src = currentUserImage.url();
+    headerImage.src = currentUserImage.url();
+  }
 
-    function refreshImage(imgElement, imgURL){    
-      let timestamp = new Date().getTime();  
-      let el = document.getElementById(imgElement);  
-      let queryString = "?t=" + timestamp;    
-      el.src = imgURL + queryString; 
-      return el.src;   
+  userImage.src = refreshImage('user-image', currentUserImage.url());
+  headerImage.src = refreshImage('header-image', currentUserHeader.url());
+
+  function refreshImage(imgElement, imgURL) {
+    let timestamp = new Date().getTime();
+    let el = document.getElementById(imgElement);
+    let queryString = "?t=" + timestamp;
+    el.src = imgURL + queryString;
+    return el.src;
   }
 
   async function onChange(event) {
@@ -251,7 +278,6 @@ export async function profilePage(context) {
 
     //get the image selected
     const item = fileList[0];
-    const imgName = item.name;
     const imgSize = item.size;
 
     if (item.type.indexOf("image") == -1) {
@@ -303,6 +329,87 @@ export async function profilePage(context) {
           let file = new Parse.File(el.target.name, { base64: srcEncoded });
           file.save();
           currentUser.set('image', file);
+
+          try {
+            // Saves the user with the updated data
+            let response = await currentUser.save();
+            notifications.style.display = "block";
+            notify('You have updated your personal information successfully.');
+            page.redirect('/profile');
+          } catch (error) {
+            notifications.style.display = "block";
+            notify('Error while updating user', error);
+            console.error('Error while updating user', error);
+          }
+        } catch (error) {
+          console.error('Error while retrieving user', error);
+          notifications.style.display = "block";
+          notify('Error while retrieving user', error);
+        }
+      }
+    }
+  }
+
+  async function handleHeaders(e) {
+    e.preventDefault();
+    const fileList = this.files;
+    //define the width to resize e.g 600px
+    let resizeWidth = 1500;//without px
+    let resizeHeigh = 500;
+
+    //get the image selected
+    const item = fileList[0];
+    const imgSize = item.size;
+
+    if (item.type.indexOf("image") == -1) {
+      notify("File not supported");
+      return;
+    }
+
+    if (imgSize > 2000000) {
+      notify("Image too big (max 2Mb)");
+      return;
+    }
+    //create a FileReader
+    let reader = new FileReader();
+
+    //image turned to base64-encoded Data URI.
+    reader.readAsDataURL(item);
+    reader.name = item.name;//get the image's name
+    reader.size = item.size; //get the image's size
+    reader.onload = function (event) {
+      let img = new Image();//create a image
+      img.src = event.target.result;//result is base64-encoded Data URI
+      img.name = event.target.name;//set name (optional)
+      img.size = event.target.size;//set size (optional)
+      img.onload = async function (el) {
+        let elem = document.createElement('canvas');//create a canvas
+        elem.width = resizeWidth;
+        elem.height = resizeHeigh;
+
+        //draw in canvas
+        let ctx = elem.getContext('2d');
+        ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+
+        //get the base64-encoded Data URI from the resize image
+        let srcEncoded = ctx.canvas.toDataURL('image/png', 1);
+
+        //assign it to thumb src
+        const userImage = document.getElementById('user-image');
+        userImage.src = srcEncoded;
+        /*Now you can send "srcEncoded" to the server and
+        convert it to a png o jpg. Also can send
+        "el.target.name" that is the file's name.*/
+        try {
+          // Finds the user by its ID
+          // const User = new Parse.User();
+          // const currentUser = Parse.User.current();
+          // const id = currentUser.id;
+          // Updates the data we want
+          let currentUser = Parse.User.current();
+          let file = new Parse.File(el.target.name, { base64: srcEncoded });
+          file.save();
+          currentUser.set('headerImg', file);
 
           try {
             // Saves the user with the updated data
