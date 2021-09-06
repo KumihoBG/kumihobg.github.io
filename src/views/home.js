@@ -3,8 +3,9 @@ import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
 import { footerTemplate } from "./footer.js";
 import { homePageBg } from "./home-bg.js";
 import { navTemplate, setUserNav } from "./navigation.js";
+import { notify } from './notification.js';
 
-const homePageTemplate = (onSubscribe) => html`
+const homePageTemplate = () => html`
 ${navTemplate()}
 <section id="parallax-container">
   <div id="parallax">
@@ -35,12 +36,12 @@ ${navTemplate()}
   </div>
 </section>
 
-${footerTemplate(onSubscribe)}`;
+${footerTemplate()}`;
 
 export async function homePage(context) {
-  context.render(homePageTemplate(onSubscribe));
+  context.render(homePageTemplate());
   setUserNav();
-
+  
   const language = document.getElementById('language');
 
   language.addEventListener('click', () => {
@@ -51,17 +52,5 @@ export async function homePage(context) {
     }
   });
   parallaxEffect();
-  logoutEvent();
-
-  async function onSubscribe(event) {
-    event.preventDefault();
-    const myNewObject = new Parse.Object('Subscriber');
-    try {
-      const result = await myNewObject.save();
-      // Access the Parse Object attributes using the .GET method
-      console.log('Subscriber created', result);
-    } catch (error) {
-      console.error('Error while creating Subscriber: ', error);
-    }
-  }
+  logoutEvent();  
 }

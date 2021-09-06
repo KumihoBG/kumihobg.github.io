@@ -17,6 +17,7 @@ import { aboutBookPageBg } from "./src/views/the-book-bg.js";
 import { profilePage } from "./src/views/profile.js";
 import { infoPage } from "./src/views/blog.js";
 import { profilePageBg } from './src/views/profile-bg.js';
+import { notify } from './src/views/notification.js';
 
 const main = document.querySelector('#main');
 
@@ -143,3 +144,28 @@ function toggleInputEl(element, password) {
   }
 }
 
+const subscribeBtn = document.getElementById('subscribeBtn');
+subscribeBtn.addEventListener('click', onSubscribe);
+
+async function onSubscribe() {
+  const newsletterName = document.getElementById('newsletter-name').value;
+  const newsletterEmail = document.getElementById('newsletter-email').value;
+  if(newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
+    return notify('Name and email are required!');
+  }
+
+  const myNewObject = new Parse.Object('Subscriber');
+  myNewObject.set('name', newsletterName);
+  myNewObject.set('email', newsletterEmail);
+  try {
+      const result = await myNewObject.save();
+      // Access the Parse Object attributes using the .GET method
+      notify('Thank you for your subscription!')
+      newsletterName = '';
+      newsletterEmail = '';
+      console.log('Subscriber created', result);
+  } catch (error) {
+      notify('Something went wrong!')
+      console.error('Error while creating Subscriber: ', error);
+  }
+}
