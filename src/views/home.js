@@ -3,7 +3,6 @@ import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
 import { footerTemplate } from "./footer.js";
 import { homePageBg } from "./home-bg.js";
 import { navTemplate, setUserNav } from "./navigation.js";
-import { notify } from './notification.js';
 
 const homePageTemplate = () => html`
 ${navTemplate()}

@@ -1,5 +1,5 @@
 // import vendor libraries
-import {render} from 'https://unpkg.com/lit-html?module';
+import { render } from 'https://unpkg.com/lit-html?module';
 
 // local modules
 import { setUserNav } from "./src/views/navigation.js";
@@ -58,18 +58,17 @@ export function parallaxEffect() {
   const parallaxBtn = document.getElementById('parallaxBtn');
 
 
-    document.addEventListener('scroll', () => {
-      const value = window.scrollY;
-      text.style.top = 50 + value * -0.1 + '%';
-      bird1.style.top = value * -1.5 + 'px';
-      bird1.style.left = value * 2 + 'px';
-      bird2.style.top = value * -1.5 + 'px';
-      bird2.style.left = value * -5 + 'px';
-      rocks.style.top = value * -0.12 + 'px';
-      forest.style.top = value * 0.25 + 'px';
-      parallaxBtn.style.marginTop = value * 1.5 + 'px';
-    });
-
+  document.addEventListener('scroll', () => {
+    const value = window.scrollY;
+    text.style.top = 50 + value * -0.1 + '%';
+    bird1.style.top = value * -1.5 + 'px';
+    bird1.style.left = value * 2 + 'px';
+    bird2.style.top = value * -1.5 + 'px';
+    bird2.style.left = value * -5 + 'px';
+    rocks.style.top = value * -0.12 + 'px';
+    forest.style.top = value * 0.25 + 'px';
+    parallaxBtn.style.marginTop = value * 1.5 + 'px';
+  });
 
   setUserNav();
 }
@@ -80,12 +79,12 @@ export async function logoutEvent() {
     await logout();
     setUserNav();
     const languageBtn = document.getElementById('language');
-        const language = languageBtn.innerText;
-        if (language === 'BG') {
-          page.redirect('/login');
-        } else {
-          page.redirect('/login-bg');
-        }
+    const language = languageBtn.innerText;
+    if (language === 'BG') {
+      page.redirect('/login');
+    } else {
+      page.redirect('/login-bg');
+    }
   });
 }
 
@@ -102,7 +101,7 @@ export function toggleEye() {
   const eyeThree = document.getElementById('eye-three');
   const eyeFour = document.getElementById('eye-four');
   const eyeFive = document.getElementById('eye-five');
- 
+
   if (eyeOne !== null) {
     eyeOne.addEventListener('click', function () {
       toggleInputEl(eyeOne, password);
@@ -145,27 +144,96 @@ function toggleInputEl(element, password) {
 }
 
 const subscribeBtn = document.getElementById('subscribeBtn');
-subscribeBtn.addEventListener('click', onSubscribe);
+const subscribeBtnBg = document.getElementById('subscribeBtnBg');
+if (subscribeBtn !== null) {
+  subscribeBtn.addEventListener('click', onSubscribe);
+}
+if (subscribeBtnBg !== null) {
+  subscribeBtnBg.addEventListener('click', onSubscribeBg);
+}
 
-async function onSubscribe() {
-  const newsletterName = document.getElementById('newsletter-name').value;
-  const newsletterEmail = document.getElementById('newsletter-email').value;
-  if(newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
+export async function onSubscribe() {
+  let newsletterName = document.getElementById('newsletter-name').value;
+  let newsletterEmail = document.getElementById('newsletter-email').value;
+  if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
     return notify('Name and email are required!');
   }
 
-  const myNewObject = new Parse.Object('Subscriber');
-  myNewObject.set('name', newsletterName);
-  myNewObject.set('email', newsletterEmail);
+  const Subscriber = Parse.Object.extend('Subscriber');
+  const query = new Parse.Query(Subscriber);
+  const results = await query.find();
   try {
-      const result = await myNewObject.save();
+    const results = await query.find();
+    for (const object of results) {
       // Access the Parse Object attributes using the .GET method
-      notify('Thank you for your subscription!')
-      newsletterName = '';
-      newsletterEmail = '';
-      console.log('Subscriber created', result);
+      const name = object.get('name')
+      const email = object.get('email')
+      console.log(name);
+      console.log(email);
+      if (email === newsletterEmail) {
+        return notify('This email is already subscribed to our newsletter. Thank you :)');
+      }
+    }
+    if (!results.includes(newsletterEmail)) {
+      const myNewObject = new Parse.Object('Subscriber');
+      myNewObject.set('name', newsletterName);
+      myNewObject.set('email', newsletterEmail);
+      try {
+        const result = await myNewObject.save();
+        // Access the Parse Object attributes using the .GET method
+        notify('Thank you for your subscription!')
+        console.log('Subscriber created', result);
+      } catch (error) {
+        notify('Something went wrong!')
+        console.error('Error while creating Subscriber: ', error);
+      }  
+      newsletterName = document.getElementById('newsletter-name').value = '';
+      newsletterEmail = document.getElementById('newsletter-email').value = '';
+    } 
   } catch (error) {
-      notify('Something went wrong!')
-      console.error('Error while creating Subscriber: ', error);
+    console.error('Error while fetching Subscriber', error);
+  }
+}
+
+export async function onSubscribeBg() {
+  let newsletterName = document.getElementById('newsletter-name-bg').value;
+  let newsletterEmail = document.getElementById('newsletter-email-bg').value;
+  if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
+    return notify('Моля, попълнете всички полета!');
+  }
+
+  const Subscriber = Parse.Object.extend('Subscriber');
+  const query = new Parse.Query(Subscriber);
+  const results = await query.find();
+  try {
+    const results = await query.find();
+    for (const object of results) {
+      // Access the Parse Object attributes using the .GET method
+      const name = object.get('name')
+      const email = object.get('email')
+      console.log(name);
+      console.log(email);
+      if (email === newsletterEmail) {
+        return notify('Вие вече сте абонирани за нашия бюлетин. Благодарим Ви :)');
+      }
+    }
+    if (!results.includes(newsletterEmail)) {
+      const myNewObject = new Parse.Object('Subscriber');
+      myNewObject.set('name', newsletterName);
+      myNewObject.set('email', newsletterEmail);
+      try {
+        const result = await myNewObject.save();
+        // Access the Parse Object attributes using the .GET method
+        notify('Благодарим Ви, че се записахте за нашия бюлетин!')
+        console.log('Subscriber created', result);
+      } catch (error) {
+        notify('Нещо се обърка!')
+        console.error('Error while creating Subscriber: ', error);
+      }  
+      newsletterName = document.getElementById('newsletter-name-bg').value = '';
+      newsletterEmail = document.getElementById('newsletter-email-bg').value = '';
+    } 
+  } catch (error) {
+    console.error('Няма такъв електронен адрес в базата данни.', error);
   }
 }

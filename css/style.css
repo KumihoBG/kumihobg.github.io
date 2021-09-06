@@ -697,6 +697,7 @@ a:active {
 
 .btn:hover,
 #subscribeBtn:hover,
+#subscribeBtnBg:hover,
 .post-button:hover,
 .primary-btn:hover {
   opacity: 0.9;
@@ -711,6 +712,7 @@ a:active {
 }
 
 #subscribeBtn:hover,
+#subscribeBtnBg:hover,
 .post-button:hover,
 .primary-btn:hover {
   color: #fff;
@@ -1216,7 +1218,8 @@ small img {
   text-align: start;
 }
 
-#subscribeBtn {
+#subscribeBtn,
+#subscribeBtnBg {
   display: block;
   background: #234d4b;
   font-size: 20px;
@@ -1868,7 +1871,8 @@ small img {
     margin-bottom: 10px;
   }
 
-  #subscribeBtn {
+  #subscribeBtn,
+  #subscribeBtnBg {
     display: block;
     width: 100%;
     height: 35px;

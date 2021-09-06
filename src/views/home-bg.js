@@ -1,5 +1,4 @@
 import {html} from 'https://unpkg.com/lit-html?module';
-import { logout } from "../api/api.js";
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
 import { footerTemplateBg } from "./footer.js";
 import { homePage } from "./home.js";
@@ -41,14 +40,8 @@ ${footerTemplateBg()}`;
 export async function homePageBg(context) {
   context.render(homePageBgTemplate());
   setUserNav();
-  const logoutBtn = document.getElementById('logoutBtn');
+  
   const language = document.getElementById('language');
-
-  logoutBtn.addEventListener('click', async () => {
-    await logout();
-    setUserNav();
-    page.redirect('/home-bg');
-  });
 
   language.addEventListener('click', () => {
     if (language.textContent === 'BG') {
@@ -57,19 +50,6 @@ export async function homePageBg(context) {
       page('/home', decorateContext, homePage);
     }
   });
-
-  function setUserNav() {
-    const userId = sessionStorage.getItem('userId');
-    const username = sessionStorage.getItem('username');
-    if (userId != null) {
-      [...document.querySelectorAll('.header-field > header > nav > ul > li > a.user')].forEach(el => el.style.display = 'inline-block');
-      [...document.querySelectorAll('.header-field > header > nav > ul > li > a.guest')].forEach(el => el.style.display = 'none');
-    } else {
-      [...document.querySelectorAll('.header-field > header > nav > ul > li > a.user')].forEach(el => el.style.display = 'none');
-      [...document.querySelectorAll('.header-field > header > nav > ul > li > a.guest')].forEach(el => el.style.display = 'inline-block');
-    }
-  }
-
   parallaxEffect();
-  logoutEvent();
+  logoutEvent();  
 }
