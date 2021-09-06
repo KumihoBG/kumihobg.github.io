@@ -393,11 +393,11 @@ export async function profilePage(context) {
         ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
 
         //get the base64-encoded Data URI from the resize image
-        let srcEncoded = ctx.canvas.toDataURL('image/png', 1);
+        let srcHeaderEncoded = ctx.canvas.toDataURL('image/png', 1);
 
         //assign it to thumb src
-        const userImage = document.getElementById('user-image');
-        userImage.src = srcEncoded;
+        const headerImage = document.getElementById('header-image');
+        headerImage.src = srcHeaderEncoded;
         /*Now you can send "srcEncoded" to the server and
         convert it to a png o jpg. Also can send
         "el.target.name" that is the file's name.*/
@@ -408,9 +408,9 @@ export async function profilePage(context) {
           // const id = currentUser.id;
           // Updates the data we want
           let currentUser = Parse.User.current();
-          let file = new Parse.File(el.target.name, { base64: srcEncoded });
-          file.save();
-          currentUser.set('headerImg', file);
+          let headerFile = new Parse.File(el.target.name, { base64: srcHeaderEncoded });
+          headerFile.save();
+          currentUser.set('headerImg', headerFile);
 
           try {
             // Saves the user with the updated data
