@@ -4,7 +4,7 @@ import { footerTemplate } from "./footer.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 import { notify } from "./notification.js";
 
-const aboutBookTemplate = (submitForm) => html`
+const aboutBookTemplate = () => html`
 ${navTemplate()}
 <section class="my-book">
     <div class="my-book-container">
@@ -109,7 +109,7 @@ ${navTemplate()}
                 </div>
 
                 <h3>Get In touch</h3>
-                <form @submit=${submitForm} action="https://formsubmit.co/9f4fb3c09df017d549548c4a04327a34" id="contact-form" method="POST" class="quote">
+                <form action="https://formsubmit.co/9f4fb3c09df017d549548c4a04327a34" id="contact-form" method="POST" class="quote">
                     <div>
                         <input id="form-name" type="text" name="name" placeholder="Name" required>
                     </div>
@@ -141,21 +141,7 @@ ${footerTemplate()}`;
 
 export async function aboutBookPage(context) {
     const userId = sessionStorage.getItem("userId");
-    context.render(aboutBookTemplate(userId != null, submitForm));
+    context.render(aboutBookTemplate(userId != null));
     setUserNav();
     logoutEvent();
-   
-    // Get input values
-    function submitForm(e) {
-        e.preventDefault();
-        const name = document.getElementById('form-name').value;
-        const email = document.getElementById('form-email').value;
-        const message = document.getElementById('form-message').value;
-        document.getElementById('contact-form').reset();
-        if (name == '' || email == '' || message == '') {
-            notify('All fields are required!');
-            return;
-        }
-        notify('Your message has been sent successfully. Thank you! :) ')
-    }
 }
