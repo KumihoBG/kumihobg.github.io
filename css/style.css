@@ -580,6 +580,7 @@ a:active {
   z-index: 1000;
   background-color: #647c96;
   border-radius: 50%;
+  border: 0.5px solid #eee;
   padding: 10px;
 }
 
@@ -592,6 +593,7 @@ a:active {
   z-index: 1000;
   background-color: #647c96;
   border-radius: 50%;
+  border: 0.5px solid #eee;
   padding: 10px;
 }
 
