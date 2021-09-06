@@ -1,6 +1,6 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 
-export const footerTemplate = (onSubscribe) => html`  
+export const footerTemplate = () => html`  
 <!--Footer-->
 <footer>
   <div class="footer-container">
@@ -10,7 +10,7 @@ export const footerTemplate = (onSubscribe) => html`
       <form class="newsletter__form js-newsletter-form" action="#" id="subsFrm" method="post">
         <input class="newsletter__form-input" type="text" id="newsletter-name" placeholder="Full Name..." name="newsletter-name" required><br>
         <input class="newsletter__form-input" type="email" id="newsletter-email" placeholder="Email..." name="newsletter-email" required>
-        <a @click=${onSubscribe} id="subscribeBtn" name="subscribeBtn">Subscribe</a>
+        <a id="subscribeBtn" name="subscribeBtn">Subscribe</a>
       </form>
     </div>
   </div>
@@ -22,7 +22,7 @@ export const footerTemplate = (onSubscribe) => html`
   </div>
 </footer>`;
 
-export const footerTemplateBg = (onSubscribe) => html`  
+export const footerTemplateBg = () => html`  
 <!--Footer-->
 <footer>
   <div class="footer-container">
@@ -33,7 +33,7 @@ export const footerTemplateBg = (onSubscribe) => html`
       <form class="newsletter__form js-newsletter-form" action="#" id="subsFrm" method="post">
         <input class="newsletter__form-input" type="text" id="newsletter-name-bg" placeholder="Въведи име..." name="newsletter-name-bg" autocomplete="name" required><br>
         <input class="newsletter__form-input" type="email" id="newsletter-email-bg" autocomplete="email" placeholder="Въведи e-mail..." name="newsletter-email-bg" required>
-        <a @click=${onSubscribe} id="subscribeBtnBg" name="subscribeBtnBg">Запиши се</a>
+        <a id="subscribeBtnBg" name="subscribeBtnBg">Запиши се</a>
       </form>
     </div>
   </div>

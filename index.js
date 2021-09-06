@@ -156,7 +156,8 @@ export async function onSubscribe() {
   let newsletterName = document.getElementById('newsletter-name').value;
   let newsletterEmail = document.getElementById('newsletter-email').value;
   if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
-    return notify('Name and email are required!');
+    notify('Name and email are required!');
+    return;
   }
 
   const Subscriber = Parse.Object.extend('Subscriber');
@@ -199,7 +200,8 @@ export async function onSubscribeBg() {
   let newsletterName = document.getElementById('newsletter-name-bg').value;
   let newsletterEmail = document.getElementById('newsletter-email-bg').value;
   if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
-    return notify('Моля, попълнете всички полета!');
+    notify('Моля, попълнете всички полета!');
+    return;
   }
 
   const Subscriber = Parse.Object.extend('Subscriber');
