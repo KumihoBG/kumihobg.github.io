@@ -28,7 +28,7 @@ ${navTemplate()}
       </div>
     </div>
     <div id="user-details">
-      <h2>Account details:</h2>
+      <h2>Данни за потребителя:</h2>
       <ul>
         <li><i class="fas fa-user-circle"></i> Потребителско име: ${getUserName()}</li>
         <li><i class="fas fa-envelope-square"></i> Електронна поща: ${getUserEmail()} </li>
@@ -40,7 +40,7 @@ ${navTemplate()}
   </div>
   </div>
   <div id="right-container">
-    <h2>Account Actions:</h2>
+    <h2>Промяна на профилни данни:</h2>
     <h3><i class="fas fa-check-double"></i> Сменете Вашата парола:</h3>
     <div class="new-pass-container">
       <div id="new-pass-info-container">
