@@ -68,7 +68,7 @@ ${navTemplate()}
       <h3><i class="fas fa-check-double"></i> Добавете телефонен номер:</h3>
       <label for="phone">Вашият настоящ телефонен номер:</label>
       <input type="text" name="phone" id="phone" autocomplete="phone"><br>
-      <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави телефонен номер</button><br>
+      <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави номер</button><br>
       <h3><i class="fas fa-check-double"></i> Add your address:</h3>
       <label for="address">Вашият настоящ адрес:</label>
       <input type="text" name="address" id="address" autocomplete="address"><br>

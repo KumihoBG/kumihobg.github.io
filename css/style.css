@@ -549,7 +549,6 @@ a:active {
 #user-details h2,
 #right-container h2 {
   margin: 30px 0;
-  text-transform: capitalize;
   background-color: #f9ecf2;
   padding: 5px;
   padding-left: 10px;
