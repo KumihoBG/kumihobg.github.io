@@ -283,40 +283,14 @@ export async function validatePhone(phone) {
 
     let chars = phone.toString().split("");
     let isValid = false;
-    let isInvSymbol = false;
+    let pattern = /[+]{0,1}[0-9]{5,15}/g;
+    let testPhone = pattern.test(phone);
 
-    // Checks if the char is a num and if it has 2 digits at least
-    for (let i = 0; i < chars.length; i++) {
-        let current = Number(chars[i]);
-        if (Number.isInteger(current)) {
-            isValid = true;
-        }
-    }
-
-    // Checks if a char is letter or digit only
-    for (let j = 0; j < chars.length; j++) {
-        let currChar = chars[j];
-        if ((currChar.charCodeAt() >= 48 && currChar.charCodeAt() <= 57) || (currChar.charCodeAt() >= 65 && currChar.charCodeAt() <= 90) || (currChar.charCodeAt() >= 97 && currChar.charCodeAt() <= 122)) {
-            isInvSymbol = true;
-        } else {
-            isInvSymbol = false;
-            break;
-        }
-    }
-
-    if (phone.length <= 0 || phone.length > 15) {
-        isValid = false;
-    } else {
+    if (testPhone == true) {
         isValid = true;
+    } else {
+        isValid = false;
     }
 
-    if (isValid == false) {
-        return notify('A telephone number can have a maximum of 15 digits.');
-    }
-
-    if (isInvSymbol == true) {
-        return notify('Phone number must consist only of digits.');
-    }
-
-    return phone;
+    return isValid;
 }

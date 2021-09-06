@@ -76,8 +76,7 @@ ${navTemplate()}
       </div>
       <div class="wrapper">
         <h3><i class="fas fa-check-double"></i> Add phone number:</h3>
-        <label for="phone">If you would like to add your current phone number to your account, please fill in the field
-          and click the button below:</label>
+        <label for="phone">If you would like to add your current phone number to your account, please fill in the field and click the button below. Please, note that a valid number must consist only of digits. It can have a minimum of 5 digits and a maximum of 15 digits:</label>
         <input type="text" name="phone" id="phone" autocomplete="phone" placeholder="Phone number"><br>
         <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Edit Phone</button><br>
       </div>
@@ -215,11 +214,13 @@ export async function profilePage(context) {
       // Updates the data we want
       let phone = document.getElementById('phone').value;
       phone.trim();
-      let phoneToSave = validatePhone(phone);
+      let phoneToSave = await validatePhone(phone);
 
-      if (phoneToSave !== undefined) {
+      if (phoneToSave !== false && phoneToSave !== undefined) {
         user.set('phone', phone);
         phone = '';
+      } else {
+        return notify('Phone number is invalid. It must consist only of digits. It can have a minimum of 5 digits and a maximum of 15 digits.')
       }
 
       try {

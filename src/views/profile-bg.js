@@ -75,7 +75,7 @@ ${navTemplate()}
       </div>
       <div class="wrapper">
         <h3><i class="fas fa-check-double"></i> Добавете телефонен номер:</h3>
-        <label for="phone">Ако желаете да добавите Вашия настоящ телефонен номер към профила си, моля, попълнете го в полето и натиснете бутона по-долу:</label>
+        <label for="phone">Ако желаете да добавите Вашия настоящ телефонен номер към профила си, моля, попълнете го в полето и натиснете бутона по-долу. Моля, имайте предвид, че валидният номер трябва да се състои само от цифри. Той може да съдържа минимум 5 и максимум 15 цифри:</label>
         <input type="text" name="phone" id="phone" autocomplete="phone" placeholder="Телефонен номер"><br>
         <button @click=${onEditPhone} type="button" id="editPhone" name="editPhone">Добави номер</button><br>
       </div>
@@ -211,11 +211,13 @@ export async function profilePageBg(context) {
       // Updates the data we want
       let phone = document.getElementById('phone').value;
       phone.trim();
-      let phoneToSave = validatePhone(phone);
+      let phoneToSave = await validatePhone(phone);
 
-      if (phoneToSave !== undefined) {
+      if (phoneToSave !== false && phoneToSave !== undefined) {
         user.set('phone', phone);
         phone = '';
+      } else {
+        return notify('Телефонният номер е невалиден. Той трябва да се състои само от цифри: може да съдържа минимум 5 и максимум 15 цифри.');
       }
 
       try {
