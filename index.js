@@ -16,6 +16,7 @@ import { aboutBookPage } from "./src/views/about-magesnitza.js";
 import { aboutBookPageBg } from "./src/views/about-magesnitza-bg.js";
 import { profilePage } from "./src/views/profile.js";
 import { infoPage } from "./src/views/blog.js";
+import { profilePageBg } from './src/views/profile-bg.js';
 
 const main = document.querySelector('#main');
 
@@ -36,6 +37,8 @@ page('/register', decorateContext, registerPage);
 page('/register', decorateContext, registerPage);
 page('/register-bg', decorateContext, registerPageBg);
 page('/profile', decorateContext, profilePage);
+page('/profile-bg', decorateContext, profilePageBg);
+
 
 // start page library
 page.start();

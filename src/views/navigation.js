@@ -80,7 +80,7 @@ export const navTemplateBg = () => html`
               <span id="welcome-user" class="user"></span>
           </li>
           <li>
-            <a href="/profile" class="user">Профил</a>
+            <a href="/profile-bg" class="user">Профил</a>
           </li>
           <li>
             <a class="user" id="logoutBtn" href="javascript:void(0)">Изход</a>
