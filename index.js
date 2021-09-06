@@ -153,8 +153,8 @@ if (subscribeBtnBg !== null) {
 }
 
 export async function onSubscribe() {
-  let newsletterName = document.getElementById('newsletter-name').value;
-  let newsletterEmail = document.getElementById('newsletter-email').value;
+  const newsletterName = document.getElementById('newsletter-name').value;
+  const newsletterEmail = document.getElementById('newsletter-email').value;
   if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
     notify('Name and email are required!');
     return;
@@ -188,8 +188,6 @@ export async function onSubscribe() {
         notify('Something went wrong!')
         console.error('Error while creating Subscriber: ', error);
       }  
-      newsletterName = document.getElementById('newsletter-name').value = '';
-      newsletterEmail = document.getElementById('newsletter-email').value = '';
     } 
   } catch (error) {
     console.error('Error while fetching Subscriber', error);
@@ -197,8 +195,8 @@ export async function onSubscribe() {
 }
 
 export async function onSubscribeBg() {
-  let newsletterName = document.getElementById('newsletter-name-bg').value;
-  let newsletterEmail = document.getElementById('newsletter-email-bg').value;
+  const newsletterName = document.getElementById('newsletter-name-bg').value;
+  const newsletterEmail = document.getElementById('newsletter-email-bg').value;
   if (newsletterName === '' || newsletterName === undefined || newsletterEmail === '' || newsletterEmail === undefined) {
     notify('Моля, попълнете всички полета!');
     return;
@@ -232,8 +230,6 @@ export async function onSubscribeBg() {
         notify('Нещо се обърка!')
         console.error('Error while creating Subscriber: ', error);
       }  
-      newsletterName = document.getElementById('newsletter-name-bg').value = '';
-      newsletterEmail = document.getElementById('newsletter-email-bg').value = '';
     } 
   } catch (error) {
     console.error('Няма такъв електронен адрес в базата данни.', error);
