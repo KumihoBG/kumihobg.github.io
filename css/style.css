@@ -1414,80 +1414,20 @@ small img {
 /* end: 1280px */
 
 @media (min-width: 993px) and (max-width: 1024px) {
-  /* .nav-style ul li {
-    padding: 14px 0;
+  .nav-style {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100vw;
+    background-color: #01667b;
+    color: #eee;
+    opacity: 0.95;
   }
 
-  .w3-modal {
-    width: 18%;
+  .nav-style a {
+    padding: 40px;
   }
-
-  .modal-content .fa-sort-up {
-    right: 0;
-  }
-
-  .blog-content {
-    height: auto;
-  }
-
-  #book-cover .btn {
-    padding: 15px 50px;
-  }
-
-  #sidebar iframe {
-    display: none;
-  }
-
-  .contact-section {
-    margin: 0;
-    padding: 0 20px;
-  }
-
-  .contact-message p {
-    width: 100%;
-    padding: 0 20px;
-    padding-bottom: 30px;
-    margin: 0;
-  }
-
-  .contact-form {
-    width: 100%;
-    padding-left: 20px;
-    margin: 0;
-  }
-
-  .contact h3 {
-    margin: 40px auto;
-    padding-left: 50px;
-  }
-
-  #contact-section iframe {
-    margin-left: 30px;
-  }
-
-  .main-post-container {
-    padding: 0 0 0 20px;
-    margin: 0;
-  }
-
-  #actual-post li {
-    list-style: none;
-    padding-left: 20px;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "newsletter";
-  }
-
-  .footer-container a {
-    font-size: 1rem;
-  }
-
-  #sinopsis h3 {
-    padding: 0;
-    margin: 0;
-  }*/
 }
 
 /* end: 1024px */
