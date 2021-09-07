@@ -220,8 +220,7 @@ a:active {
   position: relative;
   padding: 50px;
   margin: 0 auto;
-  background: linear-gradient(to bottom, #094b65, #000
-);
+  background: linear-gradient(to bottom, #094b65, #000);
   color: #fff;
 }
 
@@ -301,8 +300,7 @@ a:active {
   text-decoration: underline;
 }
 
-.main-post p,
-.my-book #sinopsis p {
+.text-light {
   color: var(--main-color);
   font-size: 18px;
   font-weight: 500;
@@ -375,10 +373,19 @@ aside#sidebar .quote textarea {
   margin-top: 30px;
 }
 
+#icons-container i {
+  color: #fff;
+  margin-right: 20px;
+}
+
+#icons-container i:hover {
+  color: #47596b;
+}
+
 .post-button {
   display: block;
-  height: 38px;
-  background: #01667b;
+  height: 40px;
+  background: #47596b;
   border: 1px solid #fff;
   padding: 10px 60px;
   font-size: 18px;
@@ -420,7 +427,6 @@ aside#sidebar .quote textarea {
 #book-cover {
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
 
 #book-cover img {
@@ -607,38 +613,37 @@ small img {
 
 .map {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   margin: 0;
   background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000);
 }
 
 #world {
   display: grid;
-  grid-template-columns: 2.5fr 0.5fr;
-  padding: 0;
+  grid-template-columns: 2fr 0.7fr;
+  padding: 10px;
+  background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000)
 }
 
 .map-wrapper {
   grid-column: 1;
   position: relative;
   margin: 0 auto;
-  width: 100%;
+  width: 70vw;
   height: 130vh;
   background: url(../images/map.jpg) no-repeat center center/cover;
   font-family: "Merienda", cursive;
-  border: 10px solid #173736;
 }
 
 .legend {
-  width: 100%;
+  width: 25vw;
   font-family: "Metamorphous", cursive;
-  font-size: 25px;
+  font-size: 22px;
   margin: 0 auto;
   padding: 4%;
   grid-column: 2;
   color: #291a0a;
   background: url(../images/oldmap.jpg) no-repeat center center/cover;
-  border: 10px solid #173736;
 }
 
 .legend ul {
@@ -665,7 +670,7 @@ small img {
 }
 
 .legend div {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .legend h1 {
@@ -673,18 +678,6 @@ small img {
   margin-bottom: 15px;
   font-weight: 600;
   font-size: 25px;
-}
-
-#back-link {
-  text-decoration: none;
-  cursor: pointer;
-  font-size: large;
-  color: #291a0a;
-  font-weight: 300;
-  margin: 3% auto;
-  padding: 15px;
-  background-color: transparent;
-  border-radius: 20px;
 }
 
 .map-title-en {
@@ -841,7 +834,7 @@ small img {
   display: block;
   font-size: 15px;
   text-align: justify;
-  padding-right: 30px;
+  padding-right: 35px;
 }
 /* End: The World page styles */ 
 
@@ -1237,7 +1230,8 @@ small img {
   .map-wrapper {
     grid-area: map-wrapper;
     grid-column: 1;
-    width: 100vw;
+    margin: 0 auto;
+    width: 98vw;
     height: 90vh;
     padding: 50px;
   }
@@ -1245,6 +1239,7 @@ small img {
   .legend {
     grid-area: legend;
     width: 100%;
+    margin-top: 10px;
   }
 
   #right-container {
@@ -1298,32 +1293,63 @@ small img {
 /* end: 1280px */
 
 @media (min-width: 993px) and (max-width: 1024px) {
+  #parallaxBtn {
+    font-size: 1.2rem;
+    transform: translateY(75px);
+  }
+
   .nav-style {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 40px;
-    width: 100vw;
-    background-color: #01667b;
-    color: #eee;
-    opacity: 0.95;
+    width: 100%;
   }
 
   .nav-style a {
     padding: 40px;
   }
 
+  .ul-style {
+    flex-basis: 100%;
+  }
+
   .my-book-container {
     width: 100%;
   }
 
-  .get-in-touch {
-    width: 120%;
+  .get-in-touch,
+  #book-cover {
+    width: 110%;
     margin-right: 5%;
   }
 
   #sinopsis {
     width: 60%;
+  }
+
+  .avatar {
+    margin: 0 auto;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 2px solid var(--main-color);
+  }
+
+  .avatar-link {
+    padding: 8px 16px;
+    margin: 2px 0;
+    font-size: 13px;
+  }
+
+  #races {
+    font-size: 16px;
+  }
+
+  #newsletter h1 {
+    font-size: 20px;
+  }
+
+  .text-light {
+    font-size: 12px;
   }
 }
 
@@ -1331,379 +1357,16 @@ small img {
 
 /* start: 992px */
 @media (min-width: 769px) and (max-width: 992px) {
-  .nav-style ul li {
-    padding: 14px 0;
-  }
-
-  .container h2 {
-    font-size: 2.8rem;
-  }
-
-  #sinopsis {
-    padding: 0;
-    font-size: 15px;
-  }
-
-  #sinopsis h3 {
-    font-size: 1.3rem;
-  }
-
-  #sinopsis p {
-    font-size: 15px;
-  }
-
-  #book h2 {
-    font-size: 1.5rem;
-    padding-bottom: 10px;
-  }
-
-  .hide-sm {
-    display: none;
-  }
-
-  .blog-content {
-    height: auto;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "newsletter";
-  }
-
-  .footer-container a {
-    font-size: 1rem;
-  }
-
-  .main-post-container {
-    width: 100%;
-  }
-
-  article#actual-post {
-    float: left;
-    width: 60%;
-  }
-
-  .main-post #actual-post li {
-    list-style: none;
-  }
-
-  aside#sidebar {
-    float: right;
-    width: 45%;
-  }
-
-  #book-cover h1 {
-    font-size: 1.2rem;
-    padding: 5px 20px;
-  }
-
-  .contact-section {
-    grid-template-columns: 2fr 1fr;
-    padding: 30px;
-  }
-
-  .contact,
-  .contact-form {
-    margin: 0;
-  }
-
-  .contact p {
-    margin: 0;
-    padding: 0 0 30px 0;
-  }
 }
-
 /* end 992px */
 
 /*start 768px */
 @media (max-width: 768px) {
-  /*Index page styles*/
-  nav {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-  }
-
-  .nav-style {
-    grid-row: 1;
-    grid-column: 1/2;
-  }
-
-  .fa-globe {
-    padding-right: 5px;
-  }
-
-  .hide-sm {
-    display: none;
-  }
-
-  #book {
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  #book .section-container {
-    padding-top: 10px;
-    display: grid;
-    grid-gap: 1rem;
-    width: 80%;
-    padding: 10px 10px 30px 10px;
-    grid-template-areas:
-      "book-cover book-cover"
-      "sinopsis sinopsis";
-  }
-
-  #book-cover {
-    grid-area: book-cover;
-    width: 100%;
-  }
-
-  #book-cover img {
-    width: 100%;
-  }
-
-  .text-light {
-    width: 100%;
-    text-align: justify;
-  }
-
-  #book-cover h3 {
-    font-size: 1.3rem;
-    font-weight: bolder;
-  }
-
-  #book-cover h1 {
-    font-size: 1.3rem;
-    width: 100%;
-  }
-
-  .blog-content {
-    padding: 15px;
-    margin: 0;
-    color: var(--main-color);
-    height: auto;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr;
-    grid-template-areas: "newsletter";
-  }
-
-  footer .footer-container {
-    flex-wrap: wrap-reverse;
-  }
-
-  footer ul {
-    flex-basis: 100%;
-    text-align: start;
-    padding: 0;
-  }
-
-  footer ul li {
-    margin: 0;
-  }
-
-  footer ul li a {
-    font-size: 16px;
-  }
-
-  #newsletter form {
-    float: none;
-    text-align: center;
-    width: 100%;
-  }
-
-  #newsletter input[type="email"] {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  #subscribeBtn,
-  #subscribeBtnBg {
-    display: block;
-    width: 100%;
-    height: 35px;
-    margin-left: 0;
-    padding-left: 0;
-  }
-
-  /* My book styles*/
-  .main-post .main-post-container {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    display: grid;
-    grid-template-areas:
-      "actual-post"
-      "sidebar";
-    width: 100%;
-  }
-
-  #sinopsis {
-    grid-area: sinopsis;
-    width: 100%;
-    padding-top: 40px;
-  }
-
-  #sinopsis .text-light {
-    padding-bottom: 0;
-    margin: 0;
-  }
-
-  .news {
-    padding-bottom: 30px;
-  }
-
-  .get-in-touch {
-    margin-top: 0;
-  }
-
-  #sidebar #book-cover {
-    padding-bottom: 30px;
-  }
-
-  article#actual-post {
-    width: 90%;
-    grid-area: actual-post;
-  }
-
-  #actual-post ul li {
-    padding-left: 20px;
-    list-style: none;
-  }
-
-  aside#sidebar {
-    width: 100%;
-    grid-area: sidebar;
-  }
-
-  #book-cover h1 {
-    font-size: 1.2rem;
-    padding: 5px 20px;
-  }
-
-  #book-cover .primary-btn {
-    margin-top: 20px;
-  }
-
-  /*Contact me page styles*/
-  .contact-section {
-    background: #f9ecf2;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .contact-message p {
-    width: 400px;
-  }
-
-  .contact-plugin {
-    display: none;
-  }
+  
 }
-
 /* end: 768px */
 
 /* start: 500px */
 @media (max-width: 500px) {
-  .container a {
-    font-size: 4rem;
-  }
-
-  .container h2 {
-    font-size: 3rem;
-  }
-
-  nav {
-    height: auto;
-    border-bottom: 0;
-  }
-
-  nav ul {
-    display: none;
-    height: auto;
-  }
-
-  nav li {
-    width: 100%;
-    float: left;
-    position: relative;
-  }
-
-  nav a {
-    text-align: left;
-    width: 100%;
-    text-indent: 20px;
-    background: var(--main-color);
-  }
-
-  nav a:hover {
-    background: var(--light-brown);
-    color: var(--main-color);
-  }
-
-  nav a#openup:after {
-    content: "|||";
-    transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    /* IE 9 */
-    -webkit-transform: rotate(-90deg);
-    /* Safari and Chrome */
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    position: absolute;
-    right: 5px;
-    top: 20px;
-  }
-
-  nav a#openup {
-    display: block;
-    background-color: var(--main-color);
-    width: 100%;
-    position: relative;
-  }
-
-  .nav-style:before,
-  .nav-style:after {
-    content: "";
-    display: table;
-  }
-
-  .nav-style:after {
-    clear: both;
-  }
-
-  .nav-style {
-    zoom: 1;
-  }
-
-  .section-container h2 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .slide .content {
-    bottom: -300px;
-    left: 0;
-    width: 100%;
-  }
-
-  .slide.current .content-1,
-  .slide.current .content-2,
-  .slide.current .content-3 {
-    transform: translateY(-300px);
-  }
-
-  #book {
-    width: 95%;
-  }
-
-  .blog-content {
-    height: auto;
-  }
-
-  .blog-main-container {
-    max-width: 70%;
-  }
+ 
 }

@@ -87,7 +87,7 @@ const aboutBookTemplate = () => html`
         you my tale of another possible world - the world of love, magic and adventure. I hope you like the
         book.
       </p>
-      <div id="book-cover">
+      <div id="excerpt">
         <h3>A short excerpt from the book...</h3>
         <p class="text-light">"Some say that when danger strikes you with furious speed, time seems to stop and
           that
