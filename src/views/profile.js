@@ -103,7 +103,8 @@ export async function profilePage(context) {
   context.render(profileTemplate(onChange, getUserName, getUserEmail, onDelete, onEditAddress, onEditPhone, userAddress, phone));
   setUserNav();
   toggleEye();
-
+  logoutEvent();
+  
   let upload = document.getElementById('upload');
   upload.addEventListener("change", handleFiles, false);
   let uploadHeader = document.getElementById('upload-header');
@@ -432,7 +433,5 @@ export async function profilePage(context) {
       }
     }
   }
-
-  logoutEvent();
 }
 
