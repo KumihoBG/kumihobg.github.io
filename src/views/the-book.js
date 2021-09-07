@@ -2,7 +2,6 @@ import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
 import { footerTemplate } from "./footer.js";
 import { navTemplate, setUserNav } from "./navigation.js";
-import { notify } from "./notification.js";
 
 const aboutBookTemplate = () => html`
 ${navTemplate()}

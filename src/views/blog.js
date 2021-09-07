@@ -1,31 +1,12 @@
 import {html} from 'https://unpkg.com/lit-html?module';
+import { logoutEvent } from '../../index.js';
+import { navTemplate, setUserNav } from './navigation.js';
 
 const infoTemplate = () => html`
-     <section class="tabs">
-      <div class="tab-main-container">
-        <div id="tab-1" class="tab-item tab-border">
-          <i class="fas fa-blog fa-2x"></i>
-          <p class="hide-sm glow-start glow-end">Blog</p>
-        </div>
-
-        <div id="tab-2" class="tab-item">
-          <i class="fas fa-id-card fa-2x"></i>
-          <p class="hide-sm glow-start glow-end">My Bio</p>
-        </div>
-
-        <div id="tab-3" class="tab-item">
-          <i class="fas fa-calendar-alt fa-2x"></i>
-          <p class="hide-sm glow-start glow-end">Events</p>
-        </div>
-      </div>
-    </section>
-
-    <!--Tab content-->
-    <section class="tab-content">
-      <div class="tab-content-container">
-
-        <!-- Tab Content 1 -->
-        <div id="tab-1-content" class="tab-content-item show">
+${navTemplate()}
+    <section class="blog-content">
+      <div class="blog-content-container">
+        <div id="blog1-content">
           <!--Blog section-->
           <section class="main-post">
             <div class="main-post-container">
@@ -143,64 +124,12 @@ const infoTemplate = () => html`
           </section>
 
         </div>
-
-        <!-- Tab Content 2-->
-        <div id="tab-2-content" class="tab-content-item">
-          <div class="tab-2-content-inner">
-            <div class="fb-plugin">
-              <iframe></iframe>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Content 3 -->
-        <div id="tab-3-content" class="tab-content-item">
-          <div class="tab-3-event-inner">
-            <h3>There are currently no scheduled events.</h3>
-            <h5>Follow Kumiho on <a href="#" class="glow-start glow-end">Facebook</a> and <a href="#"
-                class="glow-start glow-end">Instagram.</a></h5>
-          </div>
-        </div>
       </div>
     </section>`;
 
 export async function infoPage(context) {
     const userId = sessionStorage.getItem("userId");
     context.render(infoTemplate(userId != null));
+    setUserNav();
+    logoutEvent();
 }
-
-const tabItems = document.querySelectorAll('.tab-item');
-const tabContentItems = document.querySelectorAll('.tab-content-item');
-
-// Select tab content item
-function selectItem(e) {
-	// Remove all show and border classes
-	removeBorder();
-	removeShow();
-	// Add border to current tab item
-	this.classList.add('tab-border');
-	// Grab content item from DOM
-	const tabContentItem = document.querySelector(`#${this.id}-content`);
-	// Add show class
-	tabContentItem.classList.add('show');
-}
-
-// Remove bottom borders from all tab items
-function removeBorder() {
-	tabItems.forEach(item => {
-		item.classList.remove('tab-border');
-	});
-}
-
-// Remove show class from all content items
-function removeShow() {
-	tabContentItems.forEach(item => {
-		item.classList.remove('show');
-	});
-}
-
-// Listen for tab item click
-tabItems.forEach(item => {
-	item.addEventListener('click', selectItem);
-});
-

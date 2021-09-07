@@ -16,9 +16,6 @@ export const navTemplate = () => html`
           <li>
             <a id="about-link" class="common" href="/blog">Blog</a>
           </li>
-          <li>
-            <a id="book-link" class="common" href="/the-book">The Book</a>
-          </li>
         </div>
 
         <div class="right">
@@ -62,10 +59,7 @@ export const navTemplateBg = () => html`
             <a id="map" class="common" href="/map-bg">Светът</a>
           </li>
           <li>
-            <a id="about-link" class="common" href="/blog">Блог</a>
-          </li>
-          <li>
-            <a id="book-link" class="common" href="/the-book-bg">Книгата</a>
+            <a id="about-link" class="common" href="/blog-bg">Блог</a>
           </li>
         </div>
 
