@@ -44,7 +44,7 @@ const registerTemplate = (onSubmit) => html`
                 </div>
             </div>
         </div>
-        <div id="login-image">
+        <div id="register-image">
             <img src="../images/deer2.png">
         </div>
     </section>`;

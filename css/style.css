@@ -84,12 +84,11 @@ textarea:focus, input:focus{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 100%;
+  height: 50px;
+  width: 100vw;
   background-color: #01667b;
   color: #eee;
   opacity: 0.95;
-  z-index: 1;
 }
 
 .ul-style {
@@ -97,18 +96,15 @@ textarea:focus, input:focus{
 }
 
 nav li {
-  display: inline-block;
   font-size: 18px;
+  display: inline-block;
 }
 
 .nav-style a {
-  display: inline-block;
-  width: 150px;
   text-align: center;
   text-decoration: none;
-  padding: 20px 0;
   color: #eee;
-  text-decoration: none;
+  padding: 50px 40px;
 }
 
 nav a:hover {
@@ -124,7 +120,7 @@ nav a#openup {
   display: block;
   position: relative;
   overflow: hidden;
-  height: 4vh;
+  height: auto;
   width: 100%;
 }
 
@@ -272,6 +268,14 @@ a:active {
 }
 
 #login-image {
+  grid-column: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+#register-image {
   grid-column: 2;
   width: 100%;
   height: 100%;
@@ -1089,9 +1093,13 @@ small img {
   width: 100%;
   padding: 20px;
   margin: 0;
+  background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000);
+}
+
+#world {
   display: grid;
   grid-template-columns: 2.5fr 0.5fr;
-  background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000);
+  padding: 0;
 }
 
 .map-wrapper {
@@ -1322,105 +1330,84 @@ small img {
 
 /* start: media queries - to be reworked */
 @media (max-width: 1280px) {
-  #book {
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto;
+  .my-book {
+     padding: 0;
   }
 
-  #book .section-container {
-    padding-top: 10px;
-    display: grid;
-    grid-gap: 1rem;
-    width: 80%;
-    padding: 10px 10px 30px 10px;
-    grid-template-areas:
-      "book-cover book-cover"
-      "sinopsis sinopsis";
-  }
-
-  #book-cover {
-    grid-area: book-cover;
+  .my-book-container {
     width: 100%;
   }
 
-  #book-cover img {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .text-light {
+  #parallaxSection {
     width: 100%;
-    text-align: justify;
+    padding: 0; 
+    margin: 0;
   }
 
-  #book-cover h3 {
-    font-size: 1.3rem;
-    font-weight: bolder;
+  #world {
+    width: 100%;
+    grid-template-areas: 'map-wrapper'
+                          'legend';
   }
 
-  #book-cover h1 {
-    font-size: 1.3rem;
-    margin: 0 auto;
+  .map-wrapper {
+    grid-area: map-wrapper;
+    grid-column: 1;
+    width: 100vw;
+    height: 90vh;
+    padding: 50px;
+  }
+
+  .legend {
+    grid-area: legend;
+    width: 100%;
+  }
+
+  #right-container {
     width: 90%;
   }
 
-  .blog-content {
-    height: auto;
+  #login-container {
+    width: 40vw;
+    margin-top:10%;
+    margin-left: 5%;
+  }
+  
+  #register-container {
+    width: 35vw;
+    margin-top:10%;
+    margin-left: 3%;
   }
 
-  .blog-content-container {
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+  #form-container {
+    height: 70vh;
   }
 
-  #newsletter p {
-    font-size: 15px;
-    width: 80%;
+  #login-image {
+    width: 50vw;
+    height: 100vh;
+    clip-path: none;
   }
 
-  #newsletter button {
-    margin-top: 15px;
-    margin-left: 0;
+  #register-image {
+    position: relative;
+    clip-path: none;
   }
 
-  #icons-container i {
-    padding-left: 0;
-    margin-left: 0;
+  #register-image img {
+    width: 60vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
-  .footer-container {
-    padding: 0 20px;
+  .link {
+    margin-top: 15%;
   }
 
-  .footer-bottom {
-    font-size: 0.9em;
-  }
-
-  .main-post-container {
-    width: 90%;
-  }
-
-  .main-post h3 {
-    font-size: 1.6rem;
-  }
-
-  .main-post p {
-    font-size: 17px;
-  }
-
-  .main-post img {
-    display: block;
-    width: 100%;
-    margin: 15px auto;
-    padding-bottom: 30px;
-  }
-
-  .main-post li {
-    font-size: 18px;
+  #newsletter {
+    width: 50vw;
   }
 }
 
