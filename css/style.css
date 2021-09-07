@@ -41,6 +41,10 @@ body {
 									supported by Chrome, Edge, Opera and Firefox */
 }
 
+textarea:focus, input:focus{
+  outline: none;
+}
+
 /* Start notification style */
 #notifications {
   display: none;
@@ -72,6 +76,7 @@ body {
 
 #notifications span {
   background: #647c96;
+  opacity: 0.9;
 }
 
 /* start: Navigation styles */
@@ -81,7 +86,7 @@ body {
   justify-content: center;
   height: 40px;
   width: 100%;
-  background-color: #173736;
+  background-color: #01667b;
   color: #eee;
   opacity: 0.95;
   z-index: 1;
@@ -107,7 +112,7 @@ nav li {
 }
 
 nav a:hover {
-  background: #234d4b;
+  background: #647c96;
   font-weight: 500;
 }
 
@@ -600,7 +605,7 @@ a:active {
   text-transform: uppercase;
   text-align: right;
   justify-self: start;
-  background-color: #234d4b;
+  background-color: #647c96;
   padding: 5px 40px;
   margin-bottom: 5px;
   margin-top: 15px;
@@ -611,7 +616,7 @@ a:active {
   display: block;
   padding: 15px 60px;
   text-align: center;
-  background-color: #234d4b;
+  background-color: #647c96;
   color: #eee;
   font-size: 1.5rem;
   font-weight: 400;
@@ -623,7 +628,7 @@ a:active {
 }
 
 .primary-btn {
-  background: #234d4b;
+  background: #647c96;
 }
 
 .btn:hover,
@@ -652,7 +657,7 @@ a:active {
 /* start: tabs content styles */
 .blog-content {
   padding: 15px 0;
-  background: #faf3ea;
+  background: #eee;
   color: var(--main-color);
   height: auto;
 }
@@ -699,12 +704,12 @@ a:active {
   margin-top: 40px;
   margin-left: 100px;
   padding-bottom: 100px;
+  font-weight: 300;
+  font-size: 18px;
   width: 100%;
 }
 
 .contact input {
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 300;
   padding: 3px 0 0;
   margin-bottom: 15px;
   width: 70%;
@@ -715,6 +720,11 @@ a:active {
   width: 70%;
   margin-bottom: 15px;
   height: 200px;
+}
+
+.contact textarea::placeholder {
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .contact label {
@@ -760,7 +770,7 @@ a:active {
   margin: auto;
   overflow: hidden;
   padding: 0 50px;
-  background-color: #fff;
+  background-color: #eef0f0;
 }
 
 .main-post-container {
@@ -793,6 +803,7 @@ a:active {
   padding: 0;
   width: 90%;
 }
+
 #go-back-up {
   color: var(--main-color);
   text-decoration: none;
@@ -809,7 +820,7 @@ a:active {
   margin-top: 0;
   padding: 10px;
   text-align: center;
-  color: #121b00;
+  color: #0f1224;
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
@@ -860,7 +871,7 @@ aside#sidebar .quote textarea {
 .get-in-touch {
   border-radius: 5px;
   padding: 15px;
-  background: #173736;
+  background: #647c96;
   color: #ffffff;
   margin-top: 40px;
   margin-bottom: 10px;
@@ -915,7 +926,7 @@ footer #facebook,
 .post-button {
   display: block;
   height: 38px;
-  background: #234d4b;
+  background: #01667b;
   border: 1px solid #fff;
   padding: 10px 60px;
   font-size: 18px;
@@ -985,7 +996,7 @@ footer {
   display: inline-grid;
   padding: 10px 0;
   justify-items: center;
-  background-color: #234d4b;
+  background-color: #647c96;
   width: 100%;
 }
 
@@ -1042,13 +1053,12 @@ small img {
 #newsletter input {
   padding: 5px 30px;
   height: 30px;
-  width: 60%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
 ::placeholder {
   color: var(--main-color);
-  font-family: "Ubuntu", sans-serif;
   font-size: 15px;
   letter-spacing: 0.5px;
   text-align: start;
@@ -1057,15 +1067,15 @@ small img {
 #subscribeBtn,
 #subscribeBtnBg {
   display: block;
-  background: #234d4b;
+  background: #647c96;
   font-size: 20px;
   font-weight: 600;
   color: #ffffff;
   margin-top: 20px;
   border-radius: 5px;
-  padding: 10px 60px;
+  padding: 5px 60px;
   text-align: center;
-  width: 60%;
+  width: 100%;
 }
 /*end: Newsletter styles*/
 
