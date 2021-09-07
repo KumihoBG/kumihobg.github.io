@@ -1414,7 +1414,7 @@ small img {
 /* end: 1280px */
 
 @media (min-width: 993px) and (max-width: 1024px) {
-  .nav-style ul li {
+  /* .nav-style ul li {
     padding: 14px 0;
   }
 
@@ -1488,7 +1488,7 @@ small img {
     padding: 0;
     margin: 0;
   }
-}
+} */
 
 /* end: 1024px */
 
