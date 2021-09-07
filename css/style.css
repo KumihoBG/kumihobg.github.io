@@ -226,7 +226,8 @@ a:active {
 .sec {
   position: relative;
   padding: 100px;
-  background: linear-gradient(to bottom, #094b65, #000);
+  background: linear-gradient(to bottom, #094b65, #000
+);
   color: #fff;
 }
 
@@ -654,7 +655,7 @@ a:active {
   text-shadow: -3px 3px 10px #ffc, 3px -3px 10px #fff;
 }
 
-/* start: tabs content styles */
+/* start: Blog content styles */
 .blog-content {
   padding: 15px 0;
   background: #eee;
@@ -1365,26 +1366,15 @@ small img {
     width: 90%;
   }
 
-  .tabs p {
-    font-size: 0.8rem;
-    padding-top: 0.5rem;
-    padding-bottom: 1em;
-  }
-
-  .tab-content {
+  .blog-content {
     height: auto;
   }
 
-  .tab-content-container {
+  .blog-content-container {
     width: 100%;
     height: auto;
     justify-content: center;
     align-items: center;
-  }
-
-  #tab-2-content .tab-2-content-inner {
-    padding: 30px;
-    margin: 0;
   }
 
   #newsletter p {
@@ -1449,7 +1439,7 @@ small img {
     right: 0;
   }
 
-  .tab-content {
+  .blog-content {
     height: auto;
   }
 
@@ -1543,25 +1533,12 @@ small img {
     padding-bottom: 10px;
   }
 
-  .tabs {
-    margin: 0;
-    padding-top: 20px;
-  }
-
-  .tabs i {
-    padding-bottom: 10px;
-  }
-
   .hide-sm {
     display: none;
   }
 
-  .tab-content {
+  .blog-content {
     height: auto;
-  }
-
-  .tabs p {
-    font-size: 0.7rem;
   }
 
   .footer-container {
@@ -1676,7 +1653,7 @@ small img {
     width: 100%;
   }
 
-  .tab-content {
+  .blog-content {
     padding: 15px;
     margin: 0;
     color: var(--main-color);
@@ -1898,11 +1875,11 @@ small img {
     width: 95%;
   }
 
-  .tab-content {
+  .blog-content {
     height: auto;
   }
 
-  .tab-main-container {
+  .blog-main-container {
     max-width: 70%;
   }
 }
