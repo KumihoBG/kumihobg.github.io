@@ -141,10 +141,10 @@ function toggleInputEl(element, password) {
   }
 }
 
-
 const subsFrm = document.getElementById('subsFrm');
+const newsletterBtns = Array.from(document.querySelectorAll('.subscribeBtn'));
 
-document.getElementById('subscribeBtn').addEventListener('click', async function () {
+newsletterBtns.forEach(b => b.addEventListener('click', async function () {
   const formData = new FormData(subsFrm);
   const newsletterName = formData.get('newsletter-name');
   const newsletterEmail = formData.get('newsletter-email');
@@ -186,4 +186,4 @@ document.getElementById('subscribeBtn').addEventListener('click', async function
   } catch (error) {
     console.error('Error while fetching Subscriber', error);
   }
-});
+}));

@@ -12,7 +12,7 @@ export const footerTemplate = () => html`
           name="newsletter-name"><br>
         <input type="email" id="newsletter-email" placeholder="Email"
           name="newsletter-email">
-        <a id="subscribeBtn" name="subscribeBtn">Subscribe</a>
+        <a href="" class="subscribeBtn" name="subscribeBtn">Subscribe</a>
       </form>
     </div>
   </div>
@@ -36,7 +36,7 @@ export const footerTemplateBg = () => html`
           name="newsletter-name"><br>
         <input type="email" id="newsletter-email" placeholder="Електронен адрес"
           name="newsletter-email">
-        <a id="subscribeBtn" name="subscribeBtn">Абонирай се</a>
+        <a href="" class="subscribeBtn" name="subscribeBtn">Subscribe</a>
       </form>
     </div>
   </div>

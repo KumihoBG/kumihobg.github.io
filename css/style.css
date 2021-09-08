@@ -477,23 +477,9 @@ footer {
 }
 
 .footer-container {
-  display: grid;
-  width: 100%;
-  grid-gap: 3rem;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: start;
-  grid-template-areas: "newsletter";
-}
-
-.footer-container a {
-  color: #eee;
-  font-size: 1.2rem;
-  text-decoration: none;
-}
-
-.footer-container a:hover {
-  color: #eee;
+  display: flex;
+  width: 40%;
+  margin-left: 3%;
 }
 
 .footer-bottom {
@@ -525,20 +511,16 @@ small a:hover {
 small img {
   margin: 0 5px;
 }
-/* End: Footer styles */
 
 /* Start: Newsletter styles*/
 #newsletter {
-  width: 100%;
-  grid-column: 1;
-  grid-area: newsletter;
   padding: 20px 40px;
   margin: 0 auto;
 }
 
 #newsletter h1 {
   padding: 0 0 15px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #f9ecf2;
   font-weight: 400;
   letter-spacing: 1px;
@@ -569,8 +551,8 @@ small img {
   text-align: start;
 }
 
-#subscribeBtn {
-  display: block;
+.subscribeBtn {
+  display: inline-block;
   background: #647c96;
   font-size: 20px;
   font-weight: 600;
@@ -580,10 +562,11 @@ small img {
   padding: 5px 60px;
   text-align: center;
   width: 100%;
+  text-decoration: none;
 }
 
 .btn:hover,
-#subscribeBtn:hover,
+.subscribeBtn:hover,
 .post-button:hover,
 .primary-btn:hover {
   opacity: 0.9;
@@ -596,13 +579,14 @@ small img {
   outline: 0 none;
 }
 
-#subscribeBtn:hover,
+.subscribeBtn:hover,
 .post-button:hover,
 .primary-btn:hover {
   color: #fff;
   text-shadow: -3px 3px 10px #ffc, 3px -3px 10px #fff;
 }
 /* End: Newsletter styles*/
+/* End: Footer styles */
 
 /* Start: Map page style */
 .hidden {
