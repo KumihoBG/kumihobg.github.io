@@ -467,28 +467,6 @@ aside#sidebar .quote textarea {
   background: #647c96;
 }
 
-.btn:hover,
-#subscribeBtn:hover,
-#subscribeBtnBg:hover,
-.post-button:hover,
-.primary-btn:hover {
-  opacity: 0.9;
-  text-decoration: none;
-  color: #eee;
-  -webkit-transition: 500ms linear 0s;
-  -moz-transition: 500ms linear 0s;
-  -o-transition: 500ms linear 0s;
-  transition: 500ms linear 0s;
-  outline: 0 none;
-}
-
-#subscribeBtn:hover,
-#subscribeBtnBg:hover,
-.post-button:hover,
-.primary-btn:hover {
-  color: #fff;
-  text-shadow: -3px 3px 10px #ffc, 3px -3px 10px #fff;
-}
 /* End: Excerpt style */
 
 /* Start: Footer styles*/
@@ -591,8 +569,7 @@ small img {
   text-align: start;
 }
 
-#subscribeBtn,
-#subscribeBtnBg {
+#subscribeBtn {
   display: block;
   background: #647c96;
   font-size: 20px;
@@ -603,6 +580,27 @@ small img {
   padding: 5px 60px;
   text-align: center;
   width: 100%;
+}
+
+.btn:hover,
+#subscribeBtn:hover,
+.post-button:hover,
+.primary-btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+  color: #eee;
+  -webkit-transition: 500ms linear 0s;
+  -moz-transition: 500ms linear 0s;
+  -o-transition: 500ms linear 0s;
+  transition: 500ms linear 0s;
+  outline: 0 none;
+}
+
+#subscribeBtn:hover,
+.post-button:hover,
+.primary-btn:hover {
+  color: #fff;
+  text-shadow: -3px 3px 10px #ffc, 3px -3px 10px #fff;
 }
 /* End: Newsletter styles*/
 

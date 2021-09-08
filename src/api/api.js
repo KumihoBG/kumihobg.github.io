@@ -174,3 +174,4 @@ export async function changePassword(id, password) {
         console.error('Error while retrieving user', error);
     }
 }
+  
