@@ -1,6 +1,6 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
-import { footerTemplate } from "./footer.js";
+import { footerPage } from "./footer.js";
 import { homePageBg } from "./home-bg.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
@@ -21,7 +21,7 @@ ${navTemplate()}
     ${aboutBookTemplate()}
   </div>
 </section>
-${footerTemplate()}`;
+${footerPage()}`;
 
 const aboutBookTemplate = () => html`
 <section class="my-book">

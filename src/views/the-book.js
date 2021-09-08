@@ -1,6 +1,6 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
-import { footerTemplate } from "./footer.js";
+import { footerPage } from "./footer.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
 const aboutBookTemplate = () => html`
@@ -136,7 +136,7 @@ ${navTemplate()}
         </aside>
     </div>
 </section>
-${footerTemplate()}`;
+${footerPage()}`;
 
 export async function aboutBookPage(context) {
     const userId = sessionStorage.getItem("userId");

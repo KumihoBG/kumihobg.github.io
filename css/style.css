@@ -470,6 +470,10 @@ aside#sidebar .quote textarea {
 /* End: Excerpt style */
 
 /* Start: Footer styles*/
+#footer-content {
+  margin: 0;
+}
+
 footer {
   width: 100%;
   background-color: #000;
@@ -513,12 +517,14 @@ small img {
 }
 
 /* Start: Newsletter styles*/
-#newsletter {
+#newsletter,
+#newsletter-bg {
   padding: 20px 40px;
   margin: 0 auto;
 }
 
-#newsletter h1 {
+#newsletter h1,
+#newsletter-bg h1 {
   padding: 0 0 15px;
   font-size: 1.4rem;
   color: #f9ecf2;
@@ -526,18 +532,21 @@ small img {
   letter-spacing: 1px;
 }
 
-#newsletter p {
+#newsletter p,
+#newsletter-bg p {
   padding: 10px 0 0;
   font-size: 16px;
   color: #f9ecf2;
 }
 
-#newsletter form {
+#newsletter form,
+#newsletter-bg form {
   margin: 20px 0 40px 0;
   align-self: center;
 }
 
-#newsletter input {
+#newsletter input,
+#newsletter-bg input {
   padding: 5px 30px;
   height: 30px;
   width: 100%;
@@ -551,7 +560,8 @@ small img {
   text-align: start;
 }
 
-.subscribeBtn {
+#subscribeBtn,
+#subscribeBtnBg {
   display: inline-block;
   background: #647c96;
   font-size: 20px;
@@ -566,7 +576,8 @@ small img {
 }
 
 .btn:hover,
-.subscribeBtn:hover,
+#subscribeBtn:hover,
+#subscribeBtnBg:hover,
 .post-button:hover,
 .primary-btn:hover {
   opacity: 0.9;
@@ -579,7 +590,8 @@ small img {
   outline: 0 none;
 }
 
-.subscribeBtn:hover,
+#subscribeBtn:hover,
+#subscribeBtnBg:hover,
 .post-button:hover,
 .primary-btn:hover {
   color: #fff;

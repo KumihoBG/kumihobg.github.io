@@ -1,6 +1,6 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
-import { footerTemplateBg } from "./footer-bg.js";
+import { footerPageBg } from "./footer-bg.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 
 const mapTemplateBg = () => html`
@@ -87,7 +87,7 @@ ${navTemplateBg()}
     </ul>
   </div>
 </section>
-${footerTemplateBg()}`;
+${footerPageBg()}`;
 
 export async function mapPageBg(context) {
   context.render(mapTemplateBg());

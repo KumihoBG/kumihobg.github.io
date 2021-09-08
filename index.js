@@ -16,7 +16,6 @@ import { profilePage } from "./src/views/profile.js";
 import { infoPage } from "./src/views/blog.js";
 import { infoPageBg } from "./src/views/blog-bg.js";
 import { profilePageBg } from './src/views/profile-bg.js';
-import { notify } from './src/views/notification.js';
 
 const main = document.querySelector('#main');
 
@@ -38,7 +37,6 @@ page('/register-bg', decorateContext, registerPageBg);
 page('/profile', decorateContext, profilePage);
 page('/profile-bg', decorateContext, profilePageBg);
 
-
 // start page library
 page.start();
 
@@ -54,7 +52,6 @@ export function parallaxEffect() {
   const forest = document.getElementById('forest');
   const rocks = document.getElementById('rocks');
   const parallaxBtn = document.getElementById('parallaxBtn');
-
 
   document.addEventListener('scroll', () => {
     const value = window.scrollY;
@@ -140,50 +137,3 @@ function toggleInputEl(element, password) {
     password.setAttribute('type', 'password');
   }
 }
-
-const subsFrm = document.getElementById('subsFrm');
-const newsletterBtns = Array.from(document.querySelectorAll('.subscribeBtn'));
-
-newsletterBtns.forEach(b => b.addEventListener('click', async function () {
-  const formData = new FormData(subsFrm);
-  const newsletterName = formData.get('newsletter-name');
-  const newsletterEmail = formData.get('newsletter-email');
-  if (newsletterName === '' || newsletterName === undefined 
-  || newsletterEmail === '' || newsletterEmail === undefined) {
-    notify('Name and email are required!');
-    return;
-  }
-
-  const Subscriber = Parse.Object.extend('Subscriber');
-  const query = new Parse.Query(Subscriber);
-  // You can also query by using a parameter of an object
-  query.equalTo('email', newsletterEmail);
-  const results = await query.find();
-  try {
-    const results = await query.find();
-    for (const object of results) {
-      // Access the Parse Object attributes using the .GET method
-      const name = object.get('name')
-      const email = object.get('email')
-      if (email === newsletterEmail) {
-        return notify('This email is already subscribed to our newsletter. Thank you :)');
-      }       
-    }
-    const myNewObject = new Parse.Object('Subscriber');
-    myNewObject.set('name', newsletterName);
-    myNewObject.set('email', newsletterEmail);
-    try {
-      const result = await myNewObject.save();
-      // Access the Parse Object attributes using the .GET method
-      notify('Thank you for your subscription!')
-      console.log('Subscriber created', result);
-      document.getElementById('newsletter-name').value = '';
-      document.getElementById('newsletter-email').value = '';
-    } catch (error) {
-      notify('Something went wrong!')
-      console.error('Error while creating Subscriber: ', error);
-    }
-  } catch (error) {
-    console.error('Error while fetching Subscriber', error);
-  }
-}));
