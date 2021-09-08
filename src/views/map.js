@@ -1,6 +1,5 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
-import { footerPage } from "./footer.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
 const mapTemplate = () => html`
@@ -106,7 +105,6 @@ ${navTemplate()}
 export async function mapPage(context) {
   context.render(mapTemplate());
   setUserNav();
-  footerPage();
   logoutEvent();
 }
 
