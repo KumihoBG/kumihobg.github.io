@@ -1,4 +1,5 @@
 import { html, render } from 'https://unpkg.com/lit-html?module';
+import { notify } from './notification.js';
 
 export const footerTemplateBg = (onSubscribeBg) => html`  
 <!--Footer-->
@@ -8,12 +9,12 @@ export const footerTemplateBg = (onSubscribeBg) => html`
       <h1>Присъединете се<br>към електронния бюлетин на Kumiho</h1>
       <p>Регистрирайте се днес, за да получавате по електронната си поща последните новини, събития, нови продажби и
         други.</p>
-      <form @submit=${onSubscribeBg} action="#" id="subsFrmBg" method="post">
+      <form @submit=${onSubscribeBg} action="#" id="subsFrmBg" method="">
         <input type="text" id="newsletter-name-bg" placeholder="Вашето име"
           name="newsletter-name-bg"><br>
         <input type="email" id="newsletter-email-bg" placeholder="Електронен адрес"
           name="newsletter-email-bg">
-        <a href="" id="subscribeBtnBg" name="subscribeBtnBg">Subscribe</a>
+          <button type="submit" id="subscribeBtnBg">Абонирай се</button>
       </form>
     </div>
   </div>
@@ -29,7 +30,8 @@ export async function footerPageBg() {
   render(footerTemplateBg(onSubscribeBg), container);
   const subsFrmBg = document.getElementById('subsFrmBg');
 
-  async function onSubscribeBg() {
+  async function onSubscribeBg(event) {
+  event.preventDefault();
     const formData = new FormData(subsFrmBg);
     const newsletterNameBg = formData.get('newsletter-name-bg');
     const newsletterEmailBg = formData.get('newsletter-email-bg');

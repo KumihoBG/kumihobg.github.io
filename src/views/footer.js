@@ -1,4 +1,5 @@
 import { html, render } from 'https://unpkg.com/lit-html?module';
+import { notify } from './notification.js';
 
 export const footerTemplate = (onSubscribe) => html`  
 <!--Footer-->
@@ -7,7 +8,7 @@ export const footerTemplate = (onSubscribe) => html`
     <div id="newsletter">
       <h1>Join Kumiho's mailing list</h1>
       <p>Sign up today to receive the latest news, events, sales, and more via email.</p>
-      <form @submit=${onSubscribe} action="#" id="subsFrm" method="post">
+      <form @submit=${onSubscribe} action="#" id="subsFrm" method="">
         <input type="text" id="newsletter-name" placeholder="Full Name"
           name="newsletter-name"><br>
         <input type="email" id="newsletter-email" placeholder="Email"
@@ -28,7 +29,8 @@ export async function footerPage() {
   render(footerTemplate(onSubscribe), container);
   const subsFrm = document.getElementById('subsFrm');
 
-  async function onSubscribe() {
+  async function onSubscribe(event) {
+      event.preventDefault();
       const formData = new FormData(subsFrm);
       const newsletterName = formData.get('newsletter-name');
       const newsletterEmail = formData.get('newsletter-email');

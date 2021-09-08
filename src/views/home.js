@@ -1,6 +1,6 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
-import { footerPage } from "./footer.js";
+import { footerPage } from './footer.js';
 import { homePageBg } from "./home-bg.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
@@ -158,7 +158,6 @@ const aboutBookTemplate = () => html`
 export async function homePage(context) {
   context.render(homePageTemplate());
   setUserNav();
-  footerPage();
 
   const language = document.getElementById('language');
 
@@ -171,4 +170,5 @@ export async function homePage(context) {
   });
   parallaxEffect();
   logoutEvent();
+  footerPage();
 }

@@ -569,7 +569,8 @@ small img {
   color: #ffffff;
   margin-top: 20px;
   border-radius: 5px;
-  padding: 5px 60px;
+  border: none;
+  padding: 10px 60px;
   text-align: center;
   width: 100%;
   text-decoration: none;

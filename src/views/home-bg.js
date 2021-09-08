@@ -1,6 +1,6 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
-import { footerPageBg } from "./footer-bg.js";
+import { footerPageBg } from './footer-bg.js';
 import { homePage } from "./home.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 
@@ -22,7 +22,7 @@ ${navTemplateBg()}
   </div>
 </section>`;
 
-const aboutBookTemplateBg = () => html`}
+const aboutBookTemplateBg = () => html`
 <section class="my-book">
   <div class="my-book-container">
     <div id="sinopsis">
@@ -125,7 +125,6 @@ const aboutBookTemplateBg = () => html`}
 export async function homePageBg(context) {
   context.render(homePageBgTemplate());
   setUserNav();
-  footerPageBg();
   
   const language = document.getElementById('language');
 
@@ -138,4 +137,5 @@ export async function homePageBg(context) {
   });
   parallaxEffect();
   logoutEvent();
+  footerPageBg();
 }

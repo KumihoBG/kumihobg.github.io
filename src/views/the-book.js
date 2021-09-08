@@ -1,6 +1,5 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
-import { footerPage } from "./footer.js";
 import { navTemplate, setUserNav } from "./navigation.js";
 
 const aboutBookTemplate = () => html`
@@ -141,6 +140,5 @@ export async function aboutBookPage(context) {
     const userId = sessionStorage.getItem("userId");
     context.render(aboutBookTemplate(userId != null));
     setUserNav();
-    footerPage();
     logoutEvent();
 }
