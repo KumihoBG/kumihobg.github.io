@@ -10,7 +10,7 @@ export const footerTemplate = () => html`
       <form class="newsletter__form js-newsletter-form" action="#" id="subsFrm" method="post">
         <input class="newsletter__form-input" type="text" id="newsletter-name" placeholder="Full Name" name="newsletter-name" required><br>
         <input class="newsletter__form-input" type="email" id="newsletter-email" placeholder="Email" name="newsletter-email" required>
-        <a id="subscribeBtn" name="subscribeBtn">Subscribe</a>
+        <button type="submit" id="subscribeBtn" name="subscribeBtn">Subscribe</button>
       </form>
     </div>
   </div>
@@ -33,7 +33,7 @@ export const footerTemplateBg = () => html`
       <form class="newsletter__form js-newsletter-form" action="#" id="subsFrm" method="post">
         <input class="newsletter__form-input" type="text" id="newsletter-name-bg" placeholder="Въведи име" name="newsletter-name-bg" autocomplete="name" required><br>
         <input class="newsletter__form-input" type="email" id="newsletter-email-bg" autocomplete="email" placeholder="Въведи e-mail" name="newsletter-email-bg" required>
-        <a id="subscribeBtnBg" name="subscribeBtnBg">Запиши се</a>
+        <button type="submit" id="subscribeBtnBg" name="subscribeBtnBg">Запиши се</button>
       </form>
     </div>
   </div>
