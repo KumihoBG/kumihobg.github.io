@@ -20,8 +20,7 @@ ${navTemplateBg()}
     <h1 id="secTitle">Магесница - Фентъзи новела от Кумихо</h1>
     ${aboutBookTemplateBg()}
   </div>
-</section>
-${footerPageBg()}`;
+</section>`;
 
 const aboutBookTemplateBg = () => html`}
 <section class="my-book">
@@ -126,7 +125,8 @@ const aboutBookTemplateBg = () => html`}
 export async function homePageBg(context) {
   context.render(homePageBgTemplate());
   setUserNav();
-
+  footerPageBg();
+  
   const language = document.getElementById('language');
 
   language.addEventListener('click', () => {

@@ -101,12 +101,12 @@ ${navTemplate()}
       </ul>
     </div>
   </div>
-</section>
-${footerPage()}`;
+</section>`;
 
 export async function mapPage(context) {
   context.render(mapTemplate());
   setUserNav();
+  footerPage();
   logoutEvent();
 }
 

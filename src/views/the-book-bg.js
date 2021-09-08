@@ -102,13 +102,13 @@ ${navTemplateBg()}
         </div>
       </aside>
     </div>
-  </section>
-    ${footerPageBg()}`;
+  </section>`;
 
 export async function aboutBookPageBg(context) {
     const userId = sessionStorage.getItem("userId");
     context.render(aboutBookTemplateBg(userId != null));
     setUserNav();
+    footerPageBg();
     logoutEvent();
 }
  

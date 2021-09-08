@@ -86,12 +86,12 @@ ${navTemplateBg()}
         център на България по онова време.</div>
     </ul>
   </div>
-</section>
-${footerPageBg()}`;
+</section>`;
 
 export async function mapPageBg(context) {
   context.render(mapTemplateBg());
   setUserNav();
+  footerPageBg();
   logoutEvent();
 }
 

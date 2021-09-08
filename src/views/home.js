@@ -20,8 +20,7 @@ ${navTemplate()}
     <h1 id="secTitle">Magesnitza - Fantasy Novel by Kumiho</h1>
     ${aboutBookTemplate()}
   </div>
-</section>
-${footerPage()}`;
+</section>`;
 
 const aboutBookTemplate = () => html`
 <section class="my-book">
@@ -159,6 +158,7 @@ const aboutBookTemplate = () => html`
 export async function homePage(context) {
   context.render(homePageTemplate());
   setUserNav();
+  footerPage();
 
   const language = document.getElementById('language');
 

@@ -135,12 +135,12 @@ ${navTemplate()}
             </div>
         </aside>
     </div>
-</section>
-${footerPage()}`;
+</section>`;
 
 export async function aboutBookPage(context) {
     const userId = sessionStorage.getItem("userId");
     context.render(aboutBookTemplate(userId != null));
     setUserNav();
+    footerPage();
     logoutEvent();
 }
