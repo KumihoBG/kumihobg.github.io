@@ -1,8 +1,7 @@
 import {html} from 'https://unpkg.com/lit-html?module';
 import { logoutEvent } from "../../index.js";
-import { footerTemplateBg } from "./footer.js";
+import { footerTemplateBg } from "./footer-bg.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
-import { notify } from './notification.js';
 
 const aboutBookTemplateBg = () => html`
 ${navTemplateBg()}

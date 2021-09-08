@@ -1,6 +1,6 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { decorateContext, logoutEvent, parallaxEffect } from "../../index.js";
-import { footerTemplateBg } from "./footer.js";
+import { footerTemplateBg } from "./footer-bg.js";
 import { homePage } from "./home.js";
 import { navTemplateBg, setUserNav } from "./navigation.js";
 
