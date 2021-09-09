@@ -41,7 +41,8 @@ body {
 									supported by Chrome, Edge, Opera and Firefox */
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
 }
 
@@ -69,9 +70,9 @@ textarea:focus, input:focus{
   display: inline-block;
   padding: 5%;
   border-radius: 10px;
-  -webkit-box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
-  -moz-box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
-  box-shadow: 2px 3px 73px 21px rgba(0,0,0,1);
+  -webkit-box-shadow: 2px 3px 73px 21px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 2px 3px 73px 21px rgba(0, 0, 0, 1);
+  box-shadow: 2px 3px 73px 21px rgba(0, 0, 0, 1);
 }
 
 #notifications span {
@@ -423,7 +424,7 @@ aside#sidebar .quote textarea {
 }
 /* End: Aside style */
 
-/* Start: Excerpt from the book style */ 
+/* Start: Excerpt from the book style */
 #book-cover {
   align-items: center;
   justify-content: center;
@@ -617,7 +618,7 @@ small img {
   display: grid;
   grid-template-columns: 2fr 0.7fr;
   padding: 10px;
-  background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000)
+  background: linear-gradient(to bottom, #bde1df, #234d4b, #173736, #000);
 }
 
 .map-wrapper {
@@ -831,7 +832,7 @@ small img {
   text-align: justify;
   padding-right: 35px;
 }
-/* End: The World page styles */ 
+/* End: The World page styles */
 
 /* Start: Blog page styles */
 .blog-content {
@@ -868,7 +869,7 @@ small img {
   width: 100%;
   height: auto;
   background: linear-gradient(to bottom, #647c96, #eee);
-  color:#121b00;
+  color: #121b00;
   overflow: hidden;
   padding: 5% 0;
   margin: 0;
@@ -886,7 +887,7 @@ small img {
 
 #left-container {
   grid-column: 1;
-  width:100%;
+  width: 100%;
   padding-top: 1%;
   padding-left: 2%;
   padding-bottom: 5%;
@@ -895,14 +896,14 @@ small img {
 
 #right-container {
   grid-column: 2;
-  margin-top:5%;
+  margin-top: 5%;
   width: 70%;
 }
 
 #user-image-container {
   width: 100%;
-  margin-top:10%;
-  margin-left:50px;
+  margin-top: 10%;
+  margin-left: 50px;
 }
 
 #picture-container {
@@ -924,9 +925,9 @@ small img {
 
 #username-style {
   position: absolute;
-   color:#000;
-   font-size: 30px;
-   margin-top: -4%;
+  color: #000;
+  font-size: 30px;
+  margin-top: -4%;
 }
 
 #user-details h2,
@@ -949,7 +950,7 @@ small img {
   position: absolute;
   margin-top: -5%;
   margin-left: 90%;
-  color:#ccc;
+  color: #ccc;
   z-index: 1000;
   background-color: #647c96;
   border-radius: 50%;
@@ -962,7 +963,7 @@ small img {
   position: absolute;
   margin-top: -7%;
   margin-left: 10%;
-  color:#ccc;
+  color: #ccc;
   z-index: 1000;
   background-color: #647c96;
   border-radius: 50%;
@@ -1019,7 +1020,7 @@ small img {
   text-align: center;
   margin-top: 10px;
 }
-/* End: Profile page style */ 
+/* End: Profile page style */
 
 /* Start: Login & Register page styles */
 #login-section {
@@ -1124,7 +1125,7 @@ small img {
 #submitNewPass,
 #deleteAccount,
 #editPhone,
-#editAddress  {
+#editAddress {
   display: block;
   cursor: pointer;
   background: #164e65;
@@ -1150,7 +1151,7 @@ small img {
   background: #eee;
 }
 
-.fa-user, 
+.fa-user,
 .fa-envelope-open-text,
 .fa-lock,
 .fa-unlock {
@@ -1176,21 +1177,21 @@ small img {
   color: #fff;
 }
 
-.link {
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: transparent;
-  margin: 20px;
-  font-weight: 400;
-  border-bottom: 1px solid #fff;
-}
-
 .second {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+}
+
+.link {
+  color: #fff;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 20px;
+  font-weight: 400;
+  border-bottom: 1px solid #fff;
 }
 
 #register-info {
@@ -1202,8 +1203,12 @@ small img {
 
 /* Start: media queries - to be reworked */
 @media (max-width: 1280px) {
+  .nav-style {
+    height: 45px;
+  }
+
   .my-book {
-     padding: 0;
+    padding: 0;
   }
 
   .my-book-container {
@@ -1212,14 +1217,28 @@ small img {
 
   #parallaxSection {
     width: 100%;
-    padding: 0; 
+    padding: 0;
     margin: 0;
+  }
+
+  #text {
+    font-size: 7vw;
+  }
+
+  #parallaxBtn {
+    font-size: 1.3rem;
+    transform: translateY(65px);
+  }
+
+  .my-book-container #sinopsis h3 {
+    font-size: 1.5rem;
   }
 
   #world {
     width: 100%;
-    grid-template-areas: 'map-wrapper'
-                          'legend';
+    grid-template-areas:
+      "map-wrapper"
+      "legend";
   }
 
   .map-wrapper {
@@ -1235,6 +1254,21 @@ small img {
     grid-area: legend;
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 50px;
+  }
+
+  .avatar {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--main-color);
+  }
+
+  .avatar-link {
+    padding: 9px 17px;
+    margin: 2px 0;
+    font-size: 13px;
   }
 
   #right-container {
@@ -1242,25 +1276,34 @@ small img {
   }
 
   #login-container {
-    width: 40vw;
-    margin-top:10%;
-    margin-left: 5%;
-  }
-  
-  #register-container {
     width: 35vw;
-    margin-top:10%;
-    margin-left: 3%;
+    height: 100%;
+    margin-top: 7%;
+    margin-left: 2%;
   }
 
-  #form-container {
-    height: 70vh;
+  #login-form h1 {
+    text-align: center;
   }
 
   #login-image {
-    width: 50vw;
-    height: 100vh;
+    width: 60vw;
+    height: 95vh;
     clip-path: none;
+  }
+
+  #login-image img {
+    width: 60vw;
+    height: 100vh;
+    position: absolute;
+    top: 45px;
+    right: 0;
+  }
+
+  #register-container {
+    width: 32vw;
+    margin-top: 5%;
+    margin-left: 3%;
   }
 
   #register-image {
@@ -1276,18 +1319,69 @@ small img {
     right: 0;
   }
 
-  .link {
-    margin-top: 15%;
+  #form-container {
+    height: 95%;
+    margin: 2%;
+    padding: 4%;
+    border-radius: 20px;
   }
 
-  #newsletter {
-    width: 50vw;
+  #form-container p,
+  #loginForm-container p,
+  #form-container label,
+  #new-pass-container label,
+  #loginForm-container label {
+    font-size: 1rem;
+    margin: 10px 0;
+    font-weight: 400;
+  }
+  .link {
+    margin: 0;
+    margin-top: 2%;
+    padding: 0;
+  }
+
+  #newsletter,
+  #newsletter-bg {
+    padding: 10px 60px;
+    margin: 0;
+  }
+
+  .main-post h3 {
+    font-size: 1.4rem;
+  }
+
+  #picture-container {
+    margin-top: -20%;
+  }
+
+  #user-details ul li {
+    margin-top: 30px;
+    font-size: 19px;
+  }
+
+  #username-style {
+    margin-top: -5%;
+  }
+
+  #header-upload-one {
+    margin-top: -7%;
+  }
+
+  #header-upload-two {
+    margin-top: -9%;
+    margin-left: 10%;
   }
 }
 
 /* end: 1280px */
 
-@media (min-width: 993px) and (max-width: 1024px) {
+/* start: 1024px */
+@media (max-width: 1024px) {
+  .sec h1 {
+    font-size: 2.3em;
+  }
+
   #parallaxBtn {
     font-size: 1.2rem;
     transform: translateY(75px);
@@ -1323,8 +1417,8 @@ small img {
 
   .avatar {
     margin: 0 auto;
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 2px solid var(--main-color);
   }
@@ -1339,16 +1433,74 @@ small img {
     font-size: 16px;
   }
 
-  #newsletter h1 {
+  #newsletter h1,
+  #newsletter-bg h1 {
     font-size: 20px;
   }
 
   .text-light {
     font-size: 12px;
   }
-}
 
+  #form-container {
+    height: 95%;
+    padding: 15px;
+    margin-top: 1%;
+  }
+
+  #register-image img {
+    width: 55vw;
+  }
+
+  #register-container {
+    width: 38vw;
+  }
+
+  #login-image img {
+    top: 40px;
+  }
+
+  .second {
+    flex-direction: column;
+  }
+
+  .link {
+    margin-top: 15px;
+  }
+
+  .loginBtn,
+  .registerBtn,
+  #submitNewPass,
+  #deleteAccount,
+  #editPhone,
+  #editAddress {
+    font-size: 1rem;
+    padding: 10px 30px;
+    border-radius: 40px;
+    border: 1px solid #fff;
+    margin: 15px auto;
+    letter-spacing: 1px;
+  }
+
+  #newsletter,
+  #newsletter-bg {
+    padding: 10px;
+  }
+
+  .main-post h3 {
+    font-size: 1rem;
+  }
+
+  .main-post li {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 10px 0;
+  }
+}
 /* end: 1024px */
+
+@media (min-width: 993px) and (max-width: 1024px) {
+}
 
 /* start: 992px */
 @media (min-width: 769px) and (max-width: 992px) {
@@ -1357,11 +1509,9 @@ small img {
 
 /*start 768px */
 @media (max-width: 768px) {
-  
 }
 /* end: 768px */
 
 /* start: 500px */
 @media (max-width: 500px) {
- 
 }
