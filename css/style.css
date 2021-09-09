@@ -130,7 +130,7 @@ a.glow:hover,
 a.glow:focus {
   text-decoration: none;
   color: #eee;
-  text-shadow: var(--main-color);
+  text-shadow: #647c96;
   -webkit-transition: 400ms linear 0s;
   -moz-transition: 400ms linear 0s;
   -o-transition: 400ms linear 0s;
@@ -279,7 +279,7 @@ a:active {
 }
 
 #go-back-up {
-  color: var(--main-color);
+  color: #121b00;
   text-decoration: none;
   cursor: pointer;
 }
@@ -302,7 +302,7 @@ a:active {
 }
 
 .text-light {
-  color: var(--main-color);
+  color: #121b00;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.7;
@@ -321,7 +321,7 @@ a:active {
 }
 
 .main-post li {
-  color: var(--main-color);
+  color: #121b00;
   font-size: 20px;
   font-weight: bold;
   line-height: 1.8;
@@ -400,7 +400,7 @@ aside#sidebar .quote textarea {
 .news i {
   font-size: 22px;
   text-align: center;
-  color: var(--main-color);
+  color: #121b00;
   margin-top: 40px;
   padding-bottom: 10px;
   margin-bottom: 0;
@@ -555,7 +555,7 @@ small img {
 }
 
 ::placeholder {
-  color: var(--main-color);
+  color: #000;
   font-size: 15px;
   letter-spacing: 0.5px;
   text-align: start;
@@ -1455,6 +1455,7 @@ small img {
 
   #register-container {
     width: 38vw;
+    height: 80%;
   }
 
   #login-image img {
@@ -1467,6 +1468,7 @@ small img {
 
   .link {
     margin-top: 15px;
+    margin-bottom: 2px;
   }
 
   .loginBtn,
