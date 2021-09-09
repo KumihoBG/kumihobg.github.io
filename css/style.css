@@ -1266,8 +1266,6 @@ small img {
   }
 
   .avatar-link {
-    padding: 9px 17px;
-    margin: 2px 0;
     font-size: 13px;
   }
 
@@ -1417,16 +1415,12 @@ small img {
   }
 
   .avatar {
-    margin: 0 auto;
     width: 70px;
     height: 70px;
-    border-radius: 50%;
     border: 2px solid var(--main-color);
   }
 
   .avatar-link {
-    padding: 8px 16px;
-    margin: 2px 0;
     font-size: 13px;
   }
 
@@ -1503,18 +1497,211 @@ small img {
 /* end: 1024px */
 
 @media (min-width: 993px) and (max-width: 1024px) {
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--main-color);
+  }
+
+  .avatar-link {
+    font-size: 11px;
+  }
+
+  #left-container {
+    padding-top: 30px;
+  }
+
+  #right-container {
+    padding-top: 24px;
+  }
 }
 
 /* start: 992px */
 @media (min-width: 769px) and (max-width: 992px) {
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--main-color);
+  }
+
+  .avatar-link {
+    font-size: 10px;
+  }
 }
 /* end 992px */
 
 /*start 768px */
 @media (max-width: 768px) {
+  #register-section,
+  #login-section {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+  }
+
+  #register-container,
+  #login-container {
+    grid-column: 1/2;
+    grid-row: 1;
+    margin: 0 auto;
+    width: 50vw;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  #register-image,
+  #login-image {
+    display: none;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--main-color);
+  }
+
+  .avatar-link {
+    font-size: 9px;
+  }
+
+  .my-book-container {
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  aside#sidebar {
+    width: 40%;
+    padding-right: 2%;
+  }
+
+  #sinopsis {
+    width: 45vw;
+  }
 }
 /* end: 768px */
 
 /* start: 500px */
 @media (max-width: 500px) {
+
+}
+
+@media (max-width: 375px) {
+  #secTitle {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+  }
+
+  #parallaxBtn {
+    width: 70vw;
+    font-size: 1rem;
+    transform: translateY(55px);
+    text-align: center;
+  }
+
+  #text {
+    position: absolute;
+    color: #0f1525;
+    font-size: 13vw;
+    text-align: center;
+    line-height: 0.65em;
+    transform: translateY(-250%);
+  }
+  
+  #text span {
+    font-size: 0.6em;
+    transform: translateY(-70%);
+  }
+
+  .sec {
+    padding: 0;
+  }
+
+  .my-book {
+    width: 85vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+  }
+
+  .my-book-container {
+    width: 85vw;
+  }
+
+  #book-cover {
+    margin-bottom: 30px;
+  }
+
+  #sinopsis {
+    width: 100%;
+  }
+
+  aside#sidebar {
+    width: 100%;
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  #register-section {
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  #register-container,
+  #login-container {
+    width: 80vw;
+    height: 115vh;
+    margin: 10px auto;
+    padding: 0;
+  }
+
+  .footer-container {
+    width: 85vw;
+    margin: 0 auto;
+  }
+
+  .footer-bottom small {
+    flex-direction: column;
+  }
+
+  .footer-bottom small img {
+    display: none;
+  }
+
+  #map {
+    display: none;
+  }
+
+  .main-post {
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-post-container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    padding: 0;
+    margin: 0;
+  }
+
+  #actual-post,
+  #actual-post2 {
+    width: 90%;
+  }
+
+  #go-back-up {
+    display: none;
+  }
+
+  #loginForm-container {
+    margin: 10px 0;
+    padding: 3%;
+  }
+
+  #register-container {
+    width: 80vw;
+    margin: 2% auto;
+  }
 }
