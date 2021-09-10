@@ -59,9 +59,6 @@ export const navTemplate = () => html`
           <a id="register-link" class="guest" href="/register">Register</a>
         </li>
         <li>
-          <span id="welcome-user" class="user"></span>
-        </li>
-        <li>
           <a href="/profile" class="user">Profile</a>
         </li>
         <li>
