@@ -1,9 +1,9 @@
-import {html} from 'https://unpkg.com/lit-html?module';
+import { html } from 'https://unpkg.com/lit-html?module';
 
 export const navTemplate = () => html`
 <div class="header-field">
   <!--Header-->
-  <header>
+  <header id="desktop">
     <nav class='nav-style'>
       <ul class='ul-style'>
         <div class="left">
@@ -26,7 +26,7 @@ export const navTemplate = () => html`
             <a id="register-link" class="guest" href="/register">Register</a>
           </li>
           <li>
-              <span id="welcome-user" class="user"></span>
+            <span id="welcome-user" class="user"></span>
           </li>
           <li>
             <a href="/profile" class="user">Profile</a>
@@ -41,6 +41,37 @@ export const navTemplate = () => html`
       </ul>
       <a href='#' id='openup'>MENU</a>
     </nav>
+  </header>
+
+  <header id="mobile">
+  <nav class="main-nav">
+    <ul class="main-menu">
+        <li>
+          <a id="home-link" class="common active" href='/home'>Home</a>
+        </li>
+        <li>
+          <a id="about-link" class="common" href="/blog">Blog</a>
+        </li>
+        <li>
+          <a id="login-link" class="guest" href="/login">Login</a>
+        </li>
+        <li>
+          <a id="register-link" class="guest" href="/register">Register</a>
+        </li>
+        <li>
+          <span id="welcome-user" class="user"></span>
+        </li>
+        <li>
+          <a href="/profile" class="user">Profile</a>
+        </li>
+        <li>
+          <a class="user" id="logoutBtn" href="javascript:void(0)">Logout</a>
+        </li>
+        <li>
+          <a id="language" class="common" href="/home-bg">BG</a>
+        </li>
+    </ul>
+  </nav>
   </header>
 </div>`;
 
@@ -71,7 +102,7 @@ export const navTemplateBg = () => html`
             <a id="register-link" class="guest" href="/register-bg">Регистрация</a>
           </li>
           <li>
-              <span id="welcome-user" class="user"></span>
+            <span id="welcome-user" class="user"></span>
           </li>
           <li>
             <a href="/profile-bg" class="user">Профил</a>

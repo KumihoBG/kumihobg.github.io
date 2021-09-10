@@ -137,3 +137,5 @@ function toggleInputEl(element, password) {
     password.setAttribute('type', 'password');
   }
 }
+
+document.querySelector('.menu-btn').addEventListener('click', () => document.querySelector('.main-menu').classList.toggle('show'));
