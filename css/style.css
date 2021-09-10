@@ -165,6 +165,10 @@ a:active {
   height: 100vh;
 }
 
+.main-menu a {
+  text-decoration: none;
+  color: #eee;
+}
 .menu-btn {
   cursor: pointer;
   position: absolute;
