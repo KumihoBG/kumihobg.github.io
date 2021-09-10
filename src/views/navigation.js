@@ -39,7 +39,6 @@ export const navTemplate = () => html`
           </li>
         </div>
       </ul>
-      <a href='#' id='openup'>MENU</a>
     </nav>
   </header>
 

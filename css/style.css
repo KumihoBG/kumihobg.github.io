@@ -109,22 +109,16 @@ nav li,
   display: inline-block;
 }
 
-.nav-style a,
-.main-menu a {
+.nav-style a {
   text-align: center;
   text-decoration: none;
   color: #eee;
   padding: 50px 40px;
 }
 
-nav a:hover,
-.main-menu :hover {
+nav a:hover {
   background: #647c96;
   font-weight: 500;
-}
-
-nav a#openup {
-  display: none;
 }
 
 a.glow,
