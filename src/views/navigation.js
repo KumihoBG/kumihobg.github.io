@@ -45,25 +45,25 @@ export const navTemplate = () => html`
   <header id="mobile">
   <nav class="main-nav">
     <ul class="main-menu">
-        <li>
+        <li class="common active">
           <a id="home-link" class="common active" href='/home'>Home</a>
         </li>
-        <li>
+        <li class="common">
           <a id="about-link" class="common" href="/blog">Blog</a>
         </li>
-        <li>
+        <li class="guest">
           <a id="login-link" class="guest" href="/login">Login</a>
         </li>
-        <li>
+        <li class="guest">
           <a id="register-link" class="guest" href="/register">Register</a>
         </li>
-        <li>
+        <li class="user">
           <a href="/profile" class="user">Profile</a>
         </li>
-        <li>
+        <li class="user">
           <a class="user" id="logoutBtn" href="javascript:void(0)">Logout</a>
         </li>
-        <li>
+        <li class="common">
           <a id="language" class="common" href="/home-bg">BG</a>
         </li>
     </ul>
@@ -122,18 +122,26 @@ export function setUserNav() {
   const username = localStorage.getItem('username');
 
   if (userId != null) {
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'inline-block');
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.guest')].forEach(el => el.style.display = 'none');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.guest')].forEach(el => el.style.display = 'none');
+    
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.user')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.common')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.guest')].forEach(el => el.style.display = 'none');
     if (document.documentElement.lang == 'en') {
       welcomeUser.textContent = `Welcome, ${username}`;
     } else {
       welcomeUser.textContent = `Здравей, ${username}`;
     }
   } else {
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'none');
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
-    [...document.querySelectorAll('.header-field > header > nav > ul > div > li > a.guest')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.user')].forEach(el => el.style.display = 'none');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.common')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #desktop > nav > ul > div > li > a.guest')].forEach(el => el.style.display = 'inline-block');
+
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.user')].forEach(el => el.style.display = 'none');
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.common')].forEach(el => el.style.display = 'inline-block');
+    [...document.querySelectorAll('.header-field > #mobile > nav > ul > li.guest')].forEach(el => el.style.display = 'inline-block');
     welcomeUser.style.display = "none";
   }
 }

@@ -113,7 +113,7 @@ nav li,
   text-align: center;
   text-decoration: none;
   color: #eee;
-  padding: 50px 40px;
+  padding: 10px 40px;
 }
 
 nav a:hover {
@@ -1779,6 +1779,6 @@ small img {
 
   #register-container {
     width: 80vw;
-    margin: 2% auto;
+    margin: 0 auto;
   }
 }
