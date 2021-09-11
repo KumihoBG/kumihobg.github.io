@@ -1616,6 +1616,10 @@ small img {
 
 /*start 768px */
 @media (max-width: 768px) {
+  #parallaxBtn {
+    display: none;
+  }
+  
   .main-post-container {
     display: flex;
     height: auto;
