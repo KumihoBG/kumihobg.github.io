@@ -1619,7 +1619,7 @@ small img {
   #parallaxBtn {
     display: none;
   }
-  
+
   .main-post-container {
     display: flex;
     height: auto;
@@ -1739,6 +1739,10 @@ small img {
 
 /* start: 500px */
 @media (max-width: 500px) {
+  #parallaxBtn {
+    display: none;
+  }
+
   .main-nav ul.main-menu {
     top: 20px;
     width: 50vw;
@@ -1780,8 +1784,11 @@ small img {
 }
 
 /* Start: 375px */
-
 @media (max-width: 375px) {
+  #parallaxBtn {
+    display: none;
+  }
+  
   #left-container h2 {
     margin-top: 30%;
   }
