@@ -1616,6 +1616,20 @@ small img {
 
 /*start 768px */
 @media (max-width: 768px) {
+  #text {
+    position: absolute;
+    color: #0f1525;
+    font-size: 13vw;
+    text-align: center;
+    line-height: 0.65em;
+    transform: translateY(-120%);
+  }
+
+  #text span {
+    font-size: 0.6em;
+    transform: translateY(-70%);
+  }
+
   #parallaxBtn {
     display: none;
   }
@@ -1739,6 +1753,26 @@ small img {
 
 /* start: 500px */
 @media (max-width: 500px) {
+  .my-book-container {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+
+  #sinopsis,
+  aside#sidebar {
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .get-in-touch,
+  #book-cover {
+    width: 95%;
+  }
+
   #parallaxBtn {
     display: none;
   }
@@ -1773,7 +1807,7 @@ small img {
   #header-upload-two {
     position: absolute;
     top: 52%;
-    left: 12%;
+    left: 14%;
   }
 
   #user-details {
@@ -1788,7 +1822,7 @@ small img {
   #parallaxBtn {
     display: none;
   }
-  
+
   #left-container h2 {
     margin-top: 30%;
   }
