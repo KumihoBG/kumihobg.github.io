@@ -12,7 +12,7 @@ ${navTemplate()}
   <img id="header-image" src="" alt="profile-header">
   <form class="upload-form">
     <label for="upload-header">
-      <i id="header-upload-one" class="fas fa-camera fa-2x"></i>
+      <p class="i"><i id="header-upload-one" class="fas fa-camera fa-2x"></i></p>
       <input type="file" id="upload-header" name="upload" style="display:none" accept="image/*" visibility="none">
     </label>
   </form>
@@ -23,7 +23,7 @@ ${navTemplate()}
       <div id="user-image-container">
         <form class="upload-form">
           <label for="upload">
-            <i id="header-upload-two" class="fas fa-camera fa-2x"></i>
+            <p class="i"><i id="header-upload-two" class="fas fa-camera fa-2x"></i></p>
             <input type="file" id="upload" name="upload" style="display:none" accept="image/*" visibility="none">
           </label>
         </form>
