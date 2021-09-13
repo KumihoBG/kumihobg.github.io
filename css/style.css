@@ -94,7 +94,7 @@ input:focus {
   justify-content: center;
   height: 50px;
   width: 100vw;
-  background-color: #01667b;
+  background: linear-gradient(to bottom, #01667b, transparent);
   color: #eee;
   opacity: 0.95;
 }
@@ -113,12 +113,17 @@ nav li,
   text-align: center;
   text-decoration: none;
   color: #eee;
-  padding: 10px 40px;
+  padding: 40px 45px;
 }
 
 nav a:hover {
-  background: #647c96;
+  background: url('../images//cloud.png') no-repeat center center;
   font-weight: 500;
+  color: #094b65;
+}
+
+nav a:hover img{
+  display:block;
 }
 
 a.glow,
