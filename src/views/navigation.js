@@ -75,7 +75,7 @@ export const navTemplate = () => html`
 export const navTemplateBg = () => html`
 <div class="header-field">
   <!--Header-->
-  <header>
+  <header id="desktop">
     <nav class='nav-style'>
       <ul class='ul-style'>
         <div class="left">
@@ -111,8 +111,35 @@ export const navTemplateBg = () => html`
           </li>
         </div>
       </ul>
-      <a href='#' id='openup'>MENU</a>
     </nav>
+  </header>
+
+  <header id="mobile">
+  <nav class="main-nav">
+    <ul class="main-menu">
+        <li class="common active">
+          <a id="home-link" class="common active" href='/home-bg'>Начало</a>
+        </li>
+        <li class="common">
+          <a id="about-link" class="common" href="/blog-bg">Блог</a>
+        </li>
+        <li class="guest">
+          <a id="login-link" class="guest" href="/login-bg">Вход</a>
+        </li>
+        <li class="guest">
+          <a id="register-link" class="guest" href="/register-bg">Регистрация</a>
+        </li>
+        <li class="user">
+          <a href="/profile-bg" class="user">Profile</a>
+        </li>
+        <li class="user">
+          <a class="user" id="logoutBtn" href="javascript:void(0)">Изход</a>
+        </li>
+        <li class="common">
+          <a id="language" class="common" href="/home">EN</a>
+        </li>
+    </ul>
+  </nav>
   </header>
 </div>`;
 
