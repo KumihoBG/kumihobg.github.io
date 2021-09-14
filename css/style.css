@@ -520,9 +520,9 @@ footer {
 
 .footer-bottom {
   display: inline-grid;
-  padding: 10px 0;
+  padding: 30px 0;
   justify-items: center;
-  background-color: #647c96;
+  background: linear-gradient(to bottom, #000, #01667b);
   width: 100%;
 }
 
@@ -533,6 +533,7 @@ footer {
   justify-content: center;
   align-items: center;
   letter-spacing: 1px;
+  padding-top: 20px;
 }
 
 small a {
@@ -595,7 +596,7 @@ small img {
 #subscribeBtn,
 #subscribeBtnBg {
   display: inline-block;
-  background: #647c96;
+  background: linear-gradient(to bottom, #094b65, #01667b);
   font-size: 20px;
   font-weight: 600;
   color: #ffffff;
