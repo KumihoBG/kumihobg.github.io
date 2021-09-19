@@ -10,7 +10,7 @@ const profileTemplateBg = (onChange, getUserName, getUserEmail, onDelete, onEdit
 ${navTemplate()}
 <div id="profile-header">
 <img id="header-image" src="" alt="profile-header">
-  <form class="upload-form">
+  <form class="upload-form" enctype="multipart/form-data">
     <label for="upload-header">
       <i id="header-upload-one" class="fas fa-camera fa-2x"></i>
       <input type="file" id="upload-header" name="upload" style="display:none" accept="image/*" visibility="none">
